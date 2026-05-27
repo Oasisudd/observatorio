@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Índice de la Página - Proyecto OASIS</title>
+  <link rel="stylesheet" href="./css/style.css">
+  
+  <!-- Sin filtro blanco y negro -->
+  <style>
+    img { filter: none !important; transition: none !important; }
+    img:hover { filter: none !important; }
+    .image-item { filter: none !important; }
+    .image-item:hover { filter: none !important; }
+    #map { filter: none !important; }
+    #map:hover { filter: none !important; }
+  </style>
+  
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  
+
+</head>
+<body>
+
+<div id="indicebody">
+  <!-- Sección principal con fondo blanco -->
+  <div class="row">
+    <div class="index-container-arriba">
+      <div class="logo-oasis">
+        <a href="./index2.html">
+          <img src="./img/OA_Recurso48.png" 
+               alt="Logo Observatorio OASIS">
+        </a>
+      </div>
+    </div>
+
+    <!-- Cuadrado dividido en 5 -->
+    <div class="index-container">
+      <div class="image-grid">
+        <a href="./transectoSal.html" class="image-item bg-33"></a>
+        <a href="./transectolaGallina.html" class="image-item bg-22"></a>
+        <a href="./transectocentroSalar.html" class="image-item bg-66"></a>
+        <a href="./transectoMirador2.html" class="image-item bg-44"></a>
+        <a href="./transectoLaguatita.html" class="image-item bg-55"></a>
+      </div>
+    </div>
+
+    <!-- Sección de la bajada alineada a la derecha -->
+    <div class="index-container-abajo">
+      <div class="bajada"> 
+        <h4>Texturas y Ecosistemas </h4><h3>| Parque Nacional Nevado Tres Cruces - Región de Atacama |</h3><h4> Haz click en una imagen</h4>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+   
+     
+    <div class="texto">
+      <h2>El Observatorio OASIS es un proyecto de investigación interdisciplinaria que estudia los salares altoandinos del norte de Chile. Su objetivo es comprender los ciclos geoquímicos, biogeoquímicos y ecológicos de estos ecosistemas, así como los impactos sociales y ambientales asociados a la minería del litio.
+
+Desde la geología, microbiología, ecología y ciencias sociales, el proyecto busca generar información útil para la gestión ambiental y la toma de decisiones sobre el uso sostenible de estos territorios.
+ 
+</h2>
+    </div>
+     <div class="imagen-padding">
+      <img src="./img/salarCentro.jpeg" alt="centro del salar">
+    </div>
+  </div>
+
+  <!-- SECCIÓN DEL MAPA (REEMPLAZA AL IFRAME) -->
+  <div class="row">
+    <div class="titulo1">
+      <h1>Lugares de estudio</h1>
+    </div>
+    <div class="iframe-container">
+      <div id="map"></div>
+      
+    </div>
+    <div>
+        <p>
+      Opera en una superficie de <strong>~10.000 km²</strong> en el <strong>extremo sur de la Zona Volcánica de los Andes Centrales</strong>, Región de Atacama, Chile. Las cuencas de estudio se ubican entre los <strong>3.700 y 4.300 m.s.n.m.</strong>, bajo condiciones de <strong>intensa radiación solar</strong> y <strong>altas tasas de evaporación superficial</strong> que modelan la dinámica hídrica y la distribución de la biota en estos ecosistemas singulares.
+      <br><br>
+      El área incluye la Laguna Verde, la Laguna del Negro Francisco, la Laguna Santa Rosa y el Salar de Maricunga. 
+     </p>
+    </div>
+  </div>
+<div class="row">
+        <div class="titulo1">
+      <h1>Líneas de investigación</h1>
+  
+</div>
+    <div class="botones-tematicos">
+
+     
+      <a href="./ecologia.html" class="boton-tema eco"><span>ECOLOGÍA Y SOCIO-ECOLOGÍA</span></a>
+      <a href="./microbiologia.html" class="boton-tema micro"><span>ECOLOGÍA MICROBIANA</span></a>
+      <a href="./geociencias.html" class="boton-tema geo"><span>GEOCIENCIAS</span></a>
+      <a href="./teledeteccion.html" class="boton-tema tele"><span>CIENCIA DE DATOS AMBIENTALES</span></a>
+    
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="imagen-padding">
+      <img src="./img/IMG_1080.png" alt="Dos flamencos en una laguna">
+    </div>
+  </div>
+
+  <footer class="footer-oasis">
+    <div class="footer-text">
+      Proyecto Anillo Temático Li y Salares – ANID || ATE2400015 (2024–2027)
+    </div>
+
+    <div class="footer-columns">
+      <div class="logos-left">
+        <div class="logo-row">
+          <a href="https://www.udd.cl/" target="_blank">
+            <img src="https://oasis.udd.cl/wp-content/uploads/2025/06/OA_Recurso-49-scaled.png" alt="UDD">
+          </a>
+          <a href="https://www.uda.cl/" target="_blank">
+            <img src="https://oasis.udd.cl/wp-content/uploads/2025/06/OA_Recurso-50.png" alt="UDA">
+          </a>
+          <a href="https://www.unab.cl/" target="_blank">
+            <img src="https://oasis.udd.cl/wp-content/uploads/2025/06/OA_Recurso-55-1024x343.png" alt="UNAB">
+          </a>
+        </div>
+        <div class="logo-row">
+          <a href="https://www.udec.cl/pexterno/" target="_blank">
+            <img src="https://oasis.udd.cl/wp-content/uploads/2025/06/OA_Recurso-54-1024x388.png" alt="UdeC">
+          </a>
+          <a href="https://www.ufro.cl/" target="_blank">
+            <img src="https://oasis.udd.cl/wp-content/uploads/2025/06/OA_Recurso-53-1024x358.png" alt="UFRO">
+          </a>
+          <a class="logos-smi" href="https://smiicechile.cl/" target="_blank">
+            <img src="https://oasis.udd.cl/wp-content/uploads/2025/06/OA_Recurso-52-1024x127.png" alt="SMI ICE Chile">
+          </a>
+        </div>
+      </div>
+
+      <div class="logo-anid">
+        <a href="https://anid.cl/" target="_blank">
+          <img src="https://oasis.udd.cl/wp-content/uploads/2025/06/OA_Recurso-51-1024x932.png" alt="ANID">
+        </a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+  // 1. Inicializar Mapa
+  const map = L.map('map').setView([-26.75, -69.15], 9);
+
+  // 2. Capa base satelital (Esri World Imagery)
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Esri &mdash; Proyecto OASIS'
+  }).addTo(map);
+
+  // Capa de Etiquetas (Ciudades, fronteras, parques y algunos cerros)
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Esri'
+  }).addTo(map);
+
+  // Capa de Rutas y Caminos
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Esri'
+  }).addTo(map);
+
+  let globalBounds = L.latLngBounds();
+
+  // 3. Función para cargar capas con colores específicos
+  async function cargarCapa(url, nombre, hexColor) {
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      let layer = L.geoJSON(data, {
+        style: {
+          color: hexColor,      // Borde
+          weight: 3,            // Grosor
+          fillOpacity: 0.4,     // Relleno
+          fillColor: hexColor   // Relleno
+        },
+        onEachFeature: (feature, layer) => {
+          layer.bindPopup(`<strong class="popup-title">${nombre}</strong><br>Proyecto OASIS`);
+        }
+      }).addTo(map);
+      
+      // Auto-centrar el mapa al cargar el geojson
+      globalBounds.extend(layer.getBounds());
+      map.fitBounds(globalBounds);
+      
+    } catch (e) {
+      console.error("Error cargando:", nombre, e);
+    }
+  }
+
+  // 4. Carga de los 3 GeoJSON con la paleta solicitada
+  // Maricunga -> TURQUESA AGUA
+  cargarCapa('https://jdelafuentec.github.io/web/geoJson/polygonMaricunga.geojson', 'Sector Salar de Maricunga', '#00a99d');
+  
+  // Negro Francisco -> ROSA FAUNA
+  cargarCapa('https://jdelafuentec.github.io/web/geoJson/polygonNegroFco.geojson', 'Sector Laguna Negro Francisco', '#FF7BAC');
+  
+  // Pedernales -> AZUL ROCA
+  cargarCapa('https://jdelafuentec.github.io/web/geoJson/polygonPedernales.geojson', 'Sector Laguna Verde', '#343b4d');
+</script>
+
+</body>
+</html>
