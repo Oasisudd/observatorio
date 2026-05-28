@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>OASIS - Geo Interactivo Maricunga</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+        }
+
+        :root {
+            --turquesa-agua: #00a99d;
+            --ocre-tierra: #a98743;
+            --azul-roca: #343b4d;
+            --rosa-fauna: #FF7BAC;
+            --azul-oscuro: #1e222d;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--azul-oscuro);
+            color: #ffffff;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: row;
+        }
+
+        /* DETECTOR DE ORIENTACIÓN PARA MÓVILES */
+        #rotation-screen {
+            display: none;
+            background-color: var(--azul-oscuro);
+            z-index: 999;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+        @media (orientation: portrait) {
+            #rotation-screen { display: flex !important; }
+        }
+
+        /* BARRA LATERAL IZQUIERDA COMPACTA */
+        #sidebar {
+            width: 340px;
+            background-color: var(--azul-roca);
+            border-right: 3px solid var(--ocre-tierra);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            flex-shrink: 0;
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        .logo-container {
+            text-align: center;
+            border-bottom: 2px solid var(--turquesa-agua);
+            padding-bottom: 12px;
+        }
+        .sidebar-logo {
+            width: 100%;
+            max-width: 180px;
+            height: auto;
+        }
+
+        /* PANEL EXPLICATIVO (LA CONSOLA INTEGRADA EN LA UI) */
+        #console-panel {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .console-title {
+            font-size: 0.95rem;
+            font-weight: bold;
+            color: var(--turquesa-agua);
+            line-height: 1.3;
+        }
+        .console-instruction {
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: var(--rosa-fauna);
+            background: rgba(255,123,172,0.1);
+            padding: 6px;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .console-narrative h4 {
+            font-size: 0.85rem;
+            color: var(--ocre-tierra);
+            margin-bottom: 4px;
+            text-transform: uppercase;
+        }
+        .console-narrative p {
+            font-size: 0.85rem;
+            line-height: 1.45;
+            color: #dddddd;
+            text-align: justify;
+        }
+
+        /* FICHA TÉCNICA DE CAPAS EXPLORADAS */
+        #layer-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            padding: 10px;
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            border-left: 3px solid var(--turquesa-agua);
+        }
+        #layer-card img {
+            width: 65px;
+            height: 65px;
+            object-fit: contain;
+            background: white;
+            border-radius: 4px;
+        }
+        #layer-card-text h5 { font-size: 0.9rem; color: var(--turquesa-agua); margin-bottom: 3px; }
+        #layer-card-text p { font-size: 0.75rem; line-height: 1.35; color: #ccc; }
+
+        /* VIEWPORT DEL CANVAS DE RENDERIZADO */
+        #game-viewport {
+            flex: 1;
+            overflow-x: auto;
+            overflow-y: hidden;
+            position: relative;
+            background: #ffffff;
+            height: 100%;
+        }
+
+        #canvas-holder {
+            position: relative;
+            display: inline-block;
+            height: 100%;
+        }
+
+        canvas {
+            height: 100%;
+            width: auto;
+            display: block;
+            cursor: pointer;
+        }
+
+        /* RESPONSIVO HORIZONTAL CELULARES */
+        @media (max-height: 500px) {
+            #sidebar { width: 220px; padding: 10px; gap: 8px; }
+            .sidebar-logo { max-height: 25px; }
+            .console-title { font-size: 0.75rem; }
+            .console-instruction { font-size: 0.7rem; padding: 3px; }
+            .console-narrative p { font-size: 0.75rem; line-height: 1.25; }
+            #layer-card img { width: 45px; height: 45px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="rotation-screen">
+        <div style="font-size:3rem; margin-bottom:10px;">🔄📱</div>
+        <h1>Gira tu dispositivo</h1>
+        <p style="color:#b3b9c9; font-size:0.9rem; margin-top:5px;">Por favor usa el modo horizontal para explorar la sección interactiva.</p>
+    </div>
+
+    <div id="sidebar">
+        <div class="logo-container">
+            <img class="sidebar-logo" src="./img/OA_Recurso48.png" alt="OASIS">
+        </div>
+
+        <div id="console-panel">
+            <div class="console-title" id="ui-title">Cargando Simulación...</div>
+            <div class="console-instruction" id="ui-instruction">-</div>
+            <div class="console-narrative">
+                <h4>¿Qué está ocurriendo?</h4>
+                <p id="ui-narrative">-</p>
+            </div>
+            
+            <div id="layer-card" class="hidden">
+                <img id="layer-img" src="" alt="Muestra">
+                <div id="layer-card-text">
+                    <h5 id="layer-name">-</h5>
+                    <p id="layer-desc">-</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="game-viewport">
+        <div id="canvas-holder">
+            <canvas id="geoCanvas" width="1275" height="768"></canvas>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('geoCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Configuración de rutas y escalas
+        const S = 1.0;
+        const BASE = './img/geo_interactivo/';
+
+        // Estado Global
+        let etapa = 0;
+        let subVolcan = 1;
+        let capaActiva = null;
+        let capaHover = null;
+        let mostrarCapaTemporal = false;
+        let lluviaActiva = false;
+        let lluviaInicio = 0;
+
+        // Estructuras espaciales fijas
+        const ZONA_SALAR = { x: 520*S, y: 320*S, w: 420*S, h: 220*S };
+        const POS = {
+            volcanes: {x: 642, y: 220, w: 0, h: 0},
+            vegetacion: {x: 110, y: 356, w: 0, h: 0},
+            lagunaStaRosa: {x: 114, y: 453, w: 0, h: 0},
+            rocasVolcanicas: {x: 587, y: 245},
+            grava: {x: 337, y: 304},
+            AguaInfiltrada: {x: 432, y: 255},
+            nube: {x: 528, y: 46, w: 0, h: 0},
+            lluvia: {x: 579, y: 140},
+            flechaMagma: {x: 781, y: 356},
+            flechaMagma2: {x: 728, y: 281},
+            carbonatos: {x: 138, y: 342, w: 0, h: 0},
+            travertines: {x: 436, y: 269, w: 0, h: 0},
+            sulphates: {x: 233, y: 330, w: 0, h: 0},
+            halite: {x: 251, y: 327, w: 0, h: 0},
+            flechaAgua1: {x: 568, y: 356},
+            flechaAgua2: {x: 670, y: 308},
+            flechaAgua3: {x: 638, y: 376},
+            flechaAgua4: {x: 594, y: 315},
+            flechaAgua2_1: {x: 822, y: 273},
+            flechaAgua2_2: {x: 865, y: 238},
+            flechaAgua2_3: {x: 868, y: 311},
+            lava: {x: 693, y: 393},
+            aguaRio: {x: 419, y: 265, w: 0, h: 0},
+            flechaRios: {x: 25, y: 336}
+        };
+        let POS_SOL = { x: POS.nube.x - 140, y: POS.nube.y - 60 };
+
+        // Almacén de imágenes (Sprites)
+        const sprites = {};
+        const capas = [];
+
+        // Descripciones narrativas científicas
+        const narrativas = [
+            "1- La nieve y la lluvia en las altas cumbres de la cordillera dan origen al sistema hídrico de salares altoandinos, donde la nieve se acumula, se derrite, se infiltra en la tierra y fluye hacia las zonas bajas, recargando de agua y elementos químicos lagunas y canales del Salar de Maricunga. La recarga es superficial a través de ríos y subterránea a través de flujos intergranulares en los sedimentos.",
+            "2. El agua que hoy corre por el tejido hídrico del entorno cordillerano erosiona y disuelve las rocas que se formaron antiguamente. Entre ellas se encuentran los travertinos, que en un pasado no muy lejano se formaron por precipitación química y orgánica en ambientes de aguas termales mezcladas con aportes magmáticos.",
+            "3- Infiltración y calentamiento de aguas en la tierra.",
+            "4- Surgencias de aguas termales y creación de los travertinos.",
+            "La recarga hídrica superficial en la cuenca alimenta humedales y lagunas.",
+            "La evaporación progresiva genera precipitación secuencial de carbonatos, sulfatos y cloruros.",
+            "Pasa el cursor por Travertinos, Carbonatos, Sulfatos, Cloruros y Vegetación; haz clic para fijar su ficha técnica.",
+            "7- Evolución química de salmueras, finalmente enriquecidas en metales alcalinos, litio, potasio y tierras raras."
+        ];
+
+        // Cargador asíncrono Nativo
+        async function loadImg(src) {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.src = src;
+                img.onload = () => resolve(img);
+            });
+        }
+
+        async function init() {
+            // Cargar fondos y elementos generales
+            sprites.fondoBlanco = await loadImg(BASE + 'fondoBlanco.png');
+            sprites.montanas = await loadImg(BASE + 'montanas.png');
+            sprites.solImg = await loadImg(BASE + 'sol.png');
+            
+            sprites.nubeImg = await loadImg(BASE + 'nube.png');
+            POS.nube.w = sprites.nubeImg.width; POS.nube.h = sprites.nubeImg.height;
+
+            sprites.lluviaImg = await loadImg(BASE + 'lluvia.png');
+            sprites.aguaRioImg = await loadImg(BASE + 'aguaRio.png');
+            POS.aguaRio.w = sprites.aguaRioImg.width; POS.aguaRio.h = sprites.aguaRioImg.height;
+
+            sprites.infiltradaImg = await loadImg(BASE + 'AguaInfiltrada.png');
+            sprites.flechaAgua1 = await loadImg(BASE + 'flechaAgua1.png');
+            sprites.flechaAgua2 = await loadImg(BASE + 'flechaAgua2.png');
+            sprites.flechaAgua3 = await loadImg(BASE + 'flechaAgua3.png');
+            sprites.flechaAgua4 = await loadImg(BASE + 'flechaAgua4.png');
+            sprites.flechaAgua2_1 = await loadImg(BASE + 'flechaAgua2_1.png');
+            sprites.flechaAgua2_2 = await loadImg(BASE + 'flechaAgua2_2.png');
+            sprites.flechaAgua2_3 = await loadImg(BASE + 'flechaAgua2_3.png');
+            sprites.flechaRios = await loadImg(BASE + 'flechaRios.png');
+
+            sprites.volcanesImg = await loadImg(BASE + 'volcanes.png');
+            POS.volcanes.w = sprites.volcanesImg.width; POS.volcanes.h = sprites.volcanesImg.height;
+
+            sprites.rocasVolcanicasImg = await loadImg(BASE + 'rocasVolcanicas.png');
+            sprites.flechaMagma = await loadImg(BASE + 'flechaMagma.png');
+            sprites.flechaMagma2 = await loadImg(BASE + 'flechaMagma2.png');
+            sprites.lavaImg = await loadImg(BASE + 'lava.png');
+
+            sprites.lagunaStaRosaImg = await loadImg(BASE + 'lagunaStaRosa.png');
+            POS.lagunaStaRosa.w = sprites.lagunaStaRosaImg.width; POS.lagunaStaRosa.h = sprites.lagunaStaRosaImg.height;
+
+            sprites.vegetacionImg = await loadImg(BASE + 'vegetacion.png');
+            sprites.gravaImg = await loadImg(BASE + 'grava.png');
+
+            // Cargar datos de capas y sus imágenes reales de terreno
+            await cargarCapas();
+
+            // Escuchadores de eventos sobre el canvas
+            canvas.addEventListener('click', handleCanvasClick);
+            canvas.addEventListener('mousemove', handleCanvasMove);
+
+            // Arrancar bucle de renderizado
+            requestAnimationFrame(draw);
+        }
+
+        async function cargarCapas() {
+            const dataCapas = [
+                { key: 'sulphates', nombre: "Sulfatos", desc: "Los sulfatos como el yeso (CaSO₄·2H₂O) se forman en etapas intermedias de evaporación. Su presencia refleja un ambiente químicamente más concentrado que favorece la precipitación de minerales con azufre.", x: POS.sulphates.x, y: POS.sulphates.y, real: "sulphates.png" },
+                { key: 'travertines', nombre: "Travertinos", desc: "Roca sedimentaria carbonatada, compuesta principalmente de calcita (CaCO₃), que se forma por precipitación química y orgánica a partir de aguas subterráneas o termales.", x: POS.travertines.x, y: POS.travertines.y, real: "travertines.png" },
+                { key: 'halite', nombre: "Cloruros", desc: "Los cloruros como la halita o sal común (NaCl), precipitan en las etapas finales del proceso de evaporación. Su presencia indica ambientes extremadamente salinos. Se concentran en zonas centrales de los salares.", x: POS.halite.x, y: POS.halite.y, real: "halite.png" },
+                { key: 'carbonatos', nombre: "Carbonatos", desc: "Los carbonatos como la calcita (CaCO₃) se precipitan cuando hay pérdida de CO₂ en aguas ricas en calcio. Reflejan ambientes donde hay menor salinidad. Se concentran en las zonas periféricas de los salares.", x: POS.carbonatos.x, y: POS.carbonatos.y, real: "carbonatos.png" },
+                { key: 'vegetacion', nombre: "Vegetación", desc: "Cobertura vegetal hidrófila y bofedales en bordes y humedales del ecosistema altoandino.", x: POS.vegetacion.x, y: POS.vegetacion.y, real: "lagartija.png" }
+            ];
+
+            for (let c of dataCapas) {
+                const img = await loadImg(BASE + c.key + '.png');
+                capas.push({
+                    nombre: c.nombre,
+                    descripcion: c.desc,
+                    img: img,
+                    x: c.x, y: c.y,
+                    w: img.width, h: img.height,
+                    realPath: c.real
+                });
+            }
+        }
+
+        // BUCLE PRINCIPAL DE RENDICIÓN (Reemplaza a function draw() de p5)
+        function draw(timestamp) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Fondos Estáticos
+            ctx.drawImage(sprites.fondoBlanco, 0, 0);
+            ctx.drawImage(sprites.montanas, 0, 192);
+            ctx.drawImage(sprites.solImg, POS_SOL.x, POS_SOL.y);
+            ctx.drawImage(sprites.nubeImg, POS.nube.x, POS.nube.y);
+
+            // Secuencia lógica de Etapas
+            if (etapa === 0 || lluviaActiva) {
+                if (lluviaActiva) {
+                    const elapsed = timestamp - lluviaInicio;
+                    if (elapsed < 2000) {
+                        const offset = (elapsed / 2000) * 60;
+                        ctx.drawImage(sprites.lluviaImg, POS.lluvia.x, POS.lluvia.y + offset);
+                    } else {
+                        lluviaActiva = false;
+                        etapa = 1;
+                    }
+                }
+            }
+
+            if (etapa === 1) ctx.drawImage(sprites.aguaRioImg, POS.aguaRio.x, POS.aguaRio.y);
+
+            if (etapa === 2) {
+                ctx.drawImage(sprites.infiltradaImg, POS.AguaInfiltrada.x, POS.AguaInfiltrada.y);
+                ctx.drawImage(sprites.flechaAgua1, POS.flechaAgua1.x, POS.flechaAgua1.y);
+                ctx.drawImage(sprites.flechaAgua2, POS.flechaAgua2.x, POS.flechaAgua2.y);
+                ctx.drawImage(sprites.flechaAgua3, POS.flechaAgua3.x, POS.flechaAgua3.y);
+                ctx.drawImage(sprites.flechaAgua4, POS.flechaAgua4.x, POS.flechaAgua4.y);
+                ctx.drawImage(sprites.flechaAgua2_1, POS.flechaAgua2_1.x, POS.flechaAgua2_1.y);
+                ctx.drawImage(sprites.flechaAgua2_2, POS.flechaAgua2_2.x, POS.flechaAgua2_2.y);
+                ctx.drawImage(sprites.flechaAgua2_3, POS.flechaAgua2_3.x, POS.flechaAgua2_3.y);
+            }
+
+            if (etapa === 3) {
+                if (subVolcan >= 1) ctx.drawImage(sprites.volcanesImg, POS.volcanes.x, POS.volcanes.y);
+                if (subVolcan >= 2) {
+                    ctx.drawImage(sprites.rocasVolcanicasImg, POS.rocasVolcanicas.x, POS.rocasVolcanicas.y);
+                    ctx.drawImage(sprites.lavaImg, POS.lava.x, POS.lava.y);
+                }
+                if (subVolcan >= 3) {
+                    ctx.drawImage(sprites.flechaMagma, POS.flechaMagma.x, POS.flechaMagma.y);
+                    ctx.drawImage(sprites.flechaMagma2, POS.flechaMagma2.x, POS.flechaMagma2.y);
+                }
+            }
+
+            if (etapa === 4) {
+                ctx.drawImage(sprites.vegetacionImg, POS.vegetacion.x, POS.vegetacion.y);
+                ctx.drawImage(sprites.gravaImg, POS.grava.x, POS.grava.y);
+                ctx.drawImage(sprites.flechaRios, POS.flechaRios.x, POS.flechaRios.y);
+                ctx.drawImage(sprites.lagunaStaRosaImg, POS.lagunaStaRosa.x, POS.lagunaStaRosa.y);
+            }
+
+            if (etapa === 6) {
+                if (mostrarCapaTemporal) {
+                    capas.forEach(c => ctx.drawImage(c.img, c.x, c.y));
+                } else if (capaActiva) {
+                    ctx.drawImage(capaActiva.img, capaActiva.x, capaActiva.y);
+                } else if (capaHover) {
+                    ctx.drawImage(capaHover.img, capaHover.x, capaHover.y);
+                }
+            }
+
+            // Renderizado de Halos de ayuda guiada
+            const pulse = 18 + 6 * Math.sin(timestamp / 300);
+            if (etapa === 0) renderHalo(POS.nube.x + POS.nube.w/2, POS.nube.y + POS.nube.h/2, pulse);
+            if (etapa === 1) renderHalo(POS.aguaRio.x + 60, POS.aguaRio.y + 40, pulse);
+            if (etapa === 2 || etapa === 3) renderHalo(POS.volcanes.x + 40, POS.volcanes.y + 30, pulse);
+            if (etapa === 4) renderHalo(POS.lagunaStaRosa.x + 40, POS.lagunaStaRosa.y + 25, pulse);
+            if (etapa === 5) renderHaloRect(ZONA_SALAR, pulse);
+
+            // Textos flotantes sobre el mapa
+            renderLabels();
+            updateUI();
+
+            requestAnimationFrame(draw);
+        }
+
+        // Utilidades de dibujo nativas
+        function renderHalo(x, cy, r) {
+            ctx.beginPath(); ctx.arc(x, cy, r, 0, 2 * Math.PI);
+            ctx.strokeStyle = "rgba(0, 169, 157, 0.7)"; ctx.lineWidth = 3; ctx.stroke();
+        }
+
+        function renderHaloRect(r, pulse) {
+            ctx.strokeStyle = "rgba(0, 169, 157, 0.6)"; ctx.lineWidth = 3;
+            ctx.strokeRect(r.x - pulse/3, r.y - pulse/3, r.w + (pulse/3)*2, r.h + (pulse/3)*2);
+        }
+
+        function renderLabels() {
+            ctx.fillStyle = "rgba(0, 0, 0, 0.75)";
+            ctx.font = "bold 15px Arial";
+            ctx.fillText("Cordillera de Los Andes", POS.volcanes.x + 90, POS.volcanes.y - 24);
+            ctx.fillText("Salar de Maricunga", POS.sulphates.x + 60, POS.sulphates.y - 28);
+            ctx.fillText("Cordillera de Domeyko", 200, 210);
+            ctx.font = "13px Arial";
+            ctx.fillText("Laguna Verde", POS.volcanes.x + 120, POS.volcanes.y - 6);
+            ctx.fillText("Laguna Santa Rosa", POS.lagunaStaRosa.x + 80, POS.lagunaStaRosa.y + 26);
+        }
+
+        // Obtener coordenadas de mouse relativas a la escala del Canvas
+        function getRelativeMouse(e) {
+            const rect = canvas.getBoundingClientRect();
+            return {
+                x: ((e.clientX - rect.left) / rect.width) * canvas.width,
+                y: ((e.clientY - rect.top) / rect.height) * canvas.height
+            };
+        }
+
+        function checkHit(mx, my, pos) {
+            return mx >= pos.x && mx <= pos.x + (pos.w || 50) && my >= pos.y && my <= pos.y + (pos.h || 50);
+        }
+
+        // EVENTOS INTERACTIVOS (Reemplaza a mousePressed y mouseMoved)
+        function handleCanvasClick(e) {
+            const mouse = getRelativeMouse(e);
+
+            if (checkHit(mouse.x, mouse.y, POS.nube)) {
+                etapa = 0; subVolcan = 1; capaActiva = null; mostrarCapaTemporal = false;
+                lluviaActiva = true; lluviaInicio = performance.now();
+                return;
+            }
+
+            if (etapa === 1 && checkHit(mouse.x, mouse.y, POS.aguaRio)) { etapa = 2; return; }
+            if (etapa === 2 && checkHit(mouse.x, mouse.y, POS.volcanes)) { etapa = 3; subVolcan = 1; return; }
+            if (etapa === 3 && checkHit(mouse.x, mouse.y, POS.volcanes)) {
+                if (subVolcan < 3) subVolcan++; else etapa = 4;
+                return;
+            }
+            if (etapa === 4 && checkHit(mouse.x, mouse.y, POS.lagunaStaRosa)) { etapa = 5; return; }
+            if (etapa === 5 && mouse.x >= ZONA_SALAR.x && mouse.x <= ZONA_SALAR.x + ZONA_SALAR.w && mouse.y >= ZONA_SALAR.y && mouse.y <= ZONA_SALAR.y + ZONA_SALAR.h) {
+                etapa = 6; capaActiva = null; mostrarCapaTemporal = true;
+                setTimeout(() => { mostrarCapaTemporal = false; }, 600);
+                return;
+            }
+
+            if (etapa === 6) {
+                if (capaHover) {
+                    capaActiva = capaHover;
+                    mostrarFichaFijada(capaActiva);
+                } else if (mouse.x >= ZONA_SALAR.x && mouse.x <= ZONA_SALAR.x + ZONA_SALAR.w && mouse.y >= ZONA_SALAR.y && mouse.y <= ZONA_SALAR.y + ZONA_SALAR.h) {
+                    etapa = 7;
+                }
+            }
+        }
+
+        function handleCanvasMove(e) {
+            if (etapa !== 6) return;
+            const mouse = getRelativeMouse(e);
+            capaHover = null;
+
+            for (let c of capas) {
+                if (mouse.x >= c.x && mouse.x <= c.x + c.w && mouse.y >= c.y && mouse.y <= c.y + c.h) {
+                    capaHover = c;
+                    break;
+                }
+            }
+        }
+
+        // CONTROLADORES DE LA INTERFAZ DE USUARIO (SIDEBAR RECONFIGURADO)
+        function updateUI() {
+            const uiTitle = document.getElementById('ui-title');
+            const uiInstruction = document.getElementById('ui-instruction');
+            const uiNarrative = document.getElementById('ui-narrative');
+
+            uiTitle.innerText = "Ciclo Hidrogeológico";
+
+            if (etapa === 0) {
+                uiInstruction.innerText = "PRESIONA LA NUBE PARA REINICIAR";
+                uiNarrative.innerText = narrativas[0];
+            } else if (etapa === 1) {
+                uiInstruction.innerText = "PRESIONA EL RÍO PARA AVANZAR";
+                uiNarrative.innerText = narrativas[1];
+            } else if (etapa === 2) {
+                uiInstruction.innerText = "PRESIONA LOS VOLCANES";
+                uiNarrative.innerText = narrativas[2];
+            } else if (etapa === 3) {
+                uiInstruction.innerText = "HAZ CLIC EN LOS VOLCANES DE NUEVO";
+                uiNarrative.innerText = subVolcan === 1 ? narrativas[3] : "Recarga profunda por medio del flujo intergranular en acuíferos cordilleranos.";
+            } else if (etapa === 4) {
+                uiInstruction.innerText = "PRESIONA LA LAGUNA SANTA ROSA";
+                uiNarrative.innerText = narrativas[4];
+            } else if (etapa === 5) {
+                uiInstruction.innerText = "HAZ CLIC DENTRO DE LA ZONA DEL SALAR";
+                uiNarrative.innerText = narrativas[5];
+            } else if (etapa === 6) {
+                uiInstruction.innerText = "EXPLORA LAS CAPAS EN EL MAPA";
+                if (!capaActiva) uiNarrative.innerText = narrativas[6];
+            } else if (etapa === 7) {
+                uiInstruction.innerText = "FIN DEL RECORRIDO - CLIC NUBE";
+                uiNarrative.innerText = narrativas[7];
+                document.getElementById('layer-card').classList.add('hidden');
+            }
+        }
+
+        function mostrarFichaFijada(capa) {
+            document.getElementById('layer-card').classList.remove('hidden');
+            document.getElementById('layer-name').innerText = capa.nombre;
+            document.getElementById('layer-desc').innerText = capa.descripcion;
+            document.getElementById('layer-img').src = capa.realPath; 
+        }
+
+        // Iniciar todo al cargar la ventana
+        window.onload = init;
+    </script>
+</body>
+</html>
