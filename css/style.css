@@ -82,12 +82,11 @@ margin: 0 auto; /* Centra horizontalmente */
 /* Cada imagen del cuadrado que actúa como botón */
 .image-item {
   height: 100%;
-  background-size: cover; /* Ajusta la imagen al tamaño del contenedor */
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  filter: grayscale(100%); /* Poner las imágenes en blanco y negro por defecto */
-  transition: filter 0.3s ease; /* Transición suave para el cambio de color */
-  cursor: pointer; /* Cambia el cursor a un puntero para que parezca un botón */
+  transition: filter 0.3s ease;
+  cursor: pointer;
 }
 
 /* Fondo de la imagen 1 */
@@ -119,9 +118,9 @@ margin: 0 auto; /* Centra horizontalmente */
   background-image: url('../img/salarLagunaCentro_maricunga.jpg');
 }
 
-/* Efecto al pasar el mouse (se ponen a color) */
-.image-item:hover {
-  filter: grayscale(0%); /* Elimina el filtro de blanco y negro */
+/* Fondo de la imagen 7 — Laguna Verde */
+.bg-77 {
+  background-image: url('../img/TransectoLaguna-Verde.jpg');
 }
 
 /* Título principal */
@@ -941,9 +940,9 @@ img:not(.leaflet-tile):not(.leaflet-marker-icon):not(.leaflet-control-layers-tog
 }
 
 .boton-tema {
-  width: 22%; /* Para que 4 ocupen el ~88% y dejen espacio para el gap */
-  min-width: 120px; /* Para que en móviles no sean minúsculos */
-  max-width: 220px; /* Reducimos el máximo para que los 4 entren en pantallas estándar */
+  width: 22%;
+  min-width: 120px;
+  max-width: 220px;
   aspect-ratio: 1 / 1;
   height: auto;
   font-size: 1.2rem;
@@ -959,11 +958,10 @@ img:not(.leaflet-tile):not(.leaflet-marker-icon):not(.leaflet-control-layers-tog
   align-items: center;
   justify-content: center;
   text-align: center;
-  filter: grayscale(100%); /* Comienzan en blanco y negro */
 }
 
 .boton-tema:hover {
-  filter: grayscale(0%); /* Vuelven a tener color al pasar el mouse */
+  filter: grayscale(0%);
 }
 
 /* Fondo inicial: imagen */
@@ -1131,12 +1129,10 @@ img:not(.leaflet-tile):not(.leaflet-marker-icon):not(.leaflet-control-layers-tog
   box-shadow: 0 4px 15px rgba(0,0,0,0.15);
   z-index: 1;
   border: none;
-  filter: grayscale(100%);
-  transition: filter 0.5s ease;
 }
 
 #map:hover {
-  filter: grayscale(0%);
+  filter: none;
 }
 
 .iframe-container {

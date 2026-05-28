@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Transecto Laguna Verde</title>
+  <link href="./css/style.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+  <style>
+  </style>
+ </head>
+ <body>
+  <img alt="Transecto Laguna Verde" class="fondo-transecto" src="./img/TransectoLaguna-Verde.jpg"/>
+  <div class="infoScroll">
+   <p>
+    Deslízate hasta el final de la página para recorrer el transecto
+   </p>
+  </div>
+  <!-- Botones -->
+  <div class="white-row">
+   <div class="button-container">
+    <button class="button" id="descriptionButton">
+     DESCRIPCIÓN
+    </button>
+    <button class="button" id="locationButton">
+     UBICACIÓN
+    </button>
+    <button class="button" id="compositionButton">
+     COMPOSICIÓN
+    </button>
+    <button class="button" id="imagesButton">
+     IMÁGENES
+    </button>
+   </div>
+  </div>
+  <!-- Modal de DESCRIPCIÓN -->
+  <div class="modal" id="descriptionModal">
+   <div class="modal-content">
+    <button class="close-btn closeDescriptionModal" id="closeDescriptionModal">
+     X
+    </button>
+    <div class="modal-column">
+     <img alt="Laguna Verde" src="./img/TransectoLaguna-Verde.jpg">
+     </img>
+    </div>
+    <div class="modal-column descripcionContent">
+     <h2>
+      Laguna Verde — Parque Nacional Nevado Tres Cruces
+     </h2>
+     <p>
+      La Laguna Verde es un cuerpo de agua salino ubicado en el extremo sur del Parque Nacional Nevado Tres Cruces, a aproximadamente 4.300 m.s.n.m. Su característica coloración verdosa se debe a la concentración de algas y minerales disueltos, principalmente arsénico, cobre y carbonatos, en combinación con la alta irradiancia solar propia del altiplano.
+     </p>
+     <p>
+      El sector constituye una zona de estudio prioritaria dentro del Observatorio OASIS, ya que conecta los sistemas volcánicos activos de la Cordillera de Los Andes con la cuenca del Salar de Maricunga mediante flujos hidrotermales subsuperficiales. Su hidrogeoquímica particular la convierte en un laboratorio natural para el estudio de la precipitación mineral en ambientes extremos.
+     </p>
+    </div>
+   </div>
+  </div>
+  <!-- Modal de UBICACIÓN -->
+  <div class="modal" id="locationModal">
+   <div class="modal-content">
+    <button class="close-btn closeDescriptionModal" id="closeLocationModal">
+     X
+    </button>
+    <h2>
+     Transectos del sector y otros datos
+    </h2>
+    <iframe src="https://ee-javidelafountain.projects.earthengine.app/view/transectoslagunav">
+    </iframe>
+   </div>
+  </div>
+  <!-- Modal de COMPOSICIÓN -->
+  <div class="modal" id="compositionModal">
+   <div class="modal-content">
+    <button class="close-btn closeDescriptionModal" id="closeCompositionModal">
+     X
+    </button>
+    <div class="modal-column">
+     <h2>
+      Ciencias de la Tierra
+     </h2>
+     <div class="button-group">
+      <button>
+       Geología
+      </button>
+      <button>
+       Microbiología
+      </button>
+      <button>
+       Ecología
+      </button>
+     </div>
+    </div>
+    <div class="modal-column">
+     <img alt="Composición Laguna Verde" src="./img/TransectoLaguna-Verde.jpg"/>
+    </div>
+   </div>
+  </div>
+  <!-- Modal de IMÁGENES -->
+  <div class="modal" id="imagesModal">
+   <div class="modal-content">
+    <button class="close-btn closeDescriptionModal" id="closeImagesModal">
+     X
+    </button>
+    <div class="modal-column" style="padding: 20px; width: 100%; box-sizing: border-box;">
+     <h2 style="margin-bottom: 20px;">
+      Imágenes de Laguna Verde
+     </h2>
+     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+      <a href="./img/TransectoLaguna-Verde.jpg" class="glightbox" data-gallery="gallery1">
+       <img src="./img/TransectoLaguna-Verde.jpg" alt="Laguna Verde 1" style="width: 100%; height: 250px; object-fit: cover; border-radius: 8px; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+      </a>
+     </div>
+    </div>
+   </div>
+  </div>
+  <script>
+   document.addEventListener("DOMContentLoaded", function () {
+  function setupModal(buttonId, modalId, closeId) {
+    const button = document.getElementById(buttonId);
+    const modal = document.getElementById(modalId);
+    const close = document.getElementById(closeId);
+
+    if (button && modal && close) {
+      button.addEventListener("click", function () {
+        modal.style.display = "flex";
+      });
+      close.addEventListener("click", function () {
+        modal.style.display = "none";
+      });
+      window.addEventListener("click", function (event) {
+        if (event.target === modal) {
+          modal.style.display = "none";
+        }
+      });
+    }
+  }
+
+  setupModal("descriptionButton", "descriptionModal", "closeDescriptionModal");
+  setupModal("locationButton", "locationModal", "closeLocationModal");
+  setupModal("compositionButton", "compositionModal", "closeCompositionModal");
+  setupModal("imagesButton", "imagesModal", "closeImagesModal");
+
+  document.querySelectorAll(".modal").forEach((modal) => {
+    modal.style.display = "none";
+  });
+});
+
+  function openTab(event, tabId) {
+    document.querySelectorAll('.tab-content').forEach(tab => tab.style.display = 'none');
+    document.getElementById(tabId).style.display = 'block';
+    document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+    event.currentTarget.classList.add('active');
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
+  <script>
+    const lightbox = GLightbox({
+      selector: '.glightbox',
+      touchNavigation: true,
+      loop: true,
+    });
+  </script>
+ </body>
+</html>
