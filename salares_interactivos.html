@@ -1,205 +1,270 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Salares Interactivos | Observatorio OASIS</title>
-  <link rel="stylesheet" href="./css/style.css">
+    <meta charset="UTF-8" />
+    <title>Salares Interactivos | Observatorio OASIS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+        }
 
-  <!-- Sin filtro blanco y negro -->
-  <style>
-    img { filter: none !important; transition: none !important; }
-    img:hover { filter: none !important; }
-    .image-item { filter: none !important; }
-    .image-item:hover { filter: none !important; }
-    .boton-tema { filter: none !important; }
-    .boton-tema:hover { filter: none !important; }
-    #map { filter: none !important; }
-    #map:hover { filter: none !important; }
+        :root {
+            --turquesa-agua: #00a99d;
+            --ocre-tierra: #a98743;
+            --azul-roca: #343b4d;
+            --rosa-fauna: #FF7BAC;
+            --azul-oscuro: #1e222d;
+        }
 
-    .card-interactivo {
-      display: flex;
-      flex-direction: column;
-      border: 1px solid #e0e0e0;
-      text-decoration: none;
-      color: #323B4E;
-      transition: border-color 0.2s;
-    }
-    .card-interactivo:hover {
-      border-color: #01A99D;
-    }
-    .card-interactivo .card-thumb {
-      width: 100%;
-      aspect-ratio: 16/9;
-      background-size: cover;
-      background-position: center;
-      filter: none !important;
-    }
-    .card-interactivo .card-body {
-      padding: 1rem 1.2rem 1.2rem 1.2rem;
-    }
-    .card-interactivo .card-tag {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-weight: bold;
-      margin-bottom: 0.3rem;
-    }
-    .card-interactivo h3 {
-      font-size: 1rem;
-      font-weight: bold;
-      margin: 0 0 0.4rem 0;
-      color: #323B4E;
-    }
-    .card-interactivo p {
-      font-size: 0.88rem;
-      color: #555;
-      line-height: 1.6;
-      margin: 0;
-    }
-    .badge-pronto {
-      display: inline-block;
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.07em;
-      font-weight: bold;
-      color: #888;
-      border: 1px solid #ccc;
-      padding: 2px 8px;
-      margin-top: 0.6rem;
-    }
-  </style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--azul-oscuro);
+            color: #ffffff;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: row;
+        }
+
+        /* DETECTOR DE ORIENTACIÓN (BLOQUEO VERTICAL EN MÓVILES) */
+        #rotation-screen {
+            display: none;
+            background-color: var(--azul-oscuro);
+            z-index: 9999;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+        @media (orientation: portrait) {
+            #rotation-screen { display: flex !important; }
+        }
+
+        .phone-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: rotatePhone 2.5s infinite ease-in-out;
+            color: var(--turquesa-agua);
+        }
+
+        /* BARRA LATERAL IZQUIERDA DE TRABAJO */
+        #sidebar {
+            width: 320px;
+            background-color: var(--azul-roca);
+            border-right: 3px solid var(--ocre-tierra);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            flex-shrink: 0;
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        .logo-container {
+            text-align: center;
+            border-bottom: 2px solid var(--turquesa-agua);
+            padding-bottom: 15px;
+            flex-shrink: 0;
+        }
+        
+        .sidebar-logo {
+            width: 85%;
+            height: auto;
+            display: inline-block;
+            transition: transform 0.2s;
+        }
+        .sidebar-logo:hover {
+            transform: scale(1.02);
+        }
+
+        .sidebar-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--ocre-tierra);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-top: 8px;
+        }
+
+        /* COMPONENTE MENÚ INTERACTIVO */
+        #modules-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex: 1;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 2px solid transparent;
+            padding: 12px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.25s ease-in-out;
+        }
+        .menu-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(0, 169, 157, 0.3);
+        }
+        .menu-item.active {
+            background: rgba(0, 169, 157, 0.15);
+            border-color: var(--turquesa-agua);
+        }
+
+        .menu-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .menu-text {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .menu-text h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #ffffff;
+        }
+        .menu-text p {
+            font-size: 0.75rem;
+            color: #b3b9c9;
+            line-height: 1.2;
+        }
+
+        /* PIE DE PÁGINA (FINANCIAMIENTO ANID OFICIAL) */
+        .sidebar-footer {
+            margin-top: auto;
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.4);
+            text-align: justify;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 12px;
+            flex-shrink: 0;
+            line-height: 1.3;
+        }
+
+        /* CONTENEDOR DINÁMICO DE VISUALIZACIÓN */
+        #content-viewport {
+            flex: 1;
+            height: 100%;
+            background-color: #111;
+            position: relative;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+            background-color: #111;
+        }
+
+        /* AJUSTES RESPONSIVOS COMPACTOS (LANDSCAPE MÓVIL) */
+        @media (max-height: 500px) {
+            #sidebar {
+                width: 180px;
+                padding: 10px;
+                gap: 10px;
+            }
+            .logo-container { padding-bottom: 6px; }
+            .sidebar-title { font-size: 0.7rem; letter-spacing: 1px; }
+            #modules-menu { gap: 8px; }
+            .menu-item { padding: 8px 12px; gap: 10px; border-radius: 6px; }
+            .menu-icon { font-size: 1.1rem; }
+            .menu-text h4 { font-size: 0.75rem; }
+            .menu-text p { display: none; } 
+            .sidebar-footer { font-size: 0.6rem; padding-top: 6px; }
+        }
+
+        @keyframes rotatePhone {
+            0%, 100% { transform: rotate(0deg); }
+            40%, 60% { transform: rotate(90deg); }
+        }
+    </style>
 </head>
 <body>
-<div id="indicebody">
 
-  <!-- HEADER -->
-  <div class="row">
-    <div class="logo-oasis" style="text-align: left;">
-      <a href="./index3.html">
-        <img src="./img/OA_Recurso48.png"
-             alt="Observatorio OASIS"
-             style="width: 40%; height: auto; display: inline-block; padding-top:4%;">
-      </a>
-    </div>
-  </div>
-
-  <!-- MENÚ -->
-  <div class="row">
-    <nav class="nav-menu">
-      <a href="./ecologia.html" class="nav-item">ECOLOGÍA Y SOCIO-ECOLOGÍA</a>
-      <a href="./microbiologia.html" class="nav-item">MICROBIOLOGÍA</a>
-      <a href="./geociencias.html" class="nav-item">GEOCIENCIAS</a>
-      <a href="./teledeteccion.html" class="nav-item">TELEDETECCIÓN</a>
-    </nav>
-  </div>
-
-  <!-- INTRO -->
-  <div class="row">
-    <div class="titulo2">
-      <h1>Salares Interactivos</h1>
-    </div>
-    <div class="texto">
-      <h2>
-        Herramientas interactivas para explorar los procesos geoquímicos, hidrológicos y ecológicos de los salares altoandinos del sistema Maricunga. Cada simulación permite recorrer un ciclo o fenómeno a través de visualizaciones paso a paso desarrolladas con datos de terreno del Observatorio OASIS.
-      </h2>
-    </div>
-  </div>
-
-  <!-- GRILLA DE INTERACTIVOS -->
-  <div class="row">
-    <div class="titulo1">
-      <h1>Simulaciones disponibles</h1>
+    <div id="rotation-screen">
+        <div class="phone-icon">🔄📱</div>
+        <h1>Gira tu dispositivo</h1>
+        <p style="color:#b3b9c9; font-size:0.9rem; margin-top:5px;">El Observatorio de Salares requiere visualización horizontal.</p>
     </div>
 
-    <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 1rem;">
-
-      <!-- Ciclo Hidrogeológico (disponible) -->
-      <a href="./geo_interactivoNew.html" class="card-interactivo" style="flex: 1 1 280px; max-width: 380px;">
-        <div class="card-thumb" style="background-image: url('./geo_interactivo/fondoBlanco.png'); background-color: #f5f5f5;"></div>
-        <div class="card-body">
-          <div class="card-tag" style="color: #01A99D;">Geociencias</div>
-          <h3>Ciclo Hidrogeológico del Salar de Maricunga</h3>
-          <p>Recorre paso a paso el ciclo del agua: precipitación cordillerana, infiltración, recarga subterránea, surgencias termales y evolución química de salmueras hasta la precipitación de litio.</p>
+    <div id="sidebar">
+        <div class="logo-container">
+            <a href="./index3.html">
+                <img class="sidebar-logo" src="./img/OA_Recurso48.png" alt="Observatorio OASIS">
+            </a>
+            <div class="sidebar-title">Salares Interactivos</div>
         </div>
-      </a>
 
-      <!-- Ciclo Hidrogeológico v2 (p5.js) -->
-      <a href="./interactivo29.html" class="card-interactivo" style="flex: 1 1 280px; max-width: 380px;">
-        <div class="card-thumb" style="background-color: #f0f0f0; display:flex; align-items:center; justify-content:center;">
-          <span style="font-size:0.85rem; color:#888; text-transform:uppercase; letter-spacing:0.05em;">Versión p5.js</span>
+        <div id="modules-menu">
+            <div class="menu-item active" onclick="loadModule(this, 'https://oasisudd.github.io/observatorio/geo_interactivoNew.html')">
+                <span class="menu-icon">🌋</span>
+                <div class="menu-text">
+                    <h4>Evolución Geológica</h4>
+                    <p>Ciclo hidrogeológico y precipitación secuencial mineral.</p>
+                </div>
+            </div>
+
+            <div class="menu-item" onclick="loadModule(this, 'https://oasisudd.github.io/ispySalares/index.html')">
+                <span class="menu-icon">🔍</span>
+                <div class="menu-text">
+                    <h4>Buscadores del Salar</h4>
+                    <p>Desafío express de recolección de muestras científicas.</p>
+                </div>
+            </div>
+
+            <div class="menu-item" onclick="loadModule(this, 'https://oasisudd.github.io/observatorio/puzzleMuestraTapete.html')">
+                <span class="menu-icon">🧩</span>
+                <div class="menu-text">
+                    <h4>Puzzle de Tapetes</h4>
+                    <p>Reconstrucción estructural de comunidades microbianas.</p>
+                </div>
+            </div>
+
+            <div class="menu-item" onclick="loadModule(this, 'https://oasisudd.github.io/herbarioapp/')">
+                <span class="menu-icon">🌿</span>
+                <div class="menu-text">
+                    <h4>Herbario Digital</h4>
+                    <p>Catálogo de flora nativa y botánica extrema de vegas.</p>
+                </div>
+            </div>
         </div>
-        <div class="card-body">
-          <div class="card-tag" style="color: #AA8744;">Geociencias · v2</div>
-          <h3>Ciclo Hidrogeológico — Versión Animada</h3>
-          <p>Variante animada del ciclo hidrogeológico con renderizado p5.js, lluvia dinámica y exploración de capas mineralógicas (sulfatos, travertinos, cloruros, carbonatos).</p>
+
+        <div class="sidebar-footer">
+            Proyecto Anillo Temático Li y Salares – ANID || ATE2400015 (2024–2027)
         </div>
-      </a>
-
-      <!-- Placeholder 1 -->
-      <div class="card-interactivo" style="flex: 1 1 280px; max-width: 380px; opacity: 0.55; cursor: default;">
-        <div class="card-thumb" style="background-color: #f5f5f5;"></div>
-        <div class="card-body">
-          <div class="card-tag" style="color: #888;">Ecología</div>
-          <h3>Dinámica de Humedales Altoandinos</h3>
-          <p>Simulación de la respuesta de bofedales y vegas frente a variaciones de precipitación, temperatura y presión antrópica.</p>
-          <span class="badge-pronto">Próximamente</span>
-        </div>
-      </div>
-
-      <!-- Placeholder 2 -->
-      <div class="card-interactivo" style="flex: 1 1 280px; max-width: 380px; opacity: 0.55; cursor: default;">
-        <div class="card-thumb" style="background-color: #f5f5f5;"></div>
-        <div class="card-body">
-          <div class="card-tag" style="color: #888;">Microbiología</div>
-          <h3>Tapetes Microbianos y Ciclo del Litio</h3>
-          <p>Exploración de la participación microbiana en la precipitación biológica de litio y biomineralización en salares.</p>
-          <span class="badge-pronto">Próximamente</span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- FOOTER -->
-  <footer class="footer-oasis">
-    <div class="footer-text">
-      Proyecto Anillo Temático Li y Salares – ANID || ATE2400015 (2024–2027)
     </div>
 
-    <div class="footer-columns">
-      <div class="logos-left">
-        <div class="logo-row">
-          <a href="https://www.udd.cl/" target="_blank">
-            <img src="https://oasis.udd.cl/wp-content/uploads/2025/06/OA_Recurso-49-scaled.png" alt="UDD">
-          </a>
-          <a href="https://www.uda.cl/" target="_blank">
-            <img src="https://oasis.udd.cl/wp-content/uploads/2025/06/OA_Recurso-50.png" alt="UDA">
-          </a>
-          <a href="https://www.unab.cl/" target="_blank">
-            <img src="https://oasis.udd.cl/wp-content/uploads/2025/06/OA_Recurso-55-1024x343.png" alt="UNAB">
-          </a>
-        </div>
-        <div class="logo-row">
-          <a href="https://www.udec.cl/pexterno/" target="_blank">
-            <img src="https://oasis.udd.cl/wp-content/uploads/2025/06/OA_Recurso-54-1024x388.png" alt="UdeC">
-          </a>
-          <a href="https://www.ufro.cl/" target="_blank">
-            <img src="https://oasis.udd.cl/wp-content/uploads/2025/06/OA_Recurso-53-1024x358.png" alt="UFRO">
-          </a>
-          <a class="logos-smi" href="https://smiicechile.cl/" target="_blank">
-            <img src="https://oasis.udd.cl/wp-content/uploads/2025/06/OA_Recurso-52-1024x127.png" alt="SMI ICE Chile">
-          </a>
-        </div>
-      </div>
-      <div class="logo-anid">
-        <a href="https://anid.cl/" target="_blank">
-          <img src="https://oasis.udd.cl/wp-content/uploads/2025/06/OA_Recurso-51-1024x932.png" alt="ANID">
-        </a>
-      </div>
+    <div id="content-viewport">
+        <iframe id="app-frame" src="https://oasisudd.github.io/observatorio/geo_interactivoNew.html" allow="autoplay; fullscreen"></iframe>
     </div>
-  </footer>
 
-</div>
+    <script>
+        // Gestor de navegación asíncrona de iframes nativos
+        function loadModule(element, url) {
+            document.querySelectorAll('.menu-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            element.classList.add('active');
+            
+            const frame = document.getElementById('app-frame');
+            frame.src = url;
+        }
+    </script>
 </body>
 </html>
