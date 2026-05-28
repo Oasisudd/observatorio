@@ -69,10 +69,10 @@ margin: 0 auto;
 
 
 
-/* Contenedor del cuadrado dividido en 5 */
+/* Contenedor del cuadrado dividido en 6 */
 .image-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   grid-gap: 10px;
   height: 70%;
 }
