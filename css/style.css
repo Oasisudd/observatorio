@@ -25,9 +25,9 @@ body, html {
 .index-container {
  background-color: transparent !important;
   width: 100%; 
- height: 100vh; /* Ajusta la altura de la grilla automáticamente */
-margin: 0 auto; /* Centra horizontalmente */
-  padding: 0; /* Sin relleno interno */
+ height: 45vh;
+margin: 0 auto;
+  padding: 0;
   margin-bottom: -241px !important;
 
 }
@@ -72,11 +72,9 @@ margin: 0 auto; /* Centra horizontalmente */
 /* Contenedor del cuadrado dividido en 6 */
 .image-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr); /* 6 columnas de igual tamaño */
-  grid-gap: 10px; /* Espacio entre las imágenes */
-
-  height: 70%; /* Altura del cuadrado */
-  
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 10px;
+  height: 100%;
 }
 
 /* Cada imagen del cuadrado que actúa como botón */
