@@ -112,6 +112,8 @@
             padding: 10px 12px;
             cursor: pointer;
             transition: all 0.2s ease;
+            text-decoration: none;
+            color: inherit;
         }
         .menu-item:hover {
             background: #f7fafa;
@@ -197,7 +199,7 @@
     <div id="rotation-screen">
         <div class="phone-icon">🔄📱</div>
         <h1>Gira tu dispositivo</h1>
-        <p style="color:#b3b9c9; font-size:0.9rem; margin-top:5px;">El Observatorio de Salares requiere visualización horizontal.</p>
+        <p style="color:#888; font-size:0.9rem; margin-top:5px;">El Observatorio de Salares requiere visualización horizontal.</p>
     </div>
 
     <div id="sidebar">
@@ -209,37 +211,37 @@
         </div>
 
         <div id="modules-menu">
-            <div class="menu-item active" onclick="loadModule(this, 'https://oasisudd.github.io/observatorio/geo_interactivoNew.html')">
+            <a class="menu-item" href="./geo_interactivoNew.html">
                 <span class="menu-icon">🌋</span>
                 <div class="menu-text">
                     <h4>Evolución Geológica</h4>
                     <p>Ciclo hidrogeológico y precipitación secuencial mineral.</p>
                 </div>
-            </div>
+            </a>
 
-            <div class="menu-item" onclick="loadModule(this, 'https://oasisudd.github.io/ispySalares/index.html')">
+            <a class="menu-item" href="https://oasisudd.github.io/ispySalares/index.html" target="_blank">
                 <span class="menu-icon">🔍</span>
                 <div class="menu-text">
                     <h4>Buscadores del Salar</h4>
                     <p>Desafío express de recolección de muestras científicas.</p>
                 </div>
-            </div>
+            </a>
 
-            <div class="menu-item" onclick="loadModule(this, 'https://oasisudd.github.io/observatorio/puzzleMuestraTapete.html')">
+            <a class="menu-item" href="./puzzleMuestraTapete.html">
                 <span class="menu-icon">🧩</span>
                 <div class="menu-text">
                     <h4>Puzzle de Tapetes</h4>
                     <p>Reconstrucción estructural de comunidades microbianas.</p>
                 </div>
-            </div>
+            </a>
 
-            <div class="menu-item" onclick="loadModule(this, 'https://oasisudd.github.io/herbarioapp/')">
+            <a class="menu-item" href="https://oasisudd.github.io/herbarioapp/" target="_blank">
                 <span class="menu-icon">🌿</span>
                 <div class="menu-text">
                     <h4>Herbario Digital</h4>
                     <p>Catálogo de flora nativa y botánica extrema de vegas.</p>
                 </div>
-            </div>
+            </a>
         </div>
 
         <div class="sidebar-footer">
@@ -247,21 +249,5 @@
         </div>
     </div>
 
-    <div id="content-viewport">
-        <iframe id="app-frame" src="https://oasisudd.github.io/observatorio/geo_interactivoNew.html" allow="autoplay; fullscreen"></iframe>
-    </div>
-
-    <script>
-        // Gestor de navegación asíncrona de iframes nativos
-        function loadModule(element, url) {
-            document.querySelectorAll('.menu-item').forEach(item => {
-                item.classList.remove('active');
-            });
-            element.classList.add('active');
-            
-            const frame = document.getElementById('app-frame');
-            frame.src = url;
-        }
-    </script>
 </body>
 </html>
