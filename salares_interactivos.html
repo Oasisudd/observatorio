@@ -13,17 +13,18 @@
         }
 
         :root {
-            --turquesa-agua: #00a99d;
-            --ocre-tierra: #a98743;
+            --turquesa-agua: #01A99D;
+            --ocre-tierra: #AA8744;
             --azul-roca: #343b4d;
-            --rosa-fauna: #FF7BAC;
-            --azul-oscuro: #1e222d;
+            --rosa-fauna: #F288A4;
+            --borde: #e0e0e0;
+            --texto: #323B4E;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--azul-oscuro);
-            color: #ffffff;
+            font-family: 'Lato', sans-serif;
+            background-color: #ffffff;
+            color: var(--texto);
             overflow: hidden;
             height: 100vh;
             display: flex;
@@ -33,7 +34,7 @@
         /* DETECTOR DE ORIENTACIÓN (BLOQUEO VERTICAL EN MÓVILES) */
         #rotation-screen {
             display: none;
-            background-color: var(--azul-oscuro);
+            background-color: #ffffff;
             z-index: 9999;
             position: absolute;
             width: 100%;
@@ -43,24 +44,25 @@
             align-items: center;
             text-align: center;
             padding: 20px;
+            color: var(--texto);
         }
         @media (orientation: portrait) {
             #rotation-screen { display: flex !important; }
         }
 
         .phone-icon {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            animation: rotatePhone 2.5s infinite ease-in-out;
+            font-size: 3rem;
+            margin-bottom: 16px;
             color: var(--turquesa-agua);
+            animation: rotatePhone 2.5s infinite ease-in-out;
         }
 
-        /* BARRA LATERAL IZQUIERDA DE TRABAJO */
+        /* BARRA LATERAL */
         #sidebar {
-            width: 320px;
-            background-color: var(--azul-roca);
-            border-right: 3px solid var(--ocre-tierra);
-            padding: 20px;
+            width: 300px;
+            background-color: #ffffff;
+            border-right: 1px solid var(--borde);
+            padding: 24px 20px;
             display: flex;
             flex-direction: column;
             gap: 20px;
@@ -70,62 +72,60 @@
         }
 
         .logo-container {
-            text-align: center;
-            border-bottom: 2px solid var(--turquesa-agua);
-            padding-bottom: 15px;
+            text-align: left;
+            border-bottom: 2px solid var(--borde);
+            padding-bottom: 16px;
             flex-shrink: 0;
         }
-        
+
         .sidebar-logo {
-            width: 85%;
+            width: 80%;
             height: auto;
             display: inline-block;
-            transition: transform 0.2s;
-        }
-        .sidebar-logo:hover {
-            transform: scale(1.02);
+            filter: none !important;
         }
 
         .sidebar-title {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--ocre-tierra);
-            letter-spacing: 1.5px;
+            font-size: 0.78rem;
+            font-weight: bold;
+            color: var(--turquesa-agua);
+            letter-spacing: 0.1em;
             text-transform: uppercase;
-            margin-top: 8px;
+            margin-top: 10px;
         }
 
-        /* COMPONENTE MENÚ INTERACTIVO */
+        /* MENÚ */
         #modules-menu {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 4px;
             flex: 1;
         }
 
         .menu-item {
             display: flex;
-            align-items: center;
-            gap: 15px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 2px solid transparent;
-            padding: 12px 16px;
-            border-radius: 8px;
+            align-items: flex-start;
+            gap: 12px;
+            background: transparent;
+            border: 1px solid transparent;
+            border-left: 3px solid transparent;
+            padding: 10px 12px;
             cursor: pointer;
-            transition: all 0.25s ease-in-out;
+            transition: all 0.2s ease;
         }
         .menu-item:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(0, 169, 157, 0.3);
+            background: #f7fafa;
+            border-left-color: var(--turquesa-agua);
         }
         .menu-item.active {
-            background: rgba(0, 169, 157, 0.15);
-            border-color: var(--turquesa-agua);
+            background: #f0faf9;
+            border-left-color: var(--turquesa-agua);
         }
 
         .menu-icon {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             flex-shrink: 0;
+            margin-top: 2px;
         }
 
         .menu-text {
@@ -134,33 +134,32 @@
             gap: 2px;
         }
         .menu-text h4 {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: #ffffff;
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: var(--texto);
         }
         .menu-text p {
-            font-size: 0.75rem;
-            color: #b3b9c9;
-            line-height: 1.2;
+            font-size: 0.78rem;
+            color: #888;
+            line-height: 1.4;
         }
 
-        /* PIE DE PÁGINA (FINANCIAMIENTO ANID OFICIAL) */
+        /* PIE */
         .sidebar-footer {
             margin-top: auto;
-            font-size: 0.7rem;
-            color: rgba(255, 255, 255, 0.4);
-            text-align: justify;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.68rem;
+            color: #aaa;
+            border-top: 1px solid var(--borde);
             padding-top: 12px;
             flex-shrink: 0;
-            line-height: 1.3;
+            line-height: 1.4;
         }
 
-        /* CONTENEDOR DINÁMICO DE VISUALIZACIÓN */
+        /* VIEWPORT */
         #content-viewport {
             flex: 1;
             height: 100%;
-            background-color: #111;
+            background-color: #f5f5f5;
             position: relative;
         }
 
@@ -169,24 +168,22 @@
             height: 100%;
             border: none;
             display: block;
-            background-color: #111;
         }
 
-        /* AJUSTES RESPONSIVOS COMPACTOS (LANDSCAPE MÓVIL) */
+        /* RESPONSIVO LANDSCAPE MÓVIL */
         @media (max-height: 500px) {
             #sidebar {
                 width: 180px;
                 padding: 10px;
                 gap: 10px;
             }
-            .logo-container { padding-bottom: 6px; }
-            .sidebar-title { font-size: 0.7rem; letter-spacing: 1px; }
-            #modules-menu { gap: 8px; }
-            .menu-item { padding: 8px 12px; gap: 10px; border-radius: 6px; }
-            .menu-icon { font-size: 1.1rem; }
+            .sidebar-title { font-size: 0.65rem; }
+            #modules-menu { gap: 2px; }
+            .menu-item { padding: 7px 10px; gap: 8px; }
+            .menu-icon { font-size: 1rem; }
             .menu-text h4 { font-size: 0.75rem; }
-            .menu-text p { display: none; } 
-            .sidebar-footer { font-size: 0.6rem; padding-top: 6px; }
+            .menu-text p { display: none; }
+            .sidebar-footer { font-size: 0.58rem; padding-top: 6px; }
         }
 
         @keyframes rotatePhone {
