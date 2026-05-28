@@ -208,7 +208,7 @@
 
         // Configuración de rutas y escalas
         const S = 1.0;
-        const BASE = './img/geo_interactivo/';
+        const BASE = './geo_interactivo/';
 
         // Estado Global
         let etapa = 0;
@@ -324,11 +324,11 @@
 
         async function cargarCapas() {
             const dataCapas = [
-                { key: 'sulphates', nombre: "Sulfatos", desc: "Los sulfatos como el yeso (CaSO₄·2H₂O) se forman en etapas intermedias de evaporación. Su presencia refleja un ambiente químicamente más concentrado que favorece la precipitación de minerales con azufre.", x: POS.sulphates.x, y: POS.sulphates.y, real: "sulphates.png" },
-                { key: 'travertines', nombre: "Travertinos", desc: "Roca sedimentaria carbonatada, compuesta principalmente de calcita (CaCO₃), que se forma por precipitación química y orgánica a partir de aguas subterráneas o termales.", x: POS.travertines.x, y: POS.travertines.y, real: "travertines.png" },
-                { key: 'halite', nombre: "Cloruros", desc: "Los cloruros como la halita o sal común (NaCl), precipitan en las etapas finales del proceso de evaporación. Su presencia indica ambientes extremadamente salinos. Se concentran en zonas centrales de los salares.", x: POS.halite.x, y: POS.halite.y, real: "halite.png" },
-                { key: 'carbonatos', nombre: "Carbonatos", desc: "Los carbonatos como la calcita (CaCO₃) se precipitan cuando hay pérdida de CO₂ en aguas ricas en calcio. Reflejan ambientes donde hay menor salinidad. Se concentran en las zonas periféricas de los salares.", x: POS.carbonatos.x, y: POS.carbonatos.y, real: "carbonatos.png" },
-                { key: 'vegetacion', nombre: "Vegetación", desc: "Cobertura vegetal hidrófila y bofedales en bordes y humedales del ecosistema altoandino.", x: POS.vegetacion.x, y: POS.vegetacion.y, real: "lagartija.png" }
+                { key: 'sulphates',  nombre: "Sulfatos",   desc: "Los sulfatos como el yeso (CaSO₄·2H₂O) se forman en etapas intermedias de evaporación. Su presencia refleja un ambiente químicamente más concentrado que favorece la precipitación de minerales con azufre.",   x: POS.sulphates.x,  y: POS.sulphates.y,  real: BASE + "sulphates.png" },
+                { key: 'travertines',nombre: "Travertinos", desc: "Roca sedimentaria carbonatada, compuesta principalmente de calcita (CaCO₃), que se forma por precipitación química y orgánica a partir de aguas subterráneas o termales.",                x: POS.travertines.x,y: POS.travertines.y, real: BASE + "travertines.png" },
+                { key: 'halite',     nombre: "Cloruros",    desc: "Los cloruros como la halita o sal común (NaCl), precipitan en las etapas finales del proceso de evaporación. Su presencia indica ambientes extremadamente salinos. Se concentran en zonas centrales de los salares.", x: POS.halite.x,    y: POS.halite.y,   real: BASE + "halite.png" },
+                { key: 'carbonatos', nombre: "Carbonatos",  desc: "Los carbonatos como la calcita (CaCO₃) se precipitan cuando hay pérdida de CO₂ en aguas ricas en calcio. Reflejan ambientes donde hay menor salinidad. Se concentran en las zonas periféricas de los salares.",  x: POS.carbonatos.x, y: POS.carbonatos.y, real: BASE + "carbonatos.png" },
+                { key: 'vegetacion', nombre: "Vegetación",  desc: "Cobertura vegetal hidrófila y bofedales en bordes y humedales del ecosistema altoandino.",                                                                                                                               x: POS.vegetacion.x, y: POS.vegetacion.y, real: BASE + "lagartija.png" }
             ];
 
             for (let c of dataCapas) {
