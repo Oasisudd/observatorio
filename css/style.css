@@ -69,10 +69,10 @@ margin: 0 auto; /* Centra horizontalmente */
 
 
 
-/* Contenedor del cuadrado dividido en 5 */
+/* Contenedor del cuadrado dividido en 6 */
 .image-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr); /* 5 columnas de igual tamaño */
+  grid-template-columns: repeat(6, 1fr); /* 6 columnas de igual tamaño */
   grid-gap: 10px; /* Espacio entre las imágenes */
 
   height: 70%; /* Altura del cuadrado */
