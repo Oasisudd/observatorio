@@ -125,30 +125,35 @@
 <div id="custom-layer-panel">
   <div class="sec-title">FONDO DE MAPA</div>
   <label class="tile-row"><input type="radio" name="basemap" value="satellite" checked> Satélite (Esri)</label>
+
   <div class="sec-title">CAMPAÑAS</div>
-  <label><input type="checkbox" data-layer="camp_nov" checked> ★ Noviembre 2025</label>
-  <label><input type="checkbox" data-layer="camp_ene" checked> ★ Enero 2025</label>
-  <label><input type="checkbox" data-layer="camp_mar" checked> ★ Marzo 2026</label>
-  <label><input type="checkbox" data-layer="camp_masa" checked> ★ MASA 2023</label>
+  <label><input type="checkbox" data-layer="camp_nov" checked><span style="display:inline-block;width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-bottom:10px solid #00a99d;"></span> Noviembre 2025</label>
+  <label><input type="checkbox" data-layer="camp_ene" checked><span style="display:inline-block;width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-bottom:10px solid #a98743;"></span> Enero 2025</label>
+  <label><input type="checkbox" data-layer="camp_mar" checked><span style="display:inline-block;width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-bottom:10px solid #343b4d;"></span> Marzo 2026</label>
+  <label><input type="checkbox" data-layer="camp_masa" checked><span style="display:inline-block;width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-bottom:10px solid #FF7BAC;"></span> MASA 2023</label>
+
   <div class="sec-title">16S</div>
-  <label><input type="checkbox" data-layer="s16s" checked> ◇ Muestras 16S</label>
+  <label><input type="checkbox" data-layer="s16s" checked><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#343b4d;"></span> Muestras 16S</label>
+
   <div class="sec-title">ENSAMBLES</div>
-  <label><input type="checkbox" data-layer="ens_buena" checked> ● Calidad Buena</label>
-  <label><input type="checkbox" data-layer="ens_media" checked> ● Calidad Media</label>
-  <label><input type="checkbox" data-layer="ens_baja" checked> ● Calidad Baja</label>
+  <label><input type="checkbox" data-layer="ens_buena" checked><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#00a99d;"></span> Calidad Buena</label>
+  <label><input type="checkbox" data-layer="ens_media" checked><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#a98743;"></span> Calidad Media</label>
+  <label><input type="checkbox" data-layer="ens_baja" checked><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#FF7BAC;"></span> Calidad Baja</label>
+
   <div class="sec-title">ENVÍO 2026</div>
-  <label><input type="checkbox" data-layer="envio_adn" checked> ✔ ADN</label>
-  <label><input type="checkbox" data-layer="envio_arn" checked> ✔ ARN</label>
+  <label><input type="checkbox" data-layer="envio_adn" checked><span style="display:inline-block;width:9px;height:9px;border-radius:2px;background:#343b4d;"></span> ADN</label>
+  <label><input type="checkbox" data-layer="envio_arn" checked><span style="display:inline-block;width:9px;height:9px;border-radius:2px;background:#FF7BAC;"></span> ARN</label>
+
   <div class="sec-title">PARÁMETROS</div>
-  <label><input type="checkbox" data-layer="ph_nov"> ○ pH – Nov 2025</label>
-  <label><input type="checkbox" data-layer="ph_ene"> ○ pH – Ene 2025</label>
-  <label><input type="checkbox" data-layer="ph_mar"> ○ pH – Mar 2026</label>
-  <label><input type="checkbox" data-layer="temp_nov"> ○ Temperatura – Nov 2025</label>
-  <label><input type="checkbox" data-layer="temp_ene"> ○ Temperatura – Ene 2025</label>
-  <label><input type="checkbox" data-layer="temp_mar"> ○ Temperatura – Mar 2026</label>
-  <label><input type="checkbox" data-layer="cond_nov"> ○ Conductividad – Nov 2025</label>
-  <label><input type="checkbox" data-layer="cond_ene"> ○ Conductividad – Ene 2025</label>
-  <label><input type="checkbox" data-layer="cond_mar"> ○ Conductividad – Mar 2026</label>
+  <label><input type="checkbox" data-layer="ph_nov"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:linear-gradient(90deg,#FF7BAC,#a98743,#00a99d,#343b4d);"></span> pH – Nov 2025</label>
+  <label><input type="checkbox" data-layer="ph_ene"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:linear-gradient(90deg,#FF7BAC,#a98743,#00a99d,#343b4d);"></span> pH – Ene 2025</label>
+  <label><input type="checkbox" data-layer="ph_mar"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:linear-gradient(90deg,#FF7BAC,#a98743,#00a99d,#343b4d);"></span> pH – Mar 2026</label>
+  <label><input type="checkbox" data-layer="temp_nov"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:linear-gradient(90deg,#343b4d,#00a99d,#a98743,#FF7BAC);"></span> Temperatura – Nov 2025</label>
+  <label><input type="checkbox" data-layer="temp_ene"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:linear-gradient(90deg,#343b4d,#00a99d,#a98743,#FF7BAC);"></span> Temperatura – Ene 2025</label>
+  <label><input type="checkbox" data-layer="temp_mar"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:linear-gradient(90deg,#343b4d,#00a99d,#a98743,#FF7BAC);"></span> Temperatura – Mar 2026</label>
+  <label><input type="checkbox" data-layer="cond_nov"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:linear-gradient(90deg,#00a99d,#a98743,#FF7BAC);"></span> Conductividad – Nov 2025</label>
+  <label><input type="checkbox" data-layer="cond_ene"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:linear-gradient(90deg,#00a99d,#a98743,#FF7BAC);"></span> Conductividad – Ene 2025</label>
+  <label><input type="checkbox" data-layer="cond_mar"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:linear-gradient(90deg,#00a99d,#a98743,#FF7BAC);"></span> Conductividad – Mar 2026</label>
 </div>
 
 <script>
@@ -401,9 +406,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_ec1238dd8b12b97f53f22ed472d9f38b = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#00a99d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #00a99d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Noviembre-2025",
 });
         
@@ -446,9 +451,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_3ce4f51da524781d2d25ae7705e52919 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#00a99d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #00a99d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Noviembre-2025",
 });
         
@@ -491,9 +496,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_5b83ebd02dd80823b8228bb8056af27f = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#00a99d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #00a99d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Noviembre-2025",
 });
         
@@ -536,9 +541,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_2bbc255a4068806ceeeef5b2b0f57408 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#00a99d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #00a99d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Noviembre-2025",
 });
         
@@ -581,9 +586,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_50679cbbc43391888738c4245c17b352 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#00a99d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #00a99d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Noviembre-2025",
 });
         
@@ -626,9 +631,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_7d591162d07307bc0a321d220c14f09d = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#00a99d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #00a99d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Noviembre-2025",
 });
         
@@ -671,9 +676,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_f502bdccb56591b15f983ac64d5a0cb6 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#00a99d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #00a99d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Noviembre-2025",
 });
         
@@ -716,9 +721,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_547803123646e93e60ebd98df6d7b03f = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#00a99d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #00a99d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Noviembre-2025",
 });
         
@@ -761,9 +766,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_7f5564322e4700f1946c05c052f29b4b = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#00a99d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #00a99d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Noviembre-2025",
 });
         
@@ -806,9 +811,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_2c2ae6a7f17cac1158e9effb56f2ca19 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#00a99d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #00a99d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Noviembre-2025",
 });
         
@@ -851,9 +856,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_25a54152c178e6cff259c4a6ebacc17f = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#00a99d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #00a99d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Noviembre-2025",
 });
         
@@ -896,9 +901,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_80dac0a16828d15550b4adada3087d67 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#00a99d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #00a99d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Noviembre-2025",
 });
         
@@ -941,9 +946,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_3c70b9284b7378a28a71fa20da4ef5c4 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#00a99d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #00a99d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Noviembre-2025",
 });
         
@@ -986,9 +991,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_d695880960ce9e6ccf9788a84b5f44d1 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#00a99d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #00a99d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Noviembre-2025",
 });
         
@@ -1031,9 +1036,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_8f311edc16b65dd7a998caa945604968 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#00a99d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #00a99d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Noviembre-2025",
 });
         
@@ -1076,9 +1081,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_da8028471ed07e2c4e11491dac972a76 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#00a99d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #00a99d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Noviembre-2025",
 });
         
@@ -1121,9 +1126,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_5336362a1cc81b2f8a437b80e2bde862 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#00a99d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #00a99d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Noviembre-2025",
 });
         
@@ -1166,9 +1171,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_8bca43f72701f1d8d1a9bd9fd09cd008 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#00a99d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #00a99d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Noviembre-2025",
 });
         
@@ -1211,9 +1216,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_7bbeaad179d83ccfa8877b05aca7284a = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#00a99d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #00a99d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Noviembre-2025",
 });
         
@@ -1256,9 +1261,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_f8e803e2cacbbc6bc7727e982c7cf1c3 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#00a99d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #00a99d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Noviembre-2025",
 });
         
@@ -1301,9 +1306,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_c7d9029f1184b9d4bc02da5b8464907a = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#00a99d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #00a99d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Noviembre-2025",
 });
         
@@ -1346,9 +1351,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_b187b65c3d20831e2531efa90019ce48 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#00a99d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #00a99d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Noviembre-2025",
 });
         
@@ -1391,9 +1396,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_ae904e04ce5109fbe3e83bc148e7c1fb = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#00a99d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #00a99d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Noviembre-2025",
 });
         
@@ -1436,9 +1441,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_c1dd9f8431661cdaff6a5cfafde3b50f = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#00a99d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #00a99d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Noviembre-2025",
 });
         
@@ -1481,9 +1486,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_f3e9cf605bfad5f634f0c95b9cc32cda = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#00a99d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #00a99d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Noviembre-2025",
 });
         
@@ -1526,9 +1531,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_52c38fd8c20ecb8eed73c26b8a4c193c = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#00a99d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #00a99d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Noviembre-2025",
 });
         
@@ -1571,9 +1576,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_d9999cec6cad56dd25702c12a59d07c2 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#00a99d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #00a99d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Noviembre-2025",
 });
         
@@ -1616,9 +1621,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_60ebb95151e8df18a98ccaf208f1de46 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#00a99d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #00a99d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Noviembre-2025",
 });
         
@@ -1661,9 +1666,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_50aeb041c14f3bf3c628ea962b370bfd = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#00a99d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #00a99d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Noviembre-2025",
 });
         
@@ -1706,9 +1711,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_1a87f6381544cc1a70fe14e078c345c4 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#00a99d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #00a99d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Noviembre-2025",
 });
         
@@ -1751,9 +1756,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_41b3110801a9b4fe52bd6d45121cfda8 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#00a99d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #00a99d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Noviembre-2025",
 });
         
@@ -1796,9 +1801,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_b729baace5f169694fb716b9f8877bea = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#00a99d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #00a99d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Noviembre-2025",
 });
         
@@ -1841,9 +1846,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_d897b2eb2fa27e08d32bad5010a8af10 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#00a99d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #00a99d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Noviembre-2025",
 });
         
@@ -1895,9 +1900,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_3d820be73dde316ef2850d3f9f812e21 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#a98743;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #a98743;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Enero-2025",
 });
         
@@ -1940,9 +1945,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_6a000f4dd9870737c6ca12ef8d816c60 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#a98743;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #a98743;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Enero-2025",
 });
         
@@ -1985,9 +1990,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_cf645a0ab0cd502fc5dee7855e768c6e = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#a98743;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #a98743;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Enero-2025",
 });
         
@@ -2030,9 +2035,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_37454432d16bbbcff503f3c5c637685a = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#a98743;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #a98743;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Enero-2025",
 });
         
@@ -2075,9 +2080,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_f5f2a9b0233e108ed3738beeef942244 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#a98743;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #a98743;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Enero-2025",
 });
         
@@ -2120,9 +2125,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_e9975782ba5b633973dd2d5dd94c6746 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#a98743;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #a98743;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Enero-2025",
 });
         
@@ -2165,9 +2170,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_e0b0f8b27acadc0b7e61fb8a739bdbcc = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#a98743;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #a98743;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Enero-2025",
 });
         
@@ -2210,9 +2215,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_2a9153f87c01a7f5c1a4af9082c358b8 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#a98743;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #a98743;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Enero-2025",
 });
         
@@ -2255,9 +2260,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_95f150de0214af2202bbd48a0ff82da8 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#a98743;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #a98743;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Enero-2025",
 });
         
@@ -2300,9 +2305,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_9579cce6ae45ba953a27fbc9c9f1a0df = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#a98743;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #a98743;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Enero-2025",
 });
         
@@ -2345,9 +2350,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_2d749c0f54f5b884dca400bee04e371d = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#a98743;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #a98743;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Enero-2025",
 });
         
@@ -2390,9 +2395,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_b765c62d04dca3561ba2ea7d737011f1 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#a98743;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #a98743;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Enero-2025",
 });
         
@@ -2435,9 +2440,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_7dc9fb8dcccc29dd8a4cdacc2b32ed02 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#a98743;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #a98743;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Enero-2025",
 });
         
@@ -2480,9 +2485,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_f47dd7ce0bb3a9063249588765ee1ad5 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#a98743;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #a98743;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Enero-2025",
 });
         
@@ -2525,9 +2530,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_9dd3ba19987e8d4202911dd38e9fc472 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#a98743;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #a98743;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Enero-2025",
 });
         
@@ -2570,9 +2575,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_7a91556d5fdd3785436d05d67e77d28c = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#a98743;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #a98743;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Enero-2025",
 });
         
@@ -2615,9 +2620,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_c505b4de94e5fea6eccc3f97dd080cc0 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#a98743;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #a98743;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Enero-2025",
 });
         
@@ -2660,9 +2665,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_1a88a67175e3215820e115a23184c453 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#a98743;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #a98743;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Enero-2025",
 });
         
@@ -2705,9 +2710,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_5a3177a22554f4a60fb8a488d044e83f = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#a98743;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #a98743;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Enero-2025",
 });
         
@@ -2750,9 +2755,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_2cc329ac589da499f4d560104af86738 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#a98743;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #a98743;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Enero-2025",
 });
         
@@ -2795,9 +2800,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_ff1304353085860d356869b7288c63ad = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#a98743;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #a98743;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Enero-2025",
 });
         
@@ -2840,9 +2845,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_41777a761c27a86cee97f551dce2047f = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#a98743;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #a98743;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Enero-2025",
 });
         
@@ -2885,9 +2890,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_d6bb68c71db14427c2e0bb6e12bc1f1b = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#a98743;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #a98743;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Enero-2025",
 });
         
@@ -2930,9 +2935,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_db40aee8fdb9443909cdef985980f2e2 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#a98743;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #a98743;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Enero-2025",
 });
         
@@ -2975,9 +2980,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_d0d904714a1e2a4d640b6c0634d24637 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#a98743;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #a98743;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Enero-2025",
 });
         
@@ -3020,9 +3025,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_f49007ca39e73fc6f15603ba6c1e446a = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#a98743;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #a98743;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Enero-2025",
 });
         
@@ -3065,9 +3070,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_8ae9dcf01f6adb62ac42ea8414b164c3 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#a98743;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #a98743;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Enero-2025",
 });
         
@@ -3110,9 +3115,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_c5f854aaab261de4cf381b9234efbe2e = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#a98743;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #a98743;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Enero-2025",
 });
         
@@ -3155,9 +3160,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_4b0fa848271621ceac0bc079286dd454 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#a98743;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #a98743;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Enero-2025",
 });
         
@@ -3200,9 +3205,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_f4af45495f104d92d0f02aba6239e65a = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#a98743;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #a98743;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Enero-2025",
 });
         
@@ -3245,9 +3250,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_7d0c4abe622a588849731a8feeeed548 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#a98743;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #a98743;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Enero-2025",
 });
         
@@ -3290,9 +3295,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_b894893bde4dc16320988c8039da0bfc = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#a98743;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #a98743;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Enero-2025",
 });
         
@@ -3335,9 +3340,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_d6bedbf0b15535c8c366427d8b4631fa = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#a98743;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #a98743;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Enero-2025",
 });
         
@@ -3380,9 +3385,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_f6a4754ee8dc9925ff609a7b04c6852c = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#a98743;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #a98743;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Enero-2025",
 });
         
@@ -3425,9 +3430,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_2458f57edd89333d32e53c4fb8bd9f41 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#a98743;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #a98743;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Enero-2025",
 });
         
@@ -3470,9 +3475,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_431b9fb2404e9cf66f96c16ed37a2d44 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#a98743;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #a98743;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Enero-2025",
 });
         
@@ -3524,9 +3529,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_166648d64f042d2b2ae8ab6d6998b800 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#343b4d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #343b4d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Marzo-2026",
 });
         
@@ -3569,9 +3574,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_a3ec32fa4c9e6e8088c47fafb3aaf4a5 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#343b4d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #343b4d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Marzo-2026",
 });
         
@@ -3614,9 +3619,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_b65c209d4a6f5c97027054364d528a3c = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#343b4d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #343b4d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Marzo-2026",
 });
         
@@ -3659,9 +3664,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_0bf7aa22dc7ed276c2821fa904c0f3d7 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#343b4d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #343b4d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Marzo-2026",
 });
         
@@ -3704,9 +3709,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_7f59bedb50d5399042eab0841d044fb3 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#343b4d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #343b4d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Marzo-2026",
 });
         
@@ -3749,9 +3754,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_fd35492f327b3d1f7d58486a9c413830 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#343b4d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #343b4d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Marzo-2026",
 });
         
@@ -3794,9 +3799,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_df6e8c6d485d19b37be85107ed6bdc7c = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#343b4d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #343b4d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Marzo-2026",
 });
         
@@ -3839,9 +3844,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_d016c3161a480104a126484d42281cb6 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#343b4d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #343b4d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Marzo-2026",
 });
         
@@ -3884,9 +3889,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_61afb2d8010113d8728f1885b6de7c00 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#343b4d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #343b4d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Marzo-2026",
 });
         
@@ -3929,9 +3934,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_b4357e3c635515b73d0bd59f9659408f = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#343b4d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #343b4d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Marzo-2026",
 });
         
@@ -3974,9 +3979,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_8334e73f3ef148fd645548fda38d1a34 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#343b4d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #343b4d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Marzo-2026",
 });
         
@@ -4019,9 +4024,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_9893086d890021943a706e5cf42c7ee7 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#343b4d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #343b4d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Marzo-2026",
 });
         
@@ -4064,9 +4069,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_aa0d384470623f247ff724f3216d3a8f = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#343b4d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #343b4d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Marzo-2026",
 });
         
@@ -4109,9 +4114,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_76cf5ea79be3ed8fb702d97dd0938efa = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#343b4d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #343b4d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Marzo-2026",
 });
         
@@ -4154,9 +4159,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_eceaa99d470c10c46929ca5b76e5ffc8 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#343b4d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #343b4d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Marzo-2026",
 });
         
@@ -4199,9 +4204,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_48592d8e00708cd8ac76ef5fc4af9600 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#343b4d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #343b4d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Marzo-2026",
 });
         
@@ -4244,9 +4249,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_9307c845f6edbbcb83f9cfd1a3cfc4af = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#343b4d;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #343b4d;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-Marzo-2026",
 });
         
@@ -4298,9 +4303,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_c46dcbeec704e9c139c87e31fbae9bce = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#FF7BAC;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #FF7BAC;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-MASA-2023",
 });
         
@@ -4343,9 +4348,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_dc5b76a63450056f01fcf372561e6e2b = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#FF7BAC;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #FF7BAC;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-MASA-2023",
 });
         
@@ -4388,9 +4393,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_d66dda5d7328c3295c0a319e9a026d51 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#FF7BAC;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #FF7BAC;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-MASA-2023",
 });
         
@@ -4433,9 +4438,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_41de2e6cd46f9745054e039ab32ec745 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#FF7BAC;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #FF7BAC;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-MASA-2023",
 });
         
@@ -4478,9 +4483,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_3cebafb9ccb6b91874c9d148aa43b061 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#FF7BAC;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #FF7BAC;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-MASA-2023",
 });
         
@@ -4523,9 +4528,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_20deac0fc142eb5b50f9f2dab82f811d = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#FF7BAC;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #FF7BAC;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-MASA-2023",
 });
         
@@ -4568,9 +4573,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_b7e8a9b8f3de605344a60d29fb25acc5 = L.divIcon({
-  "html": "<div style=\"font-size:17px;color:#FF7BAC;-webkit-text-stroke:1px white;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#9733;</div>",
-  "iconSize": [22, 22],
-  "iconAnchor": [11, 11],
+  "html": "<div style=\"width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #FF7BAC;filter:drop-shadow(0 0 1.5px white) drop-shadow(0 0 1px rgba(0,0,0,0.4));transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [14, 14],
+  "iconAnchor": [7, 7],
   "className": "star-MASA-2023",
 });
         
@@ -7100,9 +7105,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_6aa0814d741c7b601dca2eb8c3f046ea = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#343b4d;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#343b4d;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-adn",
 });
         
@@ -7145,9 +7150,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_d6b1ade5a3230f133706a56f613c8a17 = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#343b4d;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#343b4d;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-adn",
 });
         
@@ -7190,9 +7195,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_ea9d8a8324800bda051c34e8b24a684e = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#343b4d;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#343b4d;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-adn",
 });
         
@@ -7235,9 +7240,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_eb7029b546d673f8532b74bda6a95e9c = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#343b4d;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#343b4d;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-adn",
 });
         
@@ -7280,9 +7285,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_a0a925c768d42c4f54c26984a8af7e05 = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#343b4d;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#343b4d;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-adn",
 });
         
@@ -7325,9 +7330,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_d1f84c31b910ae9211e8ea072e9e16c2 = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#343b4d;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#343b4d;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-adn",
 });
         
@@ -7370,9 +7375,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_008b6c8c305868a2bd288e5a20074d9f = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#343b4d;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#343b4d;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-adn",
 });
         
@@ -7415,9 +7420,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_a69d042d131a229b4a2d707533a213fa = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#343b4d;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#343b4d;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-adn",
 });
         
@@ -7460,9 +7465,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_9cee6307d86ac752fd031fcf243afa2e = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#343b4d;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#343b4d;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-adn",
 });
         
@@ -7505,9 +7510,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_753ac9c035ee9d769774d178f6c25504 = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#343b4d;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#343b4d;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-adn",
 });
         
@@ -7550,9 +7555,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_e382bb24ed7577caf1c1c6960aabd948 = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#343b4d;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#343b4d;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-adn",
 });
         
@@ -7595,9 +7600,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_dc0de777949731c4c924d0504865ab60 = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#343b4d;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#343b4d;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-adn",
 });
         
@@ -7640,9 +7645,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_1cc537d9eda91e23eecc5e34dd9cd623 = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#343b4d;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#343b4d;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-adn",
 });
         
@@ -7685,9 +7690,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_b3525ee6edcf141f41bac7626d5d2adc = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#343b4d;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#343b4d;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-adn",
 });
         
@@ -7730,9 +7735,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_92acf6ecbdc6fd5d96d2c98ef8db58a0 = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#343b4d;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#343b4d;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-adn",
 });
         
@@ -7775,9 +7780,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_aaa40a333528154025959fa422bd932c = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#343b4d;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#343b4d;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-adn",
 });
         
@@ -7820,9 +7825,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_140c8b8d23b7b31668b7a94d89614547 = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#343b4d;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#343b4d;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-adn",
 });
         
@@ -7865,9 +7870,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_93b7aed127f02d71126ed455adac80f1 = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#343b4d;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#343b4d;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-adn",
 });
         
@@ -7910,9 +7915,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_530efad93592a6a4957ca8cf08949ea5 = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#343b4d;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#343b4d;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-adn",
 });
         
@@ -7955,9 +7960,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_eef3a21663ba55372f5f5e1b51a84278 = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#343b4d;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#343b4d;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-adn",
 });
         
@@ -8000,9 +8005,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_f9b79a105cea1a90ece2ae2acc855089 = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#343b4d;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#343b4d;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-adn",
 });
         
@@ -8045,9 +8050,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_774b89c735d3042015dcbfcb1959b2fc = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#343b4d;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#343b4d;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-adn",
 });
         
@@ -8090,9 +8095,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_3adae7926fb54ec3eedd918610c1972d = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#343b4d;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#343b4d;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-adn",
 });
         
@@ -8144,9 +8149,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_593408ec52fd776761e85dcaaa3ffb81 = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#FF7BAC;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#FF7BAC;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-arn",
 });
         
@@ -8189,9 +8194,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_2d4b0af807d363e7f37ea34c15683ffe = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#FF7BAC;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#FF7BAC;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-arn",
 });
         
@@ -8234,9 +8239,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_0cbaa9ea7e6256494e788dc75d8a999e = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#FF7BAC;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#FF7BAC;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-arn",
 });
         
@@ -8279,9 +8284,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_3e7afc81a0732f01027a3ed0a9d2810b = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#FF7BAC;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#FF7BAC;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-arn",
 });
         
@@ -8324,9 +8329,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_fc123b94d2651696230e87660679a4ad = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#FF7BAC;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#FF7BAC;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-arn",
 });
         
@@ -8369,9 +8374,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_8a240996c847439388e310f37e2c471a = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#FF7BAC;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#FF7BAC;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-arn",
 });
         
@@ -8414,9 +8419,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_105490e657a0f1888cbe2a43b9d5c2eb = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#FF7BAC;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#FF7BAC;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-arn",
 });
         
@@ -8459,9 +8464,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_c15ce44d4cca6826eb678f9da8d8d224 = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#FF7BAC;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#FF7BAC;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-arn",
 });
         
@@ -8504,9 +8509,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_a7d7d65e37c82a8140ed235b5d7510f3 = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#FF7BAC;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#FF7BAC;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-arn",
 });
         
@@ -8549,9 +8554,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_2412e4003f045abfb254090dc2da114b = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#FF7BAC;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#FF7BAC;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-arn",
 });
         
@@ -8594,9 +8599,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_017acfefd36150dd99f48802cc3c4262 = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#FF7BAC;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#FF7BAC;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-arn",
 });
         
@@ -8639,9 +8644,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_bdc4d64999cf43bc62f7a6da8a2ed2cb = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#FF7BAC;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#FF7BAC;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-arn",
 });
         
@@ -8684,9 +8689,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_c8aae0713d4081dba0770afc01f89a39 = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#FF7BAC;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#FF7BAC;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-arn",
 });
         
@@ -8729,9 +8734,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_a91f1bb2d72ffba7d263ad761cc57be5 = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#FF7BAC;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#FF7BAC;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-arn",
 });
         
@@ -8774,9 +8779,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_5a1834777bc9d3305a8bd13270c0ea16 = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#FF7BAC;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#FF7BAC;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-arn",
 });
         
@@ -8819,9 +8824,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_19352a3761b48efbbbcc19392b7614df = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#FF7BAC;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#FF7BAC;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-arn",
 });
         
@@ -8864,9 +8869,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_b227ce579ad607ab92564ec81f9ff7ef = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#FF7BAC;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#FF7BAC;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-arn",
 });
         
@@ -8909,9 +8914,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_2c21ac934fda34d83856a6d5b12b91fe = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#FF7BAC;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#FF7BAC;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-arn",
 });
         
@@ -8954,9 +8959,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_8826a9e836262e90e7468a01b4541373 = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#FF7BAC;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#FF7BAC;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-arn",
 });
         
@@ -8999,9 +9004,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_64428833c60a7b31ccd2e2e44631d8b3 = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#FF7BAC;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#FF7BAC;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-arn",
 });
         
@@ -9044,9 +9049,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_76ba722cc6205bcb505f96553ba92b33 = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#FF7BAC;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#FF7BAC;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-arn",
 });
         
@@ -9089,9 +9094,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_bdbc1debbb28fde627ae64663b1bad1f = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#FF7BAC;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#FF7BAC;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-arn",
 });
         
@@ -9134,9 +9139,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_cb48e8a88991cf172970558219eb25db = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#FF7BAC;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#FF7BAC;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-arn",
 });
         
@@ -9179,9 +9184,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_ef9239fd303bf5643915c5fb2196bc22 = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#FF7BAC;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#FF7BAC;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-arn",
 });
         
@@ -9224,9 +9229,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_1e49d2aaba8b457f7c7daece24136136 = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#FF7BAC;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#FF7BAC;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-arn",
 });
         
@@ -9269,9 +9274,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_63ac61c528e1e1331b76ab180c5a094e = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#FF7BAC;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#FF7BAC;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-arn",
 });
         
@@ -9314,9 +9319,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_47556b933830933e5b231a99341b1654 = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#FF7BAC;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#FF7BAC;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-arn",
 });
         
@@ -9359,9 +9364,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_c67a95cec25c621de0bb892dc793d2d0 = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#FF7BAC;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#FF7BAC;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-arn",
 });
         
@@ -9404,9 +9409,9 @@ window.addEventListener('load', function() {
         
     
             var div_icon_30d324f9b7e82626db41fda275ee2541 = L.divIcon({
-  "html": "<div style=\"font-size:17px;font-weight:900;color:#FF7BAC;text-shadow:0 0 2px rgba(0,0,0,0.35);line-height:1;transform:translate(-50%,-50%);\">&#10004;</div>",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
+  "html": "<div style=\"width:11px;height:11px;background:#FF7BAC;border:1.5px solid white;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,0.4);transform:translate(-50%,-50%);\"></div>",
+  "iconSize": [11, 11],
+  "iconAnchor": [5, 5],
   "className": "tick-arn",
 });
         
