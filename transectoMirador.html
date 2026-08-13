@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<title>OASIS · Transecto Laguna Mirador — Coberturas (50×50 m)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+  :root{
+    --agua:#00A99D; --tierra:#A98743; --roca:#343B4D; --fauna:#FF7BAC;
+    --grisTxt:#4F4F4F; --grisBg:#F5F5F5;
+  }
+  html, body { margin:0; padding:0; height:100%; font-family: 'Lato', Arial, sans-serif; color:var(--roca); }
+  #app { display:flex; height:100vh; width:100%; }
+  #panel {
+    width: 340px; min-width:300px; max-width:340px;
+    background: rgba(255,255,255,0.97);
+    border-right: 1px solid #e0e0e0;
+    padding: 14px 16px;
+    overflow-y: auto;
+    box-sizing: border-box;
+  }
+  #map { flex: 1; height: 100%; }
+
+  .panel-title { font-weight:bold; font-size:14px; color:var(--roca); margin:0 0 4px 0; }
+  .panel-sub   { font-size:11px; color:var(--grisTxt); margin:0 0 12px 0; }
+
+  .legend-title { font-weight:bold; font-size:11px; margin: 10px 0 6px 0; color:var(--roca); }
+  .legend-grid  { display:grid; grid-template-columns:1fr 1fr; gap:3px 10px; margin-bottom: 10px;}
+  .legend-item  { display:flex; align-items:center; gap:5px; font-size:10px; color:var(--grisTxt); }
+  .swatch       { width:10px; height:10px; flex-shrink:0; border-radius:2px; }
+
+  hr.sep { border:none; border-top:1px solid #e5e5e5; margin: 10px 0; }
+
+  #info { margin-top: 6px; }
+  #info .placeholder { font-size:11px; color:#999; font-style:italic; }
+  .info-coords { font-size:10px; color:var(--grisTxt); margin: 0 0 4px 0; }
+  .info-name   { font-size:12px; font-weight:bold; color:var(--roca); margin: 6px 0 4px 0; }
+  .info-sal    { font-size:11px; color:var(--grisTxt); margin: 2px 0; }
+  .info-link   { font-size:11px; color:var(--agua); text-decoration:underline; display:inline-block; margin-top:4px; }
+  .info-photo  { width:100%; height:auto; border-radius:6px; display:block; border:1px solid #e0e0e0; background:#f0f0f0; min-height:80px; }
+  .info-photo-caption { font-size:10px; color:#999; font-style:italic; margin: 4px 0 0 0; text-align:center; }
+
+  .pie-wrap { display:flex; align-items:center; justify-content:center; margin: 8px 0; }
+
+  .chip {
+    background: rgba(255,255,255,0.95);
+    border: 1.5px solid var(--tierra);
+    color: var(--roca);
+    font-weight:bold; font-size:11px;
+    padding: 3px 8px; border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+
+<div id="app">
+  <div id="panel">
+    <p class="panel-title">OASIS · Coberturas (50×50 m)</p>
+    <p class="panel-sub">Transecto Laguna Mirador — Clic en un punto del mapa.</p>
+
+    <div class="legend-title">Leyenda de coberturas</div>
+    <div class="legend-grid" id="legendGrid"></div>
+
+    <hr class="sep">
+    <div id="info"><p class="placeholder">Selecciona un punto en el mapa para ver su detalle.</p></div>
+  </div>
+  <div id="map"></div>
+</div>
+
+<script>
+// ================= DATOS (exportados de Excel, sin Earth Engine) =================
+var DATA = [{"n_foto": 1.0, "Latitude": -27.08363, "Longitude": -69.160451, "nombre": "punto 1", "url_imagen": "https://jdelafuentec.github.io/web/fotosTransLagunaMirador/20250117_101525.jpg", "Cobertura_sup_salina": 1.0, "Costra_Salina": 0.6, "Agua": 0.0, "Barro": 0.0, "Ranunculus_sp": 0.1, "Puccinellia_frigida": 0.3, "Zameioscirpus": 0.0, "Pasto_tipo_Zameio": 0.0, "Deyeuxia_velutina": 0.0, "Arenaria": 0.0, "Triglochin_concinna": 0.0, "Acuática_como_pelo": 0.0, "total": 1}, {"n_foto": 2.0, "Latitude": -27.0837965, "Longitude": -69.1603709, "nombre": "punto 2", "url_imagen": "https://jdelafuentec.github.io/web/fotosTransLagunaMirador/20250117_102141.jpg", "Cobertura_sup_salina": 0.0, "Costra_Salina": 0.2, "Agua": 0.0, "Barro": 0.0, "Ranunculus_sp": 0.03, "Puccinellia_frigida": 0.0, "Zameioscirpus": 0.25, "Pasto_tipo_Zameio": 0.0, "Deyeuxia_velutina": 0.52, "Arenaria": 0.0, "Triglochin_concinna": 0.0, "Acuática_como_pelo": 0.0, "total": 1}, {"n_foto": 3.0, "Latitude": -27.0837471, "Longitude": -69.1604375, "nombre": "punto 3", "url_imagen": "https://jdelafuentec.github.io/web/fotosTransLagunaMirador/20250117_102909.jpg", "Cobertura_sup_salina": 1.0, "Costra_Salina": 0.05, "Agua": 0.0, "Barro": 0.0, "Ranunculus_sp": 0.05, "Puccinellia_frigida": 0.2, "Zameioscirpus": 0.6, "Pasto_tipo_Zameio": 0.0, "Deyeuxia_velutina": 0.1, "Arenaria": 0.0, "Triglochin_concinna": 0.0, "Acuática_como_pelo": 0.0, "total": 1}, {"n_foto": 4.0, "Latitude": -27.0838352, "Longitude": -69.1604512, "nombre": "punto 4", "url_imagen": "https://jdelafuentec.github.io/web/fotosTransLagunaMirador/20250117_103436.jpg", "Cobertura_sup_salina": 0.95, "Costra_Salina": 0.0, "Agua": 0.0, "Barro": 0.0, "Ranunculus_sp": 0.23, "Puccinellia_frigida": 0.36, "Zameioscirpus": 0.0, "Pasto_tipo_Zameio": 0.0, "Deyeuxia_velutina": 0.36, "Arenaria": 0.0, "Triglochin_concinna": 0.0, "Acuática_como_pelo": 0.0, "total": 0.95}, {"n_foto": 5.0, "Latitude": -27.0841549, "Longitude": -69.1603384, "nombre": "punto 5", "url_imagen": "https://jdelafuentec.github.io/web/fotosTransLagunaMirador/20250117_103815.jpg", "Cobertura_sup_salina": 0.0, "Costra_Salina": 0.06, "Agua": 0.01, "Barro": 0.0, "Ranunculus_sp": 0.03, "Puccinellia_frigida": 0.0, "Zameioscirpus": 0.35, "Pasto_tipo_Zameio": 0.0, "Deyeuxia_velutina": 0.55, "Arenaria": 0.0, "Triglochin_concinna": 0.0, "Acuática_como_pelo": 0.0, "total": 1}, {"n_foto": 6.0, "Latitude": -27.0843326, "Longitude": -69.1603583, "nombre": "punto 6", "url_imagen": "https://jdelafuentec.github.io/web/fotosTransLagunaMirador/20250117_104913.jpg", "Cobertura_sup_salina": 0.9, "Costra_Salina": 0.0, "Agua": 0.0, "Barro": 0.12, "Ranunculus_sp": 0.0, "Puccinellia_frigida": 0.0, "Zameioscirpus": 0.0, "Pasto_tipo_Zameio": 0.0, "Deyeuxia_velutina": 0.76, "Arenaria": 0.12, "Triglochin_concinna": 0.0, "Acuática_como_pelo": 0.0, "total": 1}, {"n_foto": 7.0, "Latitude": -27.0845674, "Longitude": -69.1605901, "nombre": "punto 7", "url_imagen": "https://jdelafuentec.github.io/web/fotosTransLagunaMirador/20250117_105229.jpg", "Cobertura_sup_salina": 0.36, "Costra_Salina": 0.0, "Agua": 0.0, "Barro": 0.0, "Ranunculus_sp": 0.0, "Puccinellia_frigida": 0.0, "Zameioscirpus": 0.0, "Pasto_tipo_Zameio": 0.0, "Deyeuxia_velutina": 1.0, "Arenaria": 0.0, "Triglochin_concinna": 0.0, "Acuática_como_pelo": 0.0, "total": 1}, {"n_foto": 8.0, "Latitude": -27.084653, "Longitude": -69.1607031, "nombre": "punto 8", "url_imagen": "https://jdelafuentec.github.io/web/fotosTransLagunaMirador/20250117_105428.jpg", "Cobertura_sup_salina": 0.48, "Costra_Salina": 0.0, "Agua": 0.52, "Barro": 0.0, "Ranunculus_sp": 0.0, "Puccinellia_frigida": 0.36, "Zameioscirpus": 0.0, "Pasto_tipo_Zameio": 0.0, "Deyeuxia_velutina": 0.12, "Arenaria": 0.0, "Triglochin_concinna": 0.0, "Acuática_como_pelo": 0.0, "total": 1}, {"n_foto": 9.0, "Latitude": -27.0849035, "Longitude": -69.1608487, "nombre": "punto 9", "url_imagen": "https://jdelafuentec.github.io/web/fotosTransLagunaMirador/20250117_105638.jpg", "Cobertura_sup_salina": 0.0, "Costra_Salina": 0.24, "Agua": 0.0, "Barro": 0.52, "Ranunculus_sp": 0.0, "Puccinellia_frigida": 0.24, "Zameioscirpus": 0.0, "Pasto_tipo_Zameio": 0.0, "Deyeuxia_velutina": 0.0, "Arenaria": 0.0, "Triglochin_concinna": 0.0, "Acuática_como_pelo": 0.0, "total": 1}, {"n_foto": 10.0, "Latitude": -27.08488333, "Longitude": -69.160925, "nombre": "punto 10", "url_imagen": "https://jdelafuentec.github.io/web/fotosTransLagunaMirador/20250117_105850.jpg", "Cobertura_sup_salina": 0.7, "Costra_Salina": 0.0, "Agua": 0.05, "Barro": 0.0, "Ranunculus_sp": 0.0, "Puccinellia_frigida": 0.66, "Zameioscirpus": 0.0, "Pasto_tipo_Zameio": 0.0, "Deyeuxia_velutina": 0.29, "Arenaria": 0.0, "Triglochin_concinna": 0.0, "Acuática_como_pelo": 0.0, "total": 1}, {"n_foto": 11.0, "Latitude": -27.08497778, "Longitude": -69.16096389, "nombre": "punto 11", "url_imagen": "https://jdelafuentec.github.io/web/fotosTransLagunaMirador/20250117_110054.jpg", "Cobertura_sup_salina": 0.0, "Costra_Salina": 0.0, "Agua": 0.0, "Barro": 0.03, "Ranunculus_sp": 0.0, "Puccinellia_frigida": 0.0, "Zameioscirpus": 0.12, "Pasto_tipo_Zameio": 0.0, "Deyeuxia_velutina": 0.85, "Arenaria": 0.0, "Triglochin_concinna": 0.0, "Acuática_como_pelo": 0.0, "total": 1}, {"n_foto": 12.0, "Latitude": -27.08519444, "Longitude": -69.16096389, "nombre": "punto 12", "url_imagen": "https://jdelafuentec.github.io/web/fotosTransLagunaMirador/20250117_110310.jpg", "Cobertura_sup_salina": 0.4, "Costra_Salina": 0.0, "Agua": 0.0, "Barro": 0.0, "Ranunculus_sp": 0.0, "Puccinellia_frigida": 0.64, "Zameioscirpus": 0.24, "Pasto_tipo_Zameio": 0.0, "Deyeuxia_velutina": 0.12, "Arenaria": 0.0, "Triglochin_concinna": 0.0, "Acuática_como_pelo": 0.0, "total": 1}, {"n_foto": 13.0, "Latitude": -27.08531389, "Longitude": -69.16120278, "nombre": "punto 13", "url_imagen": "https://jdelafuentec.github.io/web/fotosTransLagunaMirador/20250117_110542.jpg", "Cobertura_sup_salina": 0.0, "Costra_Salina": 0.0, "Agua": 0.0, "Barro": 0.0, "Ranunculus_sp": 0.12, "Puccinellia_frigida": 0.8, "Zameioscirpus": 0.0, "Pasto_tipo_Zameio": 0.0, "Deyeuxia_velutina": 0.08, "Arenaria": 0.0, "Triglochin_concinna": 0.0, "Acuática_como_pelo": 0.0, "total": 1}, {"n_foto": 14.0, "Latitude": -27.08556667, "Longitude": -69.16151111, "nombre": "punto 14", "url_imagen": "https://jdelafuentec.github.io/web/fotosTransLagunaMirador/20250117_111035.jpg", "Cobertura_sup_salina": 0.0, "Costra_Salina": 0.7, "Agua": 0.0, "Barro": 0.0, "Ranunculus_sp": 0.02, "Puccinellia_frigida": 0.18, "Zameioscirpus": 0.1, "Pasto_tipo_Zameio": 0.0, "Deyeuxia_velutina": 0.0, "Arenaria": 0.0, "Triglochin_concinna": 0.0, "Acuática_como_pelo": 0.0, "total": 1}, {"n_foto": 15.0, "Latitude": -27.08583611, "Longitude": -69.16196389, "nombre": "punto 15", "url_imagen": "https://jdelafuentec.github.io/web/fotosTransLagunaMirador/20250117_111417.jpg", "Cobertura_sup_salina": 0.0, "Costra_Salina": 0.35, "Agua": 0.05, "Barro": 0.0, "Ranunculus_sp": 0.2, "Puccinellia_frigida": 0.2, "Zameioscirpus": 0.2, "Pasto_tipo_Zameio": 0.0, "Deyeuxia_velutina": 0.0, "Arenaria": 0.0, "Triglochin_concinna": 0.0, "Acuática_como_pelo": 0.0, "total": 1}, {"n_foto": 16.0, "Latitude": -27.08628333, "Longitude": -69.16220278, "nombre": "punto 16", "url_imagen": "https://jdelafuentec.github.io/web/fotosTransLagunaMirador/20250117_112810.jpg", "Cobertura_sup_salina": 1.0, "Costra_Salina": 0.0, "Agua": 0.0, "Barro": 0.0, "Ranunculus_sp": 0.0, "Puccinellia_frigida": 1.0, "Zameioscirpus": 0.0, "Pasto_tipo_Zameio": 0.0, "Deyeuxia_velutina": 0.0, "Arenaria": 0.0, "Triglochin_concinna": 0.0, "Acuática_como_pelo": 0.0, "total": 1}, {"n_foto": 17.0, "Latitude": -27.086075, "Longitude": -69.16200833, "nombre": "punto 17", "url_imagen": "https://jdelafuentec.github.io/web/fotosTransLagunaMirador/20250117_113056.jpg", "Cobertura_sup_salina": 0.0, "Costra_Salina": 0.1, "Agua": 0.0, "Barro": 0.0, "Ranunculus_sp": 0.0, "Puccinellia_frigida": 0.1, "Zameioscirpus": 0.7, "Pasto_tipo_Zameio": 0.0, "Deyeuxia_velutina": 0.0, "Arenaria": 0.1, "Triglochin_concinna": 0.0, "Acuática_como_pelo": 0.0, "total": 1}, {"n_foto": 18.0, "Latitude": -27.08603056, "Longitude": -69.16200278, "nombre": "punto 18", "url_imagen": "https://jdelafuentec.github.io/web/fotosTransLagunaMirador/20250117_113301.jpg", "Cobertura_sup_salina": 0.0, "Costra_Salina": 0.18, "Agua": 0.0, "Barro": 0.1, "Ranunculus_sp": 0.0, "Puccinellia_frigida": 0.15, "Zameioscirpus": 0.45, "Pasto_tipo_Zameio": 0.0, "Deyeuxia_velutina": 0.0, "Arenaria": 0.0, "Triglochin_concinna": 0.12, "Acuática_como_pelo": 0.0, "total": 1}, {"n_foto": 19.0, "Latitude": -27.08582222, "Longitude": -69.16198333, "nombre": "punto 19", "url_imagen": "https://jdelafuentec.github.io/web/fotosTransLagunaMirador/20250117_113758.jpg", "Cobertura_sup_salina": 0.0, "Costra_Salina": 0.0, "Agua": 0.34, "Barro": 0.0, "Ranunculus_sp": 0.0, "Puccinellia_frigida": 0.0, "Zameioscirpus": 0.33, "Pasto_tipo_Zameio": 0.0, "Deyeuxia_velutina": 0.33, "Arenaria": 0.0, "Triglochin_concinna": 0.0, "Acuática_como_pelo": 0.0, "total": 1}, {"n_foto": 20.0, "Latitude": -27.08570833, "Longitude": -69.16188056, "nombre": "punto 20", "url_imagen": "https://jdelafuentec.github.io/web/fotosTransLagunaMirador/20250117_114015.jpg", "Cobertura_sup_salina": 1.0, "Costra_Salina": 0.0, "Agua": 0.0, "Barro": 0.0, "Ranunculus_sp": 0.0, "Puccinellia_frigida": 0.3, "Zameioscirpus": 0.3, "Pasto_tipo_Zameio": 0.0, "Deyeuxia_velutina": 0.0, "Arenaria": 0.2, "Triglochin_concinna": 0.2, "Acuática_como_pelo": 0.0, "total": 1}, {"n_foto": 21.0, "Latitude": -27.08580556, "Longitude": -69.16171944, "nombre": "punto 21", "url_imagen": "https://jdelafuentec.github.io/web/fotosTransLagunaMirador/20250117_114424.jpg", "Cobertura_sup_salina": 1.0, "Costra_Salina": 0.0, "Agua": 0.0, "Barro": 0.0, "Ranunculus_sp": 0.0, "Puccinellia_frigida": 0.01, "Zameioscirpus": 0.0, "Pasto_tipo_Zameio": 0.0, "Deyeuxia_velutina": 0.29, "Arenaria": 0.7, "Triglochin_concinna": 0.0, "Acuática_como_pelo": 0.0, "total": 1}, {"n_foto": 22.0, "Latitude": -27.08529722, "Longitude": -69.16166111, "nombre": "punto 22", "url_imagen": "https://jdelafuentec.github.io/web/fotosTransLagunaMirador/20250117_114756.jpg", "Cobertura_sup_salina": 1.0, "Costra_Salina": 0.6, "Agua": 0.0, "Barro": 0.0, "Ranunculus_sp": 0.0, "Puccinellia_frigida": 0.0, "Zameioscirpus": 0.33, "Pasto_tipo_Zameio": 0.07, "Deyeuxia_velutina": 0.0, "Arenaria": 0.0, "Triglochin_concinna": 0.0, "Acuática_como_pelo": 0.0, "total": 1}, {"n_foto": 23.0, "Latitude": -27.08523333, "Longitude": -69.16160556, "nombre": "punto 23", "url_imagen": "https://jdelafuentec.github.io/web/fotosTransLagunaMirador/20250117_114951.jpg", "Cobertura_sup_salina": 0.0, "Costra_Salina": 0.15, "Agua": 0.0, "Barro": 0.2, "Ranunculus_sp": 0.0, "Puccinellia_frigida": 0.05, "Zameioscirpus": 0.5, "Pasto_tipo_Zameio": 0.0, "Deyeuxia_velutina": 0.05, "Arenaria": 0.0, "Triglochin_concinna": 0.05, "Acuática_como_pelo": 0.0, "total": 1}, {"n_foto": 24.0, "Latitude": -27.08515, "Longitude": -69.16158056, "nombre": "punto 24", "url_imagen": "https://jdelafuentec.github.io/web/fotosTransLagunaMirador/20250117_115159.jpg", "Cobertura_sup_salina": 1.0, "Costra_Salina": 0.52, "Agua": 0.0, "Barro": 0.0, "Ranunculus_sp": 0.0, "Puccinellia_frigida": 0.36, "Zameioscirpus": 0.12, "Pasto_tipo_Zameio": 0.0, "Deyeuxia_velutina": 0.0, "Arenaria": 0.0, "Triglochin_concinna": 0.0, "Acuática_como_pelo": 0.0, "total": 1}, {"n_foto": 25.0, "Latitude": -27.08507222, "Longitude": -69.16149722, "nombre": "punto 25", "url_imagen": "https://jdelafuentec.github.io/web/fotosTransLagunaMirador/20250117_115200.jpg", "Cobertura_sup_salina": 0.0, "Costra_Salina": 0.0, "Agua": 0.0, "Barro": 0.0, "Ranunculus_sp": 0.0, "Puccinellia_frigida": 0.1, "Zameioscirpus": 0.6, "Pasto_tipo_Zameio": 0.0, "Deyeuxia_velutina": 0.3, "Arenaria": 0.0, "Triglochin_concinna": 0.0, "Acuática_como_pelo": 0.0, "total": 1}, {"n_foto": 26.0, "Latitude": -27.08510278, "Longitude": -69.16159167, "nombre": "punto 26", "url_imagen": "https://jdelafuentec.github.io/web/fotosTransLagunaMirador/20250117_115333.jpg", "Cobertura_sup_salina": 0.4, "Costra_Salina": 0.0, "Agua": 0.0, "Barro": 0.0, "Ranunculus_sp": 0.0, "Puccinellia_frigida": 0.0, "Zameioscirpus": 1.0, "Pasto_tipo_Zameio": 0.0, "Deyeuxia_velutina": 0.0, "Arenaria": 0.0, "Triglochin_concinna": 0.0, "Acuática_como_pelo": 0.0, "total": 1}, {"n_foto": 27.0, "Latitude": -27.08499444, "Longitude": -69.16148056, "nombre": "punto 27", "url_imagen": "https://jdelafuentec.github.io/web/fotosTransLagunaMirador/20250117_115723.jpg", "Cobertura_sup_salina": 0.0, "Costra_Salina": 0.0, "Agua": 0.0, "Barro": 0.0, "Ranunculus_sp": 0.0, "Puccinellia_frigida": 0.05, "Zameioscirpus": 0.4, "Pasto_tipo_Zameio": 0.0, "Deyeuxia_velutina": 0.2, "Arenaria": 0.35, "Triglochin_concinna": 0.0, "Acuática_como_pelo": 0.0, "total": 1}, {"n_foto": 28.0, "Latitude": -27.08484722, "Longitude": -69.16134444, "nombre": "punto 28", "url_imagen": "https://jdelafuentec.github.io/web/fotosTransLagunaMirador/20250117_120019.jpg", "Cobertura_sup_salina": 0.0, "Costra_Salina": 0.0, "Agua": 0.0, "Barro": 0.0, "Ranunculus_sp": 0.0, "Puccinellia_frigida": 0.0, "Zameioscirpus": 0.0, "Pasto_tipo_Zameio": 0.0, "Deyeuxia_velutina": 1.0, "Arenaria": 0.0, "Triglochin_concinna": 0.0, "Acuática_como_pelo": 0.0, "total": 1}, {"n_foto": 29.0, "Latitude": -27.08447778, "Longitude": -69.16127222, "nombre": "punto 29", "url_imagen": "https://jdelafuentec.github.io/web/fotosTransLagunaMirador/20250117_120245.jpg", "Cobertura_sup_salina": 0.0, "Costra_Salina": 0.0, "Agua": 0.0, "Barro": 0.0, "Ranunculus_sp": 0.0, "Puccinellia_frigida": 0.0, "Zameioscirpus": 0.36, "Pasto_tipo_Zameio": 0.0, "Deyeuxia_velutina": 0.0, "Arenaria": 0.0, "Triglochin_concinna": 0.0, "Acuática_como_pelo": 0.64, "total": 1}, {"n_foto": 30.0, "Latitude": -27.08418611, "Longitude": -69.16128056, "nombre": "punto 30", "url_imagen": "https://jdelafuentec.github.io/web/fotosTransLagunaMirador/20250117_120612.jpg", "Cobertura_sup_salina": 0.0, "Costra_Salina": 0.0, "Agua": 0.0, "Barro": 0.0, "Ranunculus_sp": 0.0, "Puccinellia_frigida": 0.06, "Zameioscirpus": 0.58, "Pasto_tipo_Zameio": 0.24, "Deyeuxia_velutina": 0.12, "Arenaria": 0.0, "Triglochin_concinna": 0.0, "Acuática_como_pelo": 0.0, "total": 1}];
+
+// ================= COLORES / CLASES =================
+var COLORES = {
+  'Costra_Salina':'#E6E6E6', 'Agua':'#00A99D', 'Barro':'#A98743',
+  'Ranunculus_sp':'#7FD34E', 'Puccinellia_frigida':'#5CB85C', 'Zameioscirpus':'#3D8B37',
+  'Pasto_tipo_Zameio':'#9DDC85', 'Deyeuxia_velutina':'#6AB04C', 'Arenaria':'#D9C27D',
+  'Triglochin_concinna':'#8DAA3C', 'Acuática_como_pelo':'#66CDAA'
+};
+var LABELS = Object.keys(COLORES);
+
+// ================= LEYENDA =================
+var legendGrid = document.getElementById('legendGrid');
+LABELS.forEach(function(k){
+  var item = document.createElement('div');
+  item.className = 'legend-item';
+  item.innerHTML = '<span class="swatch" style="background:' + COLORES[k] + '"></span><span>' + k.replace(/_/g,' ') + '</span>';
+  legendGrid.appendChild(item);
+});
+
+// ================= MAPA =================
+var lats = DATA.map(function(d){ return d.Latitude; });
+var lons = DATA.map(function(d){ return d.Longitude; });
+var centerLat = lats.reduce(function(a,b){return a+b;},0) / lats.length;
+var centerLon = lons.reduce(function(a,b){return a+b;},0) / lons.length;
+
+var map = L.map('map', { zoomControl: true }).setView([centerLat, centerLon], 17);
+
+L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+  maxZoom: 22,
+  attribution: 'Esri, Maxar, Earthstar Geographics'
+}).addTo(map);
+
+var markers = {};
+var selectedMarker = null;
+var chip = null;
+
+DATA.forEach(function(d){
+  var m = L.circleMarker([d.Latitude, d.Longitude], {
+    radius: 6,
+    color: 'white',
+    weight: 1.2,
+    fillColor: '#00A99D',
+    fillOpacity: 0.9
+  }).addTo(map);
+  m.on('click', function(){ seleccionarPunto(d, m); });
+  markers[d.n_foto] = m;
+});
+
+// ================= PIE CHART (SVG puro, sin librerías) =================
+function pieSVG(d){
+  var size = 190, r = 80, cx = size/2, cy = size/2;
+  var entries = LABELS.map(function(k){ return {k:k, v: d[k] || 0}; }).filter(function(e){ return e.v > 0; });
+  var total = entries.reduce(function(s,e){ return s + e.v; }, 0);
+  if (total <= 0) return '<p style="font-size:11px;color:#999;">Sin datos de cobertura.</p>';
+
+  var svg = '<svg width="' + size + '" height="' + size + '" viewBox="0 0 ' + size + ' ' + size + '">';
+  var angleStart = -Math.PI/2;
+  entries.forEach(function(e){
+    var frac = e.v / total;
+    var angleEnd = angleStart + frac * 2 * Math.PI;
+    var x1 = cx + r*Math.cos(angleStart), y1 = cy + r*Math.sin(angleStart);
+    var x2 = cx + r*Math.cos(angleEnd), y2 = cy + r*Math.sin(angleEnd);
+    var largeArc = (angleEnd - angleStart) > Math.PI ? 1 : 0;
+    var path = 'M' + cx + ',' + cy + ' L' + x1 + ',' + y1 + ' A' + r + ',' + r + ' 0 ' + largeArc + ' 1 ' + x2 + ',' + y2 + ' Z';
+    svg += '<path d="' + path + '" fill="' + COLORES[e.k] + '" stroke="white" stroke-width="1"></path>';
+
+    // label de porcentaje si la porción es visible
+    if (frac > 0.04) {
+      var midAngle = (angleStart + angleEnd) / 2;
+      var lx = cx + (r*0.65)*Math.cos(midAngle), ly = cy + (r*0.65)*Math.sin(midAngle);
+      svg += '<text x="' + lx + '" y="' + ly + '" font-size="9" fill="#222" text-anchor="middle" dominant-baseline="middle">' + Math.round(frac*100) + '%</text>';
+    }
+    angleStart = angleEnd;
+  });
+  svg += '</svg>';
+  return svg;
+}
+
+// ================= SELECCIÓN =================
+function seleccionarPunto(d, marker){
+  // reset marcador anterior
+  if (selectedMarker) selectedMarker.setStyle({ fillColor: '#00A99D', radius: 6 });
+  marker.setStyle({ fillColor: '#FF7BAC', radius: 8 });
+  selectedMarker = marker;
+
+  map.panTo(marker.getLatLng());
+
+  if (chip) map.removeLayer(chip);
+  chip = L.marker(marker.getLatLng(), {
+    icon: L.divIcon({
+      className: '',
+      html: '<div class="chip">● ' + d.nombre + '</div>',
+      iconSize: [0,0],
+      iconAnchor: [-10, 20]
+    })
+  }).addTo(map);
+
+  var info = document.getElementById('info');
+  var html = '';
+  html += '<p class="info-coords">📍 ' + d.Latitude.toFixed(5) + ', ' + d.Longitude.toFixed(5) + '</p>';
+  html += '<div class="pie-wrap">' + pieSVG(d) + '</div>';
+  html += '<p class="info-name">🧭 ' + d.nombre + '</p>';
+  html += '<p class="info-sal">🧂 Cobertura superficie salina: ' + Math.round((d.Cobertura_sup_salina||0)*100) + ' %</p>';
+  if (d.url_imagen) {
+    html += '<a href="' + d.url_imagen + '" target="_blank" rel="noopener" style="display:block;margin-top:8px;">';
+    html += '<img src="' + d.url_imagen + '" alt="Foto ' + d.nombre + '" class="info-photo">';
+    html += '</a>';
+    html += '<p class="info-photo-caption">📷 Foto de terreno — clic para ampliar</p>';
+  }
+  info.innerHTML = html;
+}
+</script>
+</body>
+</html>
