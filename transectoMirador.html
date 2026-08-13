@@ -165,7 +165,7 @@ function seleccionarPunto(d, marker){
   chip = L.marker(marker.getLatLng(), {
     icon: L.divIcon({
       className: '',
-      html: '<div class="chip">● ' + d.nombre + '</div>',
+      html: '<div class="chip">' + d.nombre + '</div>',
       iconSize: [0,0],
       iconAnchor: [-10, 20]
     })
@@ -173,15 +173,15 @@ function seleccionarPunto(d, marker){
 
   var info = document.getElementById('info');
   var html = '';
-  html += '<p class="info-coords">📍 ' + d.Latitude.toFixed(5) + ', ' + d.Longitude.toFixed(5) + '</p>';
+  html += '<p class="info-coords">' + d.Latitude.toFixed(5) + ', ' + d.Longitude.toFixed(5) + '</p>';
   html += '<div class="pie-wrap">' + pieSVG(d) + '</div>';
-  html += '<p class="info-name">🧭 ' + d.nombre + '</p>';
-  html += '<p class="info-sal">🧂 Cobertura superficie salina: ' + Math.round((d.Cobertura_sup_salina||0)*100) + ' %</p>';
+  html += '<p class="info-name">' + d.nombre + '</p>';
+  html += '<p class="info-sal">Cobertura superficie salina: ' + Math.round((d.Cobertura_sup_salina||0)*100) + ' %</p>';
   if (d.url_imagen) {
     html += '<a href="' + d.url_imagen + '" target="_blank" rel="noopener" style="display:block;margin-top:8px;">';
     html += '<img src="' + d.url_imagen + '" alt="Foto ' + d.nombre + '" class="info-photo">';
     html += '</a>';
-    html += '<p class="info-photo-caption">📷 Foto de terreno — clic para ampliar</p>';
+    html += '<p class="info-photo-caption">Foto de terreno — clic para ampliar</p>';
   }
   info.innerHTML = html;
 }
