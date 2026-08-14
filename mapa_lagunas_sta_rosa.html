@@ -109,6 +109,9 @@ boxes.forEach(b=>{
 
 const allBounds = L.latLngBounds(boxes.flatMap(b=>b.coords));
 map.fitBounds(allBounds, {padding:[60,60]});
+map.once('moveend', function(){
+  map.setZoom(map.getZoom() + 1);
+});
 </script>
 </body>
 </html>
