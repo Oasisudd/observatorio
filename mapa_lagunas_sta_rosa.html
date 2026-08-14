@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lagunas Santa Rosa · ESRI World Imagery</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+
+:root{
+  --azul-roca: #323B4E;
+  --teal: #01A99D;
+  --line: #e7e9ee;
+  --bg: #ffffff;
+}
+
+*{box-sizing:border-box;}
+html, body{
+  margin:0; padding:0; width:100%;
+  font-family:'Lato', sans-serif;
+  color: var(--azul-roca);
+  background-color: var(--bg);
+}
+
+.iframe-container{
+  padding: 25px 0;
+  background: none;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.titulo1 h1{
+  color: var(--azul-roca);
+  font-size: 1.25rem;
+  font-weight: bold;
+  text-align: left;
+  margin: 1.25rem 0 0.4rem;
+  padding: 0 12%;
+}
+
+.titulo1 p{
+  padding: 0 12%;
+  margin: 0 0 1.2rem;
+  font-weight: 300;
+  line-height: 1.7;
+  font-size: 0.95rem;
+  color: var(--azul-roca);
+}
+
+.map-shell{
+  padding: 0 12%;
+}
+
+#map{
+  height: 550px;
+  width: 100%;
+  border-radius: 4px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  border: none;
+  z-index: 1;
+}
+
+/* Popups Leaflet con la tipografia del sitio */
+.leaflet-popup-content-wrapper{
+  border-radius: 4px;
+  font-family: 'Lato', sans-serif;
+}
+
+.leaflet-popup-content{
+  color: var(--azul-roca);
+  font-size: 0.9rem;
+}
+
+.popup-title{
+  color: var(--azul-roca);
+  font-weight: bold;
+  margin: 0 0 4px;
+}
+
+.box-label{
+  background:transparent; border:none; box-shadow:none;
+  font-family:'Lato', sans-serif; font-weight:700; font-size:15px; color:#fff;
+  text-shadow: 0 0 3px rgba(0,0,0,.8), 0 0 6px rgba(0,0,0,.6);
+}
+
+.leaflet-control-zoom a{
+  color: var(--azul-roca) !important;
+  font-family: 'Lato', sans-serif;
+}
+
+@media (max-width: 768px){
+  .titulo1 h1, .titulo1 p, .map-shell{ padding: 0 6%; }
+  #map{ height: 400px; }
+}
+</style>
+</head>
+<body>
+
+<div class="iframe-container">
+  <div class="titulo1">
+    <h1>Lagunas Santa Rosa</h1>
+    <p>Región de Atacama, Chile &mdash; imagen satelital ESRI World Imagery. Haz clic en la leyenda para mostrar u ocultar cada recuadro.</p>
+  </div>
+  <div class="map-shell">
+    <div id="map"></div>
+  </div>
+</div>
+
+<script>
+const boxes = [
+  {n:'1', color:'#f5c542', coords:[[-27.08136273007076,-69.16192222238425],[-27.0814653937885,-69.15880076370752],[-27.07768461295334,-69.15862023606617],[-27.07760409492714,-69.16178847254803]]},
+  {n:'2', color:'#01A99D', coords:[[-27.0814020467803,-69.16151386607827],[-27.08125072250237,-69.16824465248956],[-27.08773201193381,-69.16856962254163],[-27.08794190790603,-69.16187833631058]]},
+  {n:'3', color:'#AA8744', coords:[[-27.08911222910174,-69.16259511982018],[-27.08900951705063,-69.16672952609093],[-27.0929101734503,-69.16684612763393],[-27.09296958246502,-69.16274468905591]]},
+  {n:'4', color:'#343b4d', coords:[[-27.07829878006617,-69.16831678155953],[-27.07804330491567,-69.17502935608903],[-27.08958174776201,-69.17533654705859],[-27.08973621131067,-69.16885138301743]]},
+  {n:'5', color:'#F288A4', coords:[[-27.07320373499292,-69.16055812071829],[-27.07346837428047,-69.15468328297496],[-27.06797701303773,-69.15429373035838],[-27.06772267563972,-69.16022863802156]]},
+];
+
+const map = L.map('map', {zoomControl:false, attributionControl:true}).setView([-27.081, -69.164], 15);
+L.control.zoom({position:'topright'}).addTo(map);
+
+L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+  maxZoom: 20,
+  attribution: 'Tiles &copy; Esri &mdash; Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community'
+}).addTo(map);
+
+boxes.forEach(b=>{
+  const poly = L.polygon(b.coords, {
+    color: b.color, weight: 3, fillColor: b.color, fillOpacity: 0.12
+  }).addTo(map);
+
+  const center = poly.getBounds().getCenter();
+  L.marker(center, {
+    icon: L.divIcon({className:'box-label', html:b.n, iconSize:[20,20]}),
+    interactive:false
+  }).addTo(map);
+
+  poly.bindPopup(`<div class="popup-title">Recuadro ${b.n}</div>Laguna Santa Rosa`);
+});
+
+const allBounds = L.latLngBounds(boxes.flatMap(b=>b.coords));
+map.fitBounds(allBounds, {padding:[60,60]});
+</script>
+</body>
+</html>
