@@ -89,11 +89,14 @@
 
   <div style="display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 2rem; margin-top: 20px;">
 
-    <!-- Imagen explicativa -->
+    <!-- Mapa interactivo -->
     <div style="flex: 1 1 45%; text-align: center;">
-      <img src="./img/lagunasStaRosa1.png"
-           alt="Mapa de lagunas y afluentes del sector Laguna Santa Rosa, PNNTC"
-           style="width: 100%; max-width: 500px; height: auto; border-radius: 8px; border: 1px solid #ccc;">
+      <iframe
+        src="./mapa_lagunas_sta_rosa.html"
+        title="Mapa de lagunas y afluentes del sector Laguna Santa Rosa, PNNTC"
+        frameborder="0"
+        style="width: 100%; max-width: 500px; height: 500px; border-radius: 8px; border: 1px solid #ccc;">
+      </iframe>
       <p style="font-size: 0.9rem; color: #555; margin-top: 10px;">
         Ubicación de los espejos de agua del sector Laguna Santa Rosa, PNNTC.
       </p>
@@ -174,36 +177,45 @@
       <div style="display: flex; flex-wrap: wrap; gap: 0; border: 1px solid #e0e0e0; margin: 1.5rem 0;">
 
         <!-- Bofedales -->
-        <div style="flex: 1 1 260px; border-right: 1px solid #e0e0e0; padding: 1.6rem 1.8rem; background: #fff;">
-          <h3 style="color: #323B4E; margin: 0 0 0.5rem 0; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: bold;">Bofedales</h3>
-          <p style="font-size: 0.95rem; line-height: 1.7; margin: 0 0 0.8rem 0; color: #323B4E;">
-            Juncáceas de <strong>crecimiento en cojín</strong>: compactas, con alta capacidad de almacenar agua.
-          </p>
-          <p style="font-size: 0.88rem; font-style: italic; color: #666; margin: 0; line-height: 1.6; border-top: 1px solid #eee; padding-top: 0.7rem;">
-            Oxychloe andina · Distichia muscoides · Zameioscirpus atacamensis
-          </p>
+        <div style="flex: 1 1 260px; border-right: 1px solid #e0e0e0; background: #fff;">
+          <img src="./img/paisajeBofedal.jpg" alt="Bofedal altoandino" style="width: 100%; height: 180px; object-fit: cover; display: block;">
+          <div style="padding: 1.6rem 1.8rem;">
+            <h3 style="color: #323B4E; margin: 0 0 0.5rem 0; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: bold;">Bofedales</h3>
+            <p style="font-size: 0.95rem; line-height: 1.7; margin: 0 0 0.8rem 0; color: #323B4E;">
+              Juncáceas de <strong>crecimiento en cojín</strong>: compactas, con alta capacidad de almacenar agua.
+            </p>
+            <p style="font-size: 0.88rem; font-style: italic; color: #666; margin: 0; line-height: 1.6; border-top: 1px solid #eee; padding-top: 0.7rem;">
+              Oxychloe andina · Distichia muscoides · Zameioscirpus atacamensis
+            </p>
+          </div>
         </div>
 
         <!-- Vegas -->
-        <div style="flex: 1 1 260px; border-right: 1px solid #e0e0e0; padding: 1.6rem 1.8rem; background: #fff;">
-          <h3 style="color: #323B4E; margin: 0 0 0.5rem 0; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: bold;">Vegas</h3>
-          <p style="font-size: 0.95rem; line-height: 1.7; margin: 0 0 0.8rem 0; color: #323B4E;">
-            Juncáceas de <strong>crecimiento rizomatoso erguido</strong> y suculentas, en zonas de flujo hídrico constante.
-          </p>
-          <p style="font-size: 0.88rem; font-style: italic; color: #666; margin: 0; line-height: 1.6; border-top: 1px solid #eee; padding-top: 0.7rem;">
-            Triglochin coccinea
-          </p>
+        <div style="flex: 1 1 260px; border-right: 1px solid #e0e0e0; background: #fff;">
+          <img src="./img/paisajeVega.jpg" alt="Vega altoandina" style="width: 100%; height: 180px; object-fit: cover; display: block;">
+          <div style="padding: 1.6rem 1.8rem;">
+            <h3 style="color: #323B4E; margin: 0 0 0.5rem 0; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: bold;">Vegas</h3>
+            <p style="font-size: 0.95rem; line-height: 1.7; margin: 0 0 0.8rem 0; color: #323B4E;">
+              Juncáceas de <strong>crecimiento rizomatoso erguido</strong> y suculentas, en zonas de flujo hídrico constante.
+            </p>
+            <p style="font-size: 0.88rem; font-style: italic; color: #666; margin: 0; line-height: 1.6; border-top: 1px solid #eee; padding-top: 0.7rem;">
+              Triglochin concinna
+            </p>
+          </div>
         </div>
 
         <!-- Pajonales hídricos -->
-        <div style="flex: 1 1 260px; padding: 1.6rem 1.8rem; background: #fff;">
-          <h3 style="color: #323B4E; margin: 0 0 0.5rem 0; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: bold;">Pajonales Hídricos</h3>
-          <p style="font-size: 0.95rem; line-height: 1.7; margin: 0 0 0.8rem 0; color: #323B4E;">
-            <strong>Poáceas</strong> adaptadas a alta humedad edáfica, en bordes de humedales y zonas de transición.
-          </p>
-          <p style="font-size: 0.88rem; font-style: italic; color: #666; margin: 0; line-height: 1.6; border-top: 1px solid #eee; padding-top: 0.7rem;">
-            Puccinellia frígida
-          </p>
+        <div style="flex: 1 1 260px; background: #fff;">
+          <img src="./img/paisajePajonal.jpg" alt="Pajonal hídrico altoandino" style="width: 100%; height: 180px; object-fit: cover; display: block;">
+          <div style="padding: 1.6rem 1.8rem;">
+            <h3 style="color: #323B4E; margin: 0 0 0.5rem 0; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: bold;">Pajonales Hídricos</h3>
+            <p style="font-size: 0.95rem; line-height: 1.7; margin: 0 0 0.8rem 0; color: #323B4E;">
+              <strong>Poáceas</strong> adaptadas a alta humedad edáfica, en bordes de humedales y zonas de transición.
+            </p>
+            <p style="font-size: 0.88rem; font-style: italic; color: #666; margin: 0; line-height: 1.6; border-top: 1px solid #eee; padding-top: 0.7rem;">
+              Cinnagrostis velutina · Puccinellia frígida
+            </p>
+          </div>
         </div>
 
       </div>
