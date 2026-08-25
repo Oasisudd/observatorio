@@ -83,7 +83,7 @@ Desde la geología, microbiología, ecología y ciencias sociales, el proyecto b
     </div>
     <div>
         <p>
-      Opera en una superficie de 10.000 km² en el extremo sur de la Zona Volcánica de los Andes Centrales, Región de Atacama, Chile. Las cuencas de estudio se ubican entre los <strong>3.700 y 4.300 m.s.n.m.</strong>, bajo condiciones de <strong>intensa radiación solar</strong> y <strong>altas tasas de evaporación superficial</strong> que modelan la dinámica hídrica y la distribución de la biota en estos ecosistemas singulares.
+      Opera en una superficie de ~10.000 km² en el extremo sur de la Zona Volcánica de los Andes Centrales, Región de Atacama, Chile. Las cuencas de estudio se ubican entre los 3.700 y 4.300 m.s.n.m., bajo condiciones de intensa radiación solar y altas tasas de evaporación superficial que modelan la dinámica hídrica y la distribución de la biota en estos ecosistemas singulares.
       <br><br>
       El área incluye la Laguna Verde, la Laguna del Negro Francisco, la Laguna Santa Rosa y el Salar de Maricunga. 
      </p>
@@ -103,17 +103,6 @@ Desde la geología, microbiología, ecología y ciencias sociales, el proyecto b
     <p style="text-align: center; font-size: 0.85rem; color: #888; margin: 0; padding: 0;">Pasa el cursor sobre cada imagen para explorar las líneas de investigación.</p>
   </div>
 
-<div class="row">
-  <div class="titulo1">
-    <h1>Parque Nacional Nevado Tres Cruces<br>
-      Sitio Ramsar: Complejo Lacustre Laguna del Negro Francisco y Laguna Santa Rosa</h1>
-  </div>
-  <div class="iframe-container">
-    <iframe src="./ramsar.html" style="width:100%; height:500px; border:none;"></iframe>
-  </div>
-  <p>Los Sitios Ramsar son humedales de importancia internacional reconocidos bajo la Convención de Ramsar, un tratado que busca conservar estos ecosistemas por su rol clave en la regulación hídrica y su alta biodiversidad.</p>
-</div>
-  
   <div class="row">
     <div class="imagen-padding">
       <img src="./img/IMG_1080.png" alt="Dos flamencos en una laguna">
@@ -196,8 +185,8 @@ Desde la geología, microbiología, ecología y ciencias sociales, el proyecto b
 
   let globalBounds = L.latLngBounds();
 
-  // 3. Función para cargar capas con colores específicos
-  async function cargarCapa(url, nombre, hexColor) {
+  // 3. Función para cargar capas con colores específicos y link a SIMBIO
+  async function cargarCapa(url, nombre, hexColor, simbioUrl) {
     try {
       const response = await fetch(url);
       const data = await response.json();
@@ -209,7 +198,11 @@ Desde la geología, microbiología, ecología y ciencias sociales, el proyecto b
           fillColor: hexColor   // Relleno
         },
         onEachFeature: (feature, layer) => {
-          layer.bindPopup(`<strong class="popup-title">${nombre}</strong><br>Proyecto OASIS`);
+          let popupContent = `<strong class="popup-title">${nombre}</strong><br>Proyecto OASIS`;
+          if (simbioUrl) {
+            popupContent += `<br><a href="${simbioUrl}" target="_blank">Ver ficha SIMBIO</a>`;
+          }
+          layer.bindPopup(popupContent);
         }
       }).addTo(map);
       
@@ -222,15 +215,30 @@ Desde la geología, microbiología, ecología y ciencias sociales, el proyecto b
     }
   }
 
-  // 4. Carga de los 3 GeoJSON con la paleta solicitada
+  // 4. Carga de los 3 GeoJSON con la paleta solicitada + link a ficha SIMBIO
   // Maricunga -> TURQUESA AGUA
-  cargarCapa('https://jdelafuentec.github.io/web/geoJson/polygonMaricunga.geojson', 'Sector Salar de Maricunga', '#00a99d');
-  
+  cargarCapa(
+    'https://jdelafuentec.github.io/web/geoJson/polygonMaricunga.geojson',
+    'Sector Salar de Maricunga',
+    '#00a99d',
+    'https://simbio.mma.gob.cl/Subcuencas/Details/0304'
+  );
+
   // Negro Francisco -> ROSA FAUNA
-  cargarCapa('https://jdelafuentec.github.io/web/geoJson/polygonNegroFco.geojson', 'Sector Laguna Negro Francisco', '#FF7BAC');
-  
-  // Pedernales -> AZUL ROCA
-  cargarCapa('https://jdelafuentec.github.io/web/geoJson/polygonPedernales.geojson', 'Sector Laguna Verde', '#343b4d');
+  cargarCapa(
+    'https://jdelafuentec.github.io/web/geoJson/polygonNegroFco.geojson',
+    'Sector Laguna Negro Francisco',
+    '#FF7BAC',
+    'https://simbio.mma.gob.cl/Subcuencas/Details/0305'
+  );
+
+  // Pedernales -> AZUL ROCA (etiquetado internamente como Laguna Verde)
+  cargarCapa(
+    'https://jdelafuentec.github.io/web/geoJson/polygonPedernales.geojson',
+    'Sector Laguna Verde',
+    '#343b4d',
+    'https://simbio.mma.gob.cl/Subcuencas/Details/0303'
+  );
 </script>
 
 </body>
