@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salar de Maricunga — Clasificación de paisajes</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
+<style>
+  :root {
+    --bg: #14181c;
+    --panel: #1e242a;
+    --panel-border: #2c343b;
+    --text: #e8ecef;
+    --text-dim: #9aa5ad;
+    --accent: #4fb0d8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+  }
+  header {
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--panel-border);
+  }
+  header h1 {
+    margin: 0 0 4px 0;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  header p {
+    margin: 0;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+  .layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 16px 24px 24px;
+  }
+  #mapa {
+    flex: 1 1 520px;
+    min-width: 320px;
+    height: 640px;
+    border-radius: 10px;
+    border: 1px solid var(--panel-border);
+    overflow: hidden;
+  }
+  .panel {
+    flex: 0 0 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: 10px;
+    padding: 16px;
+  }
+  .card h2 {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-dim);
+  }
+  .legend-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 3px 0;
+    font-size: 13px;
+  }
+  .swatch {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    flex-shrink: 0;
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  .stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--panel-border);
+    font-size: 13px;
+  }
+  .stat-row:last-child { border-bottom: none; }
+  .stat-name { display: flex; align-items: center; gap: 8px; }
+  .stat-value { font-weight: 600; color: var(--accent); }
+  .total-row {
+    margin-top: 8px;
+    padding-top: 10px;
+    border-top: 1px solid var(--panel-border);
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  #estado-carga {
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+  .leaflet-container { background: #0e1114; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Salar de Maricunga — Clasificación de paisajes</h1>
+  <p>Índices espectrales (NDVI/NDWI/brillo) + Satellite Embedding · Google Earth Engine</p>
+</header>
+
+<div class="layout">
+  <div id="mapa"></div>
+
+  <div class="panel">
+    <div class="card">
+      <h2>Leyenda</h2>
+      <div id="leyenda"></div>
+    </div>
+
+    <div class="card">
+      <h2>Superficie de vegetación</h2>
+      <div id="estadisticas">
+        <p id="estado-carga">Cargando…</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<script>
+  // ══════════════════════════════════════════════════════════════════════════
+  // CONFIGURACIÓN — reemplaza estos 3 valores con los que te dio el notebook
+  // ══════════════════════════════════════════════════════════════════════════
+
+  // 1) Ruta o URL de la imagen PNG ya coloreada (convertida desde el .tif que
+  //    exportó el notebook — el navegador no puede leer GeoTIFF directamente).
+  const URL_IMAGEN = 'maricunga_clase.png';
+
+  // 2) Límites geográficos exactos [[lat_sur, lon_oeste], [lat_norte, lon_este]].
+  //    Este es el valor que imprimió la celda de exportación del notebook
+  //    (también queda guardado en maricunga_bounds.json si prefieres cargarlo).
+  const BOUNDS = [[-27.10, -69.20], [-27.05, -69.14]]; // <-- REEMPLAZAR
+
+  // 3) Nombre y color de cada clase, en el mismo orden 1..7 del notebook
+  //    (paleta_clases / NOMBRES_CLASE).
+  const CLASES = [
+    { nombre: 'Agua',                              color: '#1f78b4' },
+    { nombre: 'Algas (laguna)',                    color: '#e7298a' },
+    { nombre: 'Salar / costra salina',             color: '#e6ab02' },
+    { nombre: 'Suelo desnudo',                     color: '#a6761d' },
+    { nombre: 'Pajonal hídrico',                   color: '#fee08b' },
+    { nombre: 'Vega',                              color: '#66bd63' },
+    { nombre: 'Bofedal',                           color: '#1a9850' },
+  ];
+
+  // 4) Ruta o URL del JSON de superficies que exportó el notebook
+  //    (maricunga_area_vegetacion.json). Si prefieres no usar fetch (por
+  //    ejemplo al abrir el HTML directo desde el disco, sin servidor), puedes
+  //    pegar el contenido de ese JSON directo en la constante ESTADISTICAS_FALLBACK.
+  const URL_ESTADISTICAS = 'maricunga_area_vegetacion.json';
+
+  const ESTADISTICAS_FALLBACK = {
+    clases: [
+      { nombre: 'Pajonal hídrico', color: '#fee08b', km2: 0 },
+      { nombre: 'Vega',            color: '#66bd63', km2: 0 },
+      { nombre: 'Bofedal',         color: '#1a9850', km2: 0 },
+    ],
+    total_vegetacion_km2: 0,
+  };
+
+  // ══════════════════════════════════════════════════════════════════════════
+  // A partir de acá no debería hacer falta tocar nada
+  // ══════════════════════════════════════════════════════════════════════════
+
+  const mapa = L.map('mapa', { zoomSnap: 0.25 });
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors',
+    maxZoom: 19,
+  }).addTo(mapa);
+
+  L.imageOverlay(URL_IMAGEN, BOUNDS, { opacity: 0.85 }).addTo(mapa);
+  mapa.fitBounds(BOUNDS);
+
+  // Leyenda
+  const leyendaDiv = document.getElementById('leyenda');
+  CLASES.forEach(c => {
+    const fila = document.createElement('div');
+    fila.className = 'legend-row';
+    fila.innerHTML = `<span class="swatch" style="background:${c.color}"></span><span>${c.nombre}</span>`;
+    leyendaDiv.appendChild(fila);
+  });
+
+  // Estadísticas (con fallback si no hay servidor sirviendo el JSON)
+  function pintarEstadisticas(datos) {
+    const cont = document.getElementById('estadisticas');
+    cont.innerHTML = '';
+    datos.clases.forEach(c => {
+      const fila = document.createElement('div');
+      fila.className = 'stat-row';
+      fila.innerHTML = `
+        <span class="stat-name"><span class="swatch" style="background:${c.color}"></span>${c.nombre}</span>
+        <span class="stat-value">${c.km2.toFixed(2)} km²</span>`;
+      cont.appendChild(fila);
+    });
+    const total = document.createElement('div');
+    total.className = 'total-row';
+    total.innerHTML = `<span>Total vegetación</span><span>${datos.total_vegetacion_km2.toFixed(2)} km²</span>`;
+    cont.appendChild(total);
+  }
+
+  fetch(URL_ESTADISTICAS)
+    .then(r => r.json())
+    .then(pintarEstadisticas)
+    .catch(() => pintarEstadisticas(ESTADISTICAS_FALLBACK));
+</script>
+
+</body>
+</html>

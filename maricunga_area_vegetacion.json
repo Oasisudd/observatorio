@@ -1,0 +1,20 @@
+{
+  "clases": [
+    {
+      "nombre": "Pajonal hídrico",
+      "color": "#fee08b",
+      "km2": 2.231
+    },
+    {
+      "nombre": "Vega",
+      "color": "#66bd63",
+      "km2": 2.157
+    },
+    {
+      "nombre": "Bofedal",
+      "color": "#1a9850",
+      "km2": 2.23
+    }
+  ],
+  "total_vegetacion_km2": 6.618
+}
