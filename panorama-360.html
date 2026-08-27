@@ -17,7 +17,7 @@
 
 <script>
   pannellum.viewer('panorama', {
-    "type": "equirectangular",
+    "type": "cylindrical",
     "panorama": "https://oasisudd.github.io/observatorio/panoramaLagunaCentralMaricunga.jpg",
     "autoLoad": true,
     "autoRotate": -2,
@@ -25,7 +25,10 @@
     "showZoomCtrl": true,
     "showFullscreenCtrl": true,
     "title": "Laguna Central Maricunga",
-    "hfov": 100
+    "hfov": 100,
+    "vaov": 50.7,
+    "minHfov": 50,
+    "maxHfov": 140
   });
 </script>
 
