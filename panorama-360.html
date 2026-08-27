@@ -4,32 +4,216 @@
 <meta charset="UTF-8">
 <title>Panorama 360 - Laguna Central Maricunga</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css">
-<script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
 <style>
-  html, body { margin:0; padding:0; height:100%; width:100%; overflow:hidden; background:#000; }
-  #panorama { width:100%; height:100%; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+    touch-action: none;
+  }
+  #viewer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    cursor: grab;
+    background: #000;
+  }
+  #viewer.dragging { cursor: grabbing; }
+  #track {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    display: flex;
+    will-change: transform;
+  }
+  #track img {
+    height: 100%;
+    width: auto;
+    display: block;
+    user-select: none;
+    -webkit-user-drag: none;
+    pointer-events: none;
+  }
+  #controls {
+    position: absolute;
+    bottom: 14px;
+    right: 14px;
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+  }
+  #controls button {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(0,0,0,0.55);
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+    line-height: 1;
+  }
+  #controls button:hover { background: rgba(0,0,0,0.75); }
+  #hint {
+    position: absolute;
+    top: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    font: 13px/1.4 sans-serif;
+    padding: 6px 12px;
+    border-radius: 20px;
+    pointer-events: none;
+    transition: opacity 0.6s ease;
+    white-space: nowrap;
+  }
+  #hint.hidden { opacity: 0; }
 </style>
 </head>
 <body>
 
-<div id="panorama"></div>
+<div id="viewer">
+  <div id="track">
+    <img id="img1" src="https://oasisudd.github.io/observatorio/panoramaLagunaCentralMaricunga.jpg" alt="Panorama 360 Laguna Central Maricunga">
+    <img id="img2" src="https://oasisudd.github.io/observatorio/panoramaLagunaCentralMaricunga.jpg" alt="">
+  </div>
+  <div id="hint">Arrastra para mirar alrededor ↔</div>
+  <div id="controls">
+    <button id="zoomIn" title="Acercar">+</button>
+    <button id="zoomOut" title="Alejar">−</button>
+  </div>
+</div>
 
 <script>
-  pannellum.viewer('panorama', {
-    "type": "cylindrical",
-    "panorama": "https://oasisudd.github.io/observatorio/panoramaLagunaCentralMaricunga.jpg",
-    "autoLoad": true,
-    "autoRotate": -2,
-    "compass": false,
-    "showZoomCtrl": true,
-    "showFullscreenCtrl": true,
-    "title": "Laguna Central Maricunga",
-    "hfov": 100,
-    "vaov": 50.7,
-    "minHfov": 50,
-    "maxHfov": 140
+(function () {
+  const viewer = document.getElementById('viewer');
+  const track = document.getElementById('track');
+  const img1 = document.getElementById('img1');
+  const hint = document.getElementById('hint');
+  const zoomInBtn = document.getElementById('zoomIn');
+  const zoomOutBtn = document.getElementById('zoomOut');
+
+  let imgWidth = 0;       // natural width scaled to viewer height
+  let offsetX = 0;        // current scroll offset (px)
+  let scale = 1;          // zoom level
+  const minScale = 1;
+  const maxScale = 2.5;
+
+  let isDragging = false;
+  let dragStartX = 0;
+  let dragStartOffset = 0;
+  let autoScrollSpeed = 0.15; // px per frame, gentle auto-rotate
+  let userInteracted = false;
+  let lastInteractionTime = 0;
+
+  function layout() {
+    const h = viewer.clientHeight;
+    const naturalRatio = img1.naturalWidth / img1.naturalHeight;
+    imgWidth = h * naturalRatio * scale;
+    img1.style.height = h + 'px';
+    document.getElementById('img2').style.height = h + 'px';
+    img1.style.width = imgWidth + 'px';
+    document.getElementById('img2').style.width = imgWidth + 'px';
+    wrapOffset();
+    render();
+  }
+
+  function wrapOffset() {
+    if (imgWidth <= 0) return;
+    offsetX = ((offsetX % imgWidth) + imgWidth) % imgWidth;
+  }
+
+  function render() {
+    track.style.transform = 'translateX(' + (-offsetX) + 'px)';
+  }
+
+  function onImgLoaded() {
+    layout();
+    requestAnimationFrame(loop);
+  }
+
+  if (img1.complete && img1.naturalWidth) {
+    onImgLoaded();
+  } else {
+    img1.addEventListener('load', onImgLoaded);
+  }
+
+  window.addEventListener('resize', layout);
+
+  // Drag handlers (mouse)
+  viewer.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    userInteracted = true;
+    lastInteractionTime = Date.now();
+    dragStartX = e.clientX;
+    dragStartOffset = offsetX;
+    viewer.classList.add('dragging');
+    hint.classList.add('hidden');
   });
+  window.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    const dx = e.clientX - dragStartX;
+    offsetX = dragStartOffset - dx;
+    wrapOffset();
+    render();
+  });
+  window.addEventListener('mouseup', () => {
+    isDragging = false;
+    viewer.classList.remove('dragging');
+  });
+
+  // Touch handlers
+  viewer.addEventListener('touchstart', (e) => {
+    if (e.touches.length !== 1) return;
+    isDragging = true;
+    userInteracted = true;
+    lastInteractionTime = Date.now();
+    dragStartX = e.touches[0].clientX;
+    dragStartOffset = offsetX;
+    hint.classList.add('hidden');
+  }, { passive: true });
+  viewer.addEventListener('touchmove', (e) => {
+    if (!isDragging || e.touches.length !== 1) return;
+    const dx = e.touches[0].clientX - dragStartX;
+    offsetX = dragStartOffset - dx;
+    wrapOffset();
+    render();
+  }, { passive: true });
+  viewer.addEventListener('touchend', () => { isDragging = false; });
+
+  // Zoom controls
+  function applyZoom(newScale) {
+    scale = Math.min(maxScale, Math.max(minScale, newScale));
+    layout();
+  }
+  zoomInBtn.addEventListener('click', () => applyZoom(scale + 0.25));
+  zoomOutBtn.addEventListener('click', () => applyZoom(scale - 0.25));
+
+  // Mouse wheel zoom
+  viewer.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    userInteracted = true;
+    lastInteractionTime = Date.now();
+    applyZoom(scale - e.deltaY * 0.001);
+  }, { passive: false });
+
+  // Gentle auto-rotate that pauses after user interaction, resumes after a few seconds
+  function loop() {
+    const idleTime = Date.now() - lastInteractionTime;
+    if (!isDragging && (!userInteracted || idleTime > 3000)) {
+      offsetX += autoScrollSpeed;
+      wrapOffset();
+      render();
+    }
+    requestAnimationFrame(loop);
+  }
+})();
 </script>
 
 </body>
