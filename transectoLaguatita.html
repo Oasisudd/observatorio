@@ -8,6 +8,8 @@
   </title>
   <link href="./css/style.css" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
   <style>
   </style>
  </head>
@@ -67,11 +69,15 @@
     <button class="close-btn closeDescriptionModal" id="closeLocationModal">
      X
     </button>
-    <h2>
-     Transectos del sector y otros datos
-    </h2>
-    <iframe src="https://ee-javidelafountain.projects.earthengine.app/view/transectoslaguatita">
-    </iframe>
+    <div style="padding: 20px; width: 100%; box-sizing: border-box;">
+     <h2 style="margin-bottom: 15px; color: #01A99D;">Ubicación — La Guatita</h2>
+     <div id="mapLaGuatita" style="width: 100%; height: 380px; border-radius: 8px; z-index: 1;"></div>
+     <p style="margin-top: 15px; font-size: 1.1rem; color: #343b4d;">
+      <strong>Sector La Guatita</strong><br>
+      Salar de Maricunga, Región de Atacama<br>
+      Coordenadas: <em>-26.995533, -69.079905</em>
+     </p>
+    </div>
    </div>
   </div>
   <!-- Modal de COMPOSICIÓN -->
@@ -159,6 +165,8 @@
    </div>
   </div>
   <script>
+   let mapLaGuatita = null;
+
    document.addEventListener("DOMContentLoaded", function () {
   // Función para abrir y cerrar los modales
   function setupModal(buttonId, modalId, closeId) {
@@ -169,6 +177,23 @@
     if (button && modal && close) {
       button.addEventListener("click", function () {
         modal.style.display = "flex";
+        if (modalId === "locationModal") {
+          setTimeout(function () {
+            if (!mapLaGuatita) {
+              mapLaGuatita = L.map('mapLaGuatita').setView([-26.995533, -69.079905], 14);
+              L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+                maxZoom: 19,
+                attribution: 'Tiles &copy; Esri'
+              }).addTo(mapLaGuatita);
+              L.marker([-26.995533, -69.079905])
+                .addTo(mapLaGuatita)
+                .bindPopup('<strong>La Guatita</strong><br>Salar de Maricunga')
+                .openPopup();
+            } else {
+              mapLaGuatita.invalidateSize();
+            }
+          }, 100);
+        }
       });
       close.addEventListener("click", function () {
         modal.style.display = "none";
