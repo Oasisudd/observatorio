@@ -7,6 +7,50 @@
    Ciencia de Datos Ambientales | Observatorio OASIS
   </title>
   <link href="./css/style.css" rel="stylesheet"/>
+  <style>
+   .tabla-indices .boton-mapa {
+     background-color: transparent;
+     border: 1px solid #ccc;
+     color: #333;
+     padding: 6px 14px;
+     border-radius: 0;
+     font-weight: bold;
+     cursor: pointer;
+     transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+   }
+
+   /* NDWI - Turquesa Agua */
+   #boton-ndwi:hover,
+   #boton-ndwi.activo {
+     background-color: #00a99d;
+     border-color: #00a99d;
+     color: #ffffff;
+   }
+
+   /* NDVI - Ocre Tierra */
+   #boton-ndvi:hover,
+   #boton-ndvi.activo {
+     background-color: #a98743;
+     border-color: #a98743;
+     color: #ffffff;
+   }
+
+   /* SMI - Azul Roca */
+   #boton-ndsi:hover,
+   #boton-ndsi.activo {
+     background-color: #343b4d;
+     border-color: #343b4d;
+     color: #ffffff;
+   }
+
+   /* STI - Rosa Fauna */
+   #boton-si:hover,
+   #boton-si.activo {
+     background-color: #FF7BAC;
+     border-color: #FF7BAC;
+     color: #ffffff;
+   }
+  </style>
  </head>
  <body>
   <div id="indicebody">
@@ -302,22 +346,40 @@
   </div>
   <script>
    const iframe_indices = document.getElementById('iframe-indices');
+   const botonesIndices = document.querySelectorAll('.tabla-indices .boton-mapa');
 
-  document.getElementById('boton-ndwi').addEventListener('click', function() {
-    iframe_indices.src = "https://proyectooasis-464321.projects.earthengine.app/view/nwdizonas";
-  });
+   function marcarActivo(botonSeleccionado) {
+     botonesIndices.forEach(b => b.classList.remove('activo'));
+     botonSeleccionado.classList.add('activo');
+   }
 
-  document.getElementById('boton-ndvi').addEventListener('click', function() {
-    iframe_indices.src = "https://proyectooasis-464321.projects.earthengine.app/view/ndvizonas";
-  });
+   const btnNdwi = document.getElementById('boton-ndwi');
+   const btnNdvi = document.getElementById('boton-ndvi');
+   const btnNdsi = document.getElementById('boton-ndsi');
+   const btnSi = document.getElementById('boton-si');
 
-  document.getElementById('boton-ndsi').addEventListener('click', function() {
-    iframe_indices.src = "https://proyectooasis-464321.projects.earthengine.app/view/smizonas"; // pendiente
-  });
+   btnNdwi.addEventListener('click', function() {
+     iframe_indices.src = "https://proyectooasis-464321.projects.earthengine.app/view/nwdizonas";
+     marcarActivo(btnNdwi);
+   });
 
-  document.getElementById('boton-si').addEventListener('click', function() {
-    iframe_indices.src = "https://proyectooasis-464321.projects.earthengine.app/view/stizonas"; // pendiente
-  });
+   btnNdvi.addEventListener('click', function() {
+     iframe_indices.src = "https://proyectooasis-464321.projects.earthengine.app/view/ndvizonas";
+     marcarActivo(btnNdvi);
+   });
+
+   btnNdsi.addEventListener('click', function() {
+     iframe_indices.src = "https://proyectooasis-464321.projects.earthengine.app/view/smizonas"; // pendiente
+     marcarActivo(btnNdsi);
+   });
+
+   btnSi.addEventListener('click', function() {
+     iframe_indices.src = "https://proyectooasis-464321.projects.earthengine.app/view/stizonas"; // pendiente
+     marcarActivo(btnSi);
+   });
+
+   // Dejar NDWI marcado como activo por defecto, ya que es el que carga al inicio
+   marcarActivo(btnNdwi);
   </script>
  </body>
 </html>
