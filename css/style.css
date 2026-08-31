@@ -487,28 +487,32 @@ display: flex;
   margin:2%;
 }
 
-/* Botones dentro del modal */
+/* Botones dentro del modal de Composición */
 #compositionModal .modal-column .button-group {
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 15px;
+  margin-top: 15px;
 }
 
 #compositionModal .modal-column .button-group button {
-    padding: 30px;
-    border: none;
-    cursor: pointer;
-    background-color: white;
-    color: black;
-    font-size: 16px;
-    border-radius: 0;
+  padding: 15px 20px;
+  border: 1px solid #e0e0e0;
+  cursor: pointer;
+  background-color: #f9f9f9;
+  color: #343b4d;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 6px;
+  text-align: center;
+  transition: all 0.2s ease;
+  width: 100%;
 }
 
 #compositionModal .modal-column .button-group button:hover {
-
-  background-color: lightgrey;
-  color: #323B4E;
-
+  background-color: #01A99D;
+  color: white;
+  border-color: #01A99D;
 }
 
 #compositionModal .modal-column img {
