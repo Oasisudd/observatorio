@@ -800,11 +800,19 @@ font-weight: bold !important;
     font-size: 1.5rem;
   }
 }
-#indicebody{
-  padding: 0 12%;
-  margin: 0;
-  box-sizing: border-box;
+#indicebody {
+  padding: 0 8% !important;
+  margin: 0 auto !important;
+  max-width: 1400px !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  display: block !important;
+}
 
+@media (max-width: 768px) {
+  #indicebody {
+    padding: 0 4% !important;
+  }
 }
 
 .tabla-indices {
@@ -1141,7 +1149,7 @@ font-weight: bold !important;
 }
 
 
-/* Menu de Navegacion de Disciplinas (Ecología, Microbiología, Geociencias, Teledetección) */
+/* Menu de Navegacion de Disciplinas (Colores Oficiales de Paleta OASIS) */
 .nav-menu {
   display: flex !important;
   justify-content: center !important;
@@ -1169,10 +1177,6 @@ font-weight: bold !important;
   display: inline-block !important;
 }
 
-.nav-item:hover, .nav-item.active {
-  color: #01A99D !important;
-}
-
 .nav-item::after {
   content: '' !important;
   position: absolute !important;
@@ -1180,12 +1184,43 @@ font-weight: bold !important;
   height: 3px !important;
   bottom: -2px !important;
   left: 0 !important;
-  background-color: #01A99D !important;
-  transition: width 0.3s ease !important;
+  transition: width 0.3s ease, background-color 0.3s ease !important;
 }
 
 .nav-item:hover::after, .nav-item.active::after {
   width: 100% !important;
+}
+
+/* Ecología y Socio-Ecología (#01A99D - Turquesa) */
+.nav-item.nav-eco:hover, .nav-item.nav-eco.active {
+  color: #01A99D !important;
+}
+.nav-item.nav-eco::after {
+  background-color: #01A99D !important;
+}
+
+/* Microbiología (#F288A4 - Rosa) */
+.nav-item.nav-micro:hover, .nav-item.nav-micro.active {
+  color: #F288A4 !important;
+}
+.nav-item.nav-micro::after {
+  background-color: #F288A4 !important;
+}
+
+/* Geociencias (#AA8744 - Ocre Tierra) */
+.nav-item.nav-geo:hover, .nav-item.nav-geo.active {
+  color: #AA8744 !important;
+}
+.nav-item.nav-geo::after {
+  background-color: #AA8744 !important;
+}
+
+/* Ciencia de Datos Ambientales (#343b4d - Azul Roca) */
+.nav-item.nav-tele:hover, .nav-item.nav-tele.active {
+  color: #343b4d !important;
+}
+.nav-item.nav-tele::after {
+  background-color: #343b4d !important;
 }
 
 @media (max-width: 768px) {
