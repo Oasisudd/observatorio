@@ -9,45 +9,37 @@
   <link href="./css/style.css" rel="stylesheet"/>
   <style>
    .tabla-indices .boton-mapa {
-     background-color: transparent;
-     border: 1px solid #ccc;
+     background-color: #e0e0e0;
+     border: none;
      color: #333;
      padding: 6px 14px;
      border-radius: 0;
      font-weight: bold;
      cursor: pointer;
-     transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+     transition: background-color 0.2s ease, color 0.2s ease;
    }
 
    /* NDWI - Turquesa Agua */
-   #boton-ndwi:hover,
-   #boton-ndwi.activo {
+   #boton-ndwi:hover {
      background-color: #00a99d;
-     border-color: #00a99d;
      color: #ffffff;
    }
 
    /* NDVI - Ocre Tierra */
-   #boton-ndvi:hover,
-   #boton-ndvi.activo {
+   #boton-ndvi:hover {
      background-color: #a98743;
-     border-color: #a98743;
      color: #ffffff;
    }
 
    /* SMI - Azul Roca */
-   #boton-ndsi:hover,
-   #boton-ndsi.activo {
+   #boton-ndsi:hover {
      background-color: #343b4d;
-     border-color: #343b4d;
      color: #ffffff;
    }
 
    /* STI - Rosa Fauna */
-   #boton-si:hover,
-   #boton-si.activo {
+   #boton-si:hover {
      background-color: #FF7BAC;
-     border-color: #FF7BAC;
      color: #ffffff;
    }
   </style>
@@ -77,7 +69,7 @@
     </div>
     <div class="texto">
      <h2>
-      Esta línea integra teledeteción satelital, vuelos de drone, modelos de aprendizaje automático y modelos predictivos para el monitoreo del Salar de Maricunga y sus lagunas. Combina datos históricos satelitales con correlaciones entre estaciones de monitoreo in situ, permitiendo anticipar tendencias hidrológicas y ecológicas vinculadas a la minería del litio.
+      Esta línea integra teledeteción satelital, modelos de aprendizaje automático y modelos predictivos para el monitoreo del Salar de Maricunga y sus lagunas. Combina datos históricos satelitales con correlaciones entre estaciones de monitoreo in situ, permitiendo anticipar tendencias hidrológicas y ecológicas vinculadas a la minería del litio.
      </h2>
     </div>
    </div>
@@ -160,7 +152,7 @@
   <h1>Clasificación de Vegetación</h1>
  </div>
  <div class="texto">
-  <p><strong>Experimental</strong></p>
+  <p>Experimental</p>
   <p>Clasificación de paisajes del Salar de Maricunga, generada con imágenes satelitales Sentinel-2 y Satellite Embedding de Google Earth Engine. El análisis distingue siete tipos de superficie: agua, lagunas con algas, salar y costra salina, suelo desnudo, pajonal hídrico, vega y bofedal, combinando índices espectrales con corrección basada en observaciones de terreno. El objetivo es medir con precisión la extensión de la vegetación húmeda del salar: vega, pajonal hídrico y bofedal.</p>
  </div>
  <div class="iframe-container">
@@ -225,13 +217,13 @@
     <div class="texto">
      <h2>
       El
-      <strong>
+      
        NDVI (Normalized Difference Vegetation Index)
-      </strong>
+      
       es un &iacute;ndice espectral que mide la
-     
+      
        cantidad y el vigor de la vegetaci&oacute;n
-    
+      
       a partir de im&aacute;genes satelitales. Se calcula comparando la radiaci&oacute;n reflejada en las bandas del
       <em>
        infrarrojo cercano (NIR)
@@ -244,17 +236,17 @@
       <br/>
       <br/>
       En el contexto del Observatorio OASIS, este indicador es clave para
-  
+      
        monitorear los ecosistemas altoandinos
-    
+      
       , donde los cambios en la vegetaci&oacute;n reflejan variaciones en la
-  
+      
        disponibilidad de agua, el estr&eacute;s ambiental
- 
+      
       y la
-    
+      
        presi&oacute;n sobre humedales y vegas
-   
+      
       .  
           El an&aacute;lisis temporal del NDVI permite detectar
       
@@ -279,7 +271,7 @@
      </h1>
     </div>
     <div class="texto">
-     <p>
+     <h2>
       El siguiente mapa interactivo muestra los
       
        puntos de muestreo de tapetes microbianos y agua
@@ -291,13 +283,13 @@
       <br/>
       <br/>
       Al hacer clic sobre cada punto, es posible visualizar el
-     
+      
        nombre del punto y el sector
       
       asociado, lo que permite
           relacionar la informaci&oacute;n microbiol&oacute;gica con otros componentes del Observatorio, como la vegetaci&oacute;n, la hidrolog&iacute;a y
           los gradientes f&iacute;sico&ndash;qu&iacute;micos presentes en la cuenca de Maricunga.
-     </p>
+     </h2>
     </div>
     <div class="iframe-container">
      <iframe allowfullscreen="" frameborder="0" src="https://proyectooasis-464321.projects.earthengine.app/view/micropuntos2025ene" title="Mapa de puntos de muestreo microbiol&oacute;gico - OASIS">
