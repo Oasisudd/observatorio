@@ -350,25 +350,18 @@ width:30% !important;
   height: 10px;
   border: none !important;
   display: block;
-  transition: opacity 0.2s ease, transform 0.15s ease;
+  background-color: #dcdcdc !important;
+  transition: background-color 0.2s ease, transform 0.15s ease;
   cursor: pointer;
-  opacity: 0.6;
 }
 
-/* Colores 100% sólidos asignados a cada posición */
-.header-sq:nth-child(1) { background-color: #00a99d !important; }
-.header-sq:nth-child(2) { background-color: #a98743 !important; }
-.header-sq:nth-child(3) { background-color: #343b4d !important; }
-.header-sq:nth-child(4) { background-color: #FF7BAC !important; }
-.header-sq:nth-child(5) { background-color: #00a99d !important; }
-.header-sq:nth-child(6) { background-color: #a98743 !important; }
-
-/* Estado en Hover y Clic (Activo): mantienen su color al 100% de opacidad sin cambiar */
-.header-sq:hover,
-.header-sq.active {
-  opacity: 1 !important;
-  transform: scale(1.2);
-}
+/* Colores de la paleta asignados al Hover y cuando está Seleccionado (Activo) */
+.header-sq:nth-child(1):hover, .header-sq:nth-child(1).active { background-color: #00a99d !important; transform: scale(1.2); }
+.header-sq:nth-child(2):hover, .header-sq:nth-child(2).active { background-color: #a98743 !important; transform: scale(1.2); }
+.header-sq:nth-child(3):hover, .header-sq:nth-child(3).active { background-color: #343b4d !important; transform: scale(1.2); }
+.header-sq:nth-child(4):hover, .header-sq:nth-child(4).active { background-color: #FF7BAC !important; transform: scale(1.2); }
+.header-sq:nth-child(5):hover, .header-sq:nth-child(5).active { background-color: #00a99d !important; transform: scale(1.2); }
+.header-sq:nth-child(6):hover, .header-sq:nth-child(6).active { background-color: #a98743 !important; transform: scale(1.2); }
 
   
 
