@@ -356,24 +356,40 @@ width:30% !important;
 
 
 
-.infoScroll{
-  width:100%;
+.infoScroll {
+  width: 100%;
   margin: 0 auto !important;
-  height: 30px !important;
+  height: 50px !important;
   background-color: white !important;
   box-sizing: border-box;
   top: 0;
+  left: 0;
   position: fixed;
   z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
 
+.infoScroll-logo img {
+  height: 35px;
+  width: auto;
+  display: block;
+  transition: opacity 0.2s ease;
+}
+
+.infoScroll-logo:hover img {
+  opacity: 0.7;
 }
 
 .infoScroll p {
- text-align: center;
+  text-align: center;
   margin: 0 auto !important;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: #323B4E;
-  padding: 1% !important;
+  font-weight: 400;
 }
 
   
