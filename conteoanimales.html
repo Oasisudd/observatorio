@@ -5,51 +5,7 @@
 
     <meta charset="UTF-8">
     <title>Contador de Precisión - Patagonia</title>
-    <style>
-        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; background: #1a1a1a; color: #ccc; margin: 0; padding: 20px; }
-        
-        .controls { background: #2a2a2a; padding: 15px; border-radius: 8px; margin-bottom: 20px; display: flex; gap: 15px; align-items: center; border: 1px solid #444; }
-        
-        #canvas-container { position: relative; cursor: crosshair; box-shadow: 0 0 20px rgba(0,0,0,0.8); }
-        
-        canvas { max-width: 100%; height: auto; display: block; }
-
-        /* Cruz ultra fina y pequeña */
-        .marker {
-            position: absolute;
-            width: 6px;  /* Tamaño reducido */
-            height: 6px;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-        }
-
-        .marker::before, .marker::after {
-            content: '';
-            position: absolute;
-            background: #00ff00; /* Verde neón para resaltar */
-        }
-
-        /* Línea horizontal ultra fina */
-        .marker::before {
-            top: 50%;
-            left: 0;
-            width: 100%;
-            height: 0.5px; /* Grosor mínimo */
-        }
-
-        /* Línea vertical ultra fina */
-        .marker::after {
-            left: 50%;
-            top: 0;
-            width: 0.5px; /* Grosor mínimo */
-            height: 100%;
-        }
-
-        #counter { font-size: 18px; font-weight: bold; color: #00ff00; border: 1px solid #00ff00; padding: 5px 12px; border-radius: 4px; }
-        
-        button { background: #444; border: 1px solid #666; padding: 8px 15px; color: white; border-radius: 4px; cursor: pointer; }
-        button:hover { background: #555; }
-    </style>
+    
 </head>
 <body>
 
