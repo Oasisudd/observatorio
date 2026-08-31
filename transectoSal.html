@@ -130,8 +130,11 @@
     <button class="close-btn closeDescriptionModal" id="closeCompositionModal">X</button>
     <div class="modal-column">
      <h2>
-      Ciencias de la Tierra
+      Composición del lugar
      </h2>
+     <p style="font-size: 0.95rem; color: #555; margin-bottom: 15px; line-height: 1.5;">
+      Aquí se presentan los descubrimientos y resultados por cada línea de investigación interdisciplinaria desarrollada en esta zona.
+     </p>
      <div class="button-group">
       <button>
        Geología
@@ -239,5 +242,13 @@
       loop: true,
     });
   </script>
- </body>
+ <script>
+  document.getElementById("scrollDownBtn")?.addEventListener("click", function() {
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: "smooth"
+    });
+  });
+</script>
+</body>
 </html>

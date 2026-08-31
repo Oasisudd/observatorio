@@ -243,5 +243,13 @@
       loop: true,
     });
   </script>
- </body>
+ <script>
+  document.getElementById("scrollDownBtn")?.addEventListener("click", function() {
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: "smooth"
+    });
+  });
+</script>
+</body>
 </html>

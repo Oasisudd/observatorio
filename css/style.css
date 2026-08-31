@@ -488,16 +488,17 @@ top: -4%; /* Ajusta este valor según lo que necesites */
 
 #compositionModal .modal-content {
   background-color: white;
-  padding: 24px;
-  width: 80%;
-  max-width: 900px;
+  padding: 30px;
+  width: 90%;
+  max-width: 1100px;
+  min-height: 520px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 20px;
+  gap: 30px;
   position: relative;
-  border-radius: 8px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
 }
 
 /* Columnas */
@@ -506,7 +507,7 @@ top: -4%; /* Ajusta este valor según lo que necesites */
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 10px;
+  margin: 0;
 }
 
 /* Botones dentro del modal de Composición */
@@ -519,14 +520,14 @@ top: -4%; /* Ajusta este valor según lo que necesites */
 }
 
 #compositionModal .modal-column .button-group button {
-  padding: 16px 24px;
+  padding: 18px 24px;
   border: 1px solid #e0e0e0;
   cursor: pointer;
   background-color: #f9f9f9;
   color: #343b4d;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: bold;
-  border-radius: 6px;
+  border-radius: 8px;
   text-align: center;
   transition: all 0.2s ease;
   width: 100%;
@@ -541,15 +542,18 @@ top: -4%; /* Ajusta este valor según lo que necesites */
 
 #compositionModal .modal-column img {
   width: 100%;
-  max-height: 380px;
+  height: 420px;
   object-fit: cover;
-  border-radius: 8px;
+  object-position: center;
+  border-radius: 10px;
   display: block;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 #compositionModal h2 {
   margin: 0 0 10px 0;
   color: #01A99D;
+  font-size: 1.6rem;
 }
 
 
