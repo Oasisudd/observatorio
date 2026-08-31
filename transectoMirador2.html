@@ -1,132 +1,197 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
  <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>
-   Transecto Mirador 2
-  </title>
+  <title>Transecto Mirador — Salar de Maricunga</title>
   <link href="./css/style.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+  <style>
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+    .modal-content {
+      background-color: white;
+      margin: 5vh auto;
+      padding: 0;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 1000px;
+      height: 90vh;
+      position: relative;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      overflow-y: auto;
+    }
+  </style>
  </head>
  <body>
-  <img alt="Transecto" class="fondo-transecto" src="./img/transecto6_Panorama_part1.jpg"/>
-  <!-- Aquí se asigna la clase bg-1, pero puedes cambiarla a bg-2 o bg-3 según el caso -->
+  <img alt="Transecto Mirador" class="fondo-transecto" src="./img/transecto6_Panorama_part1.jpg"/>
   <div class="infoScroll">
-   <p>
-    Scroll hasta el final de la pagina
-    <p>
-    </p>
-   </p>
+   <p>Scroll hasta el final de la página</p>
   </div>
+
   <div class="white-row">
    <div class="button-container">
-    <button class="button" id="descriptionButton">
-     DESCRIPCI&Oacute;N
-    </button>
-    <button class="button" id="locationButton">
-     UBICACI&Oacute;N
-    </button>
-    <button class="button" id="compositionButton">
-     COMPOSICI&Oacute;N
-    </button>
-    <button class="button" id="imagesButton">
-     IM&Aacute;GENES
-    </button>
+    <button class="button" id="descriptionButton">DESCRIPCIÓN</button>
+    <button class="button" id="locationButton">UBICACIÓN</button>
+    <button class="button" id="compositionButton">COMPOSICIÓN</button>
+    <button class="button" id="imagesButton">IMÁGENES</button>
    </div>
   </div>
+
+  <!-- Modal DESCRIPCIÓN -->
   <div class="modal" id="descriptionModal">
    <div class="modal-content">
-    <button class="close-btn closeDescriptionModal" id="closeDescriptionModal">
-     X
-    </button>
-    <div class="modal-column" style="padding: 20px;">
-     <h2>
-      Descripci&oacute;n
-     </h2>
-     <p>
-      Contenido de descripci&oacute;n por definir...
-     </p>
+    <button class="close-btn closeDescriptionModal" id="closeDescriptionModal">X</button>
+    <div style="padding: 20px; text-align: justify;">
+     <h2 style="margin-bottom: 10px; color: #01A99D;">Transecto Mirador</h2>
+     <p>Contenido de descripción por definir...</p>
     </div>
    </div>
   </div>
+
+  <!-- Modal UBICACIÓN -->
   <div class="modal" id="locationModal">
    <div class="modal-content">
-    <button class="close-btn closeDescriptionModal" id="closeLocationModal">
-     X
-    </button>
-    <div class="modal-column" style="padding: 20px;">
-     <h2>
-      Ubicaci&oacute;n
-     </h2>
-     <p>
-      Contenido de ubicaci&oacute;n por definir...
+    <button class="close-btn closeDescriptionModal" id="closeLocationModal">X</button>
+    <div style="padding: 20px; width: 100%; box-sizing: border-box;">
+     <h2 style="margin-bottom: 15px; color: #01A99D;">Ubicación — Transecto Mirador</h2>
+     <div id="mapTransectoMirador" style="width: 100%; height: 380px; border-radius: 8px; z-index: 1;"></div>
+     <p style="margin-top: 15px; font-size: 1.1rem; color: #343b4d;">
+      <strong>Transecto Mirador</strong><br>
+      Salar de Maricunga, Región de Atacama<br>
+      Coordenadas: <em>-27.084445, -69.161899</em>
      </p>
     </div>
    </div>
   </div>
+
+  <!-- Modal COMPOSICIÓN -->
   <div class="modal" id="compositionModal">
    <div class="modal-content">
-    <button class="close-btn closeDescriptionModal" id="closeCompositionModal">
-     X
-    </button>
-    <div class="modal-column" style="padding: 20px;">
-     <h2>
-      Composici&oacute;n
-     </h2>
-     <p>
-      Contenido de composici&oacute;n por definir...
-     </p>
+    <button class="close-btn closeDescriptionModal" id="closeCompositionModal">X</button>
+    <div style="padding: 20px;">
+     <h2>Composición</h2>
+     <p>Contenido de composición por definir...</p>
     </div>
    </div>
   </div>
+
+  <!-- Modal IMÁGENES -->
   <div class="modal" id="imagesModal">
    <div class="modal-content">
-    <button class="close-btn closeDescriptionModal" id="closeImagesModal">
-     X
-    </button>
-    <div class="modal-column" style="padding: 20px;">
-     <h2>
-      Im&aacute;genes
-     </h2>
-     <p>
-      Contenido de im&aacute;genes por definir...
-     </p>
+    <button class="close-btn closeDescriptionModal" id="closeImagesModal">X</button>
+    <div style="padding: 20px; width: 100%; box-sizing: border-box;">
+     <h2 style="margin-bottom: 20px;">Imágenes — Transecto Mirador</h2>
+     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+      <a href="./transectoMirador/20250116_112128.jpg" class="glightbox" data-gallery="gallery1">
+       <img src="./transectoMirador/20250116_112128.jpg" alt="Mirador 1" style="width:100%;height:250px;object-fit:cover;border-radius:8px;transition:transform 0.3s ease;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+      </a>
+      <a href="./transectoMirador/20250116_131130.jpg" class="glightbox" data-gallery="gallery1">
+       <img src="./transectoMirador/20250116_131130.jpg" alt="Mirador 2" style="width:100%;height:250px;object-fit:cover;border-radius:8px;transition:transform 0.3s ease;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+      </a>
+      <a href="./transectoMirador/20250116_131524.jpg" class="glightbox" data-gallery="gallery1">
+       <img src="./transectoMirador/20250116_131524.jpg" alt="Mirador 3" style="width:100%;height:250px;object-fit:cover;border-radius:8px;transition:transform 0.3s ease;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+      </a>
+      <a href="./transectoMirador/20250116_131531.jpg" class="glightbox" data-gallery="gallery1">
+       <img src="./transectoMirador/20250116_131531.jpg" alt="Mirador 4" style="width:100%;height:250px;object-fit:cover;border-radius:8px;transition:transform 0.3s ease;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+      </a>
+      <a href="./transectoMirador/20250116_133939.jpg" class="glightbox" data-gallery="gallery1">
+       <img src="./transectoMirador/20250116_133939.jpg" alt="Mirador 5" style="width:100%;height:250px;object-fit:cover;border-radius:8px;transition:transform 0.3s ease;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+      </a>
+      <a href="./transectoMirador/20250116_140130.jpg" class="glightbox" data-gallery="gallery1">
+       <img src="./transectoMirador/20250116_140130.jpg" alt="Mirador 6" style="width:100%;height:250px;object-fit:cover;border-radius:8px;transition:transform 0.3s ease;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+      </a>
+      <a href="./transectoMirador/20251201_112455.jpg" class="glightbox" data-gallery="gallery1">
+       <img src="./transectoMirador/20251201_112455.jpg" alt="Mirador 7" style="width:100%;height:250px;object-fit:cover;border-radius:8px;transition:transform 0.3s ease;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+      </a>
+      <a href="./transectoMirador/20251201_113202.jpg" class="glightbox" data-gallery="gallery1">
+       <img src="./transectoMirador/20251201_113202.jpg" alt="Mirador 8" style="width:100%;height:250px;object-fit:cover;border-radius:8px;transition:transform 0.3s ease;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+      </a>
+      <a href="./transectoMirador/20251201_113554.jpg" class="glightbox" data-gallery="gallery1">
+       <img src="./transectoMirador/20251201_113554.jpg" alt="Mirador 9" style="width:100%;height:250px;object-fit:cover;border-radius:8px;transition:transform 0.3s ease;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+      </a>
+      <a href="./transectoMirador/20251201_114838.jpg" class="glightbox" data-gallery="gallery1">
+       <img src="./transectoMirador/20251201_114838.jpg" alt="Mirador 10" style="width:100%;height:250px;object-fit:cover;border-radius:8px;transition:transform 0.3s ease;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+      </a>
+      <a href="./transectoMirador/DJI_0767.jpg" class="glightbox" data-gallery="gallery1">
+       <img src="./transectoMirador/DJI_0767.jpg" alt="Mirador — Drone 1" style="width:100%;height:250px;object-fit:cover;border-radius:8px;transition:transform 0.3s ease;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+      </a>
+      <a href="./transectoMirador/DJI_0840.jpg" class="glightbox" data-gallery="gallery1">
+       <img src="./transectoMirador/DJI_0840.jpg" alt="Mirador — Drone 2" style="width:100%;height:250px;object-fit:cover;border-radius:8px;transition:transform 0.3s ease;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+      </a>
+     </div>
     </div>
    </div>
   </div>
-  <script class="injected-modal-script">
+
+  <script>
+   let mapTransectoMirador = null;
+
    document.addEventListener("DOMContentLoaded", function () {
-  function setupModalInjected(buttonId, modalId, closeId) {
-    const button = document.getElementById(buttonId);
-    const modal = document.getElementById(modalId);
-    const close = document.getElementById(closeId);
+    function setupModal(buttonId, modalId, closeId) {
+      const button = document.getElementById(buttonId);
+      const modal  = document.getElementById(modalId);
+      const close  = document.getElementById(closeId);
 
-    if (button && modal && close) {
-      button.addEventListener("click", function () {
-        modal.style.display = "flex";
-      });
-      close.addEventListener("click", function () {
-        modal.style.display = "none";
-      });
-      window.addEventListener("click", function (event) {
-        if (event.target === modal) {
+      if (button && modal && close) {
+        button.addEventListener("click", function () {
+          modal.style.display = "flex";
+          if (modalId === "locationModal") {
+            setTimeout(function () {
+              if (!mapTransectoMirador) {
+                mapTransectoMirador = L.map('mapTransectoMirador').setView([-27.084445, -69.161899], 14);
+                L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+                  maxZoom: 19,
+                  attribution: 'Tiles &copy; Esri'
+                }).addTo(mapTransectoMirador);
+                L.marker([-27.084445, -69.161899])
+                  .addTo(mapTransectoMirador)
+                  .bindPopup('<strong>Transecto Mirador</strong><br>Salar de Maricunga')
+                  .openPopup();
+              } else {
+                mapTransectoMirador.invalidateSize();
+              }
+            }, 100);
+          }
+        });
+        close.addEventListener("click", function () {
           modal.style.display = "none";
-        }
-      });
+        });
+        window.addEventListener("click", function (event) {
+          if (event.target === modal) {
+            modal.style.display = "none";
+          }
+        });
+      }
     }
-  }
 
-  setupModalInjected("descriptionButton", "descriptionModal", "closeDescriptionModal");
-  setupModalInjected("locationButton", "locationModal", "closeLocationModal");
-  setupModalInjected("compositionButton", "compositionModal", "closeCompositionModal");
-  setupModalInjected("imagesButton", "imagesModal", "closeImagesModal");
+    setupModal("descriptionButton", "descriptionModal", "closeDescriptionModal");
+    setupModal("locationButton",    "locationModal",    "closeLocationModal");
+    setupModal("compositionButton", "compositionModal", "closeCompositionModal");
+    setupModal("imagesButton",      "imagesModal",      "closeImagesModal");
 
-  document.querySelectorAll(".modal").forEach((m) => {
-    if (m.style.display !== "none" && m.style.display !== "flex") {
-        m.style.display = "none";
-    }
-  });
-});
+    document.querySelectorAll(".modal").forEach((m) => {
+      m.style.display = "none";
+    });
+   });
+  </script>
+  <script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
+  <script>
+    const lightbox = GLightbox({
+      selector: '.glightbox',
+      touchNavigation: true,
+      loop: true,
+    });
   </script>
  </body>
 </html>
