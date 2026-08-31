@@ -244,11 +244,19 @@
     });
   </script>
  <script>
+  let isScrolling = false;
   document.getElementById("scrollDownBtn")?.addEventListener("click", function() {
-    window.scrollTo({
-      top: document.body.scrollHeight,
-      behavior: "smooth"
-    });
+    if (isScrolling) return;
+    isScrolling = true;
+    const interval = setInterval(function() {
+      const targetPos = document.body.scrollHeight - window.innerHeight;
+      if (window.scrollY >= targetPos - 5) {
+        clearInterval(interval);
+        isScrolling = false;
+      } else {
+        window.scrollBy(0, 2);
+      }
+    }, 30);
   });
 </script>
 </body>
