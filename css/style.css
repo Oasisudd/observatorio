@@ -7,14 +7,9 @@ body, html {
   margin: 0;
   padding: 0;
   width: 100%;
-  height: auto; /* Permite que la imagen de fondo se desplace con el contenido */
-  overflow-x: hidden; /* Evita desplazamiento horizontal */
+  height: auto;
+  overflow-x: hidden;
   box-sizing: border-box;
-}
-
-p {
-  font-weight: 300;
-  line-height: 1.7;
 }
 
 /* Clase para la imagen física insertada en los transectos */
@@ -22,10 +17,54 @@ p {
   width: 100%;
   height: auto;
   display: block;
-  margin: 0;
+  margin: 75px 0 0 0; /* Espacio para el header fijo de 75px */
   padding: 0;
   filter: grayscale(0%) !important;
   transition: none !important;
+}
+
+/* Botón flotante de flecha animada para auto-scroll */
+.scroll-arrow-btn {
+  position: fixed;
+  bottom: 85px;
+  right: 25px;
+  z-index: 998;
+  background-color: rgba(1, 169, 157, 0.9);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  animation: bounce 2s infinite;
+}
+
+.scroll-arrow-btn:hover {
+  background-color: #01857c;
+  transform: scale(1.1);
+}
+
+.scroll-arrow-btn svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-8px);
+  }
+  60% {
+    transform: translateY(-4px);
+  }
 }
 
 /* Fondo blanco para la sección */
@@ -252,7 +291,7 @@ width:30% !important;
 .infoScroll {
   width: 100%;
   margin: 0 auto !important;
-  height: 60px !important;
+  height: 75px !important;
   background-color: white !important;
   box-sizing: border-box;
   top: 0;
@@ -262,7 +301,7 @@ width:30% !important;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 30px !important;
+  padding: 10px 40px !important;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
@@ -273,9 +312,9 @@ width:30% !important;
 }
 
 .infoScroll-logo img {
-  max-height: 40px !important;
+  max-height: 55px !important;
   width: auto !important;
-  max-width: 180px !important;
+  max-width: 260px !important;
   display: block;
   transition: opacity 0.2s ease;
 }
@@ -449,42 +488,25 @@ top: -4%; /* Ajusta este valor según lo que necesites */
 
 #compositionModal .modal-content {
   background-color: white;
-  padding: 14px;
+  padding: 24px;
   width: 80%;
   max-width: 900px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 0px;
+  gap: 20px;
   position: relative;
-  border-radius: 2px;
-  top: -4%; /* Ajusta este valor según lo que necesites */
-  left: 0%;
-  align-items: center;
-    justify-content: space-between;
-}
-}
-
-/* Botón de cerrar */
-#closeCompositionModal {
-   position: absolute;
-  top: 10px;
-  right: 20px;
-  background-color: transparent !important;
-  border: none !important;
-  font-size: 14px !important;
-  font-weight: bold;
-  cursor: pointer;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
 }
 
 /* Columnas */
 #compositionModal .modal-column {
   flex: 1;
-display: flex;
+  display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Distribuye los elementos */
-  height: 100%;
-  margin:2%;
+  justify-content: center;
+  margin: 10px;
 }
 
 /* Botones dentro del modal de Composición */
@@ -492,11 +514,12 @@ display: flex;
   display: flex;
   flex-direction: column;
   gap: 15px;
-  margin-top: 15px;
+  margin-top: 20px;
+  width: 100%;
 }
 
 #compositionModal .modal-column .button-group button {
-  padding: 15px 20px;
+  padding: 16px 24px;
   border: 1px solid #e0e0e0;
   cursor: pointer;
   background-color: #f9f9f9;
@@ -507,6 +530,7 @@ display: flex;
   text-align: center;
   transition: all 0.2s ease;
   width: 100%;
+  box-sizing: border-box;
 }
 
 #compositionModal .modal-column .button-group button:hover {
@@ -516,14 +540,16 @@ display: flex;
 }
 
 #compositionModal .modal-column img {
-  width: 85%;
-  height: auto;
+  width: 100%;
+  max-height: 380px;
+  object-fit: cover;
+  border-radius: 8px;
   display: block;
-  margin-left: auto;
 }
+
 #compositionModal h2 {
-    padding-bottom: 15%;
-    margin: 0 auto;
+  margin: 0 0 10px 0;
+  color: #01A99D;
 }
 
 
