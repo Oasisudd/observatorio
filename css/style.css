@@ -12,6 +12,11 @@ body, html {
   box-sizing: border-box;
 }
 
+/* Esquinas rectas (90 grados) globales para todos los elementos */
+*, *::before, *::after, button, img, div, iframe, input, select, .modal-content, .scroll-arrow-btn, .chip, .scard, .dgcard {
+  border-radius: 0 !important;
+}
+
 /* Clase para la imagen física insertada en los transectos */
 .fondo-transecto {
   width: 100%;
