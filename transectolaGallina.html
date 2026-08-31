@@ -8,6 +8,8 @@
   </title>
   <link href="./css/style.css" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
  </head>
  <body>
   <img alt="Transecto" class="fondo-transecto" src="./img/laGallina.jpg"/>
@@ -55,12 +57,13 @@
     <button class="close-btn closeDescriptionModal" id="closeLocationModal">
      X
     </button>
-    <div class="modal-column" style="padding: 20px;">
-     <h2>
-      Ubicaci&oacute;n
-     </h2>
-     <p>
-      Contenido de ubicaci&oacute;n por definir...
+    <div style="padding: 20px; width: 100%; box-sizing: border-box;">
+     <h2 style="margin-bottom: 15px; color: #01A99D;">Ubicación — Bofedal La Gallina</h2>
+     <div id="mapLaGallina" style="width: 100%; height: 380px; border-radius: 8px; z-index: 1;"></div>
+     <p style="margin-top: 15px; font-size: 1.1rem; color: #343b4d;">
+      <strong>Bofedal La Gallina</strong><br>
+      Salar de Maricunga, Región de Atacama<br>
+      Coordenadas: <em>-27.503836, -69.290730</em>
      </p>
     </div>
    </div>
@@ -158,6 +161,8 @@
    </div>
   </div>
   <script class="injected-modal-script">
+   let mapLaGallina = null;
+
    document.addEventListener("DOMContentLoaded", function () {
   function setupModalInjected(buttonId, modalId, closeId) {
     const button = document.getElementById(buttonId);
@@ -167,6 +172,23 @@
     if (button && modal && close) {
       button.addEventListener("click", function () {
         modal.style.display = "flex";
+        if (modalId === "locationModal") {
+          setTimeout(function () {
+            if (!mapLaGallina) {
+              mapLaGallina = L.map('mapLaGallina').setView([-27.503836, -69.290730], 14);
+              L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+                maxZoom: 19,
+                attribution: 'Tiles &copy; Esri'
+              }).addTo(mapLaGallina);
+              L.marker([-27.503836, -69.290730])
+                .addTo(mapLaGallina)
+                .bindPopup('<strong>Bofedal La Gallina</strong><br>Salar de Maricunga')
+                .openPopup();
+            } else {
+              mapLaGallina.invalidateSize();
+            }
+          }, 100);
+        }
       });
       close.addEventListener("click", function () {
         modal.style.display = "none";
