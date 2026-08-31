@@ -254,40 +254,35 @@
              alt="Ejemplares botánicos del Herbario Digital OASIS">
       </div>
 
-      <div class="texto">
-        <p>
-          El Herbario Digital OASIS es una plataforma abierta que reúne las especies vegetales documentadas
-          en los salares y lagunas altoandinas de la zona del Salar de Maricunga. Cada registro incluye fotografías de campo,
-          identificación taxonómica y observaciones morfológicas realizadas por especialistas, consolidando un
-          archivo visual y descriptivo de la flora altoandina.
-        </p>
-        <p>
-          Su propósito es facilitar el estudio comparativo de especies y comunidades vegetales, apoyar la educación
-          ambiental y poner a disposición del público un repositorio colaborativo de conocimiento ecológico.
-          Este herbario es una herramienta viva que crecerá con cada campaña de terreno, contribuyendo al monitoreo
-          y la comprensión de la biodiversidad en los ecosistemas de altura.
-        </p>
-      </div>
-
-      <!-- SECCIÓN INTERACTIVA HERBARIO (3 COLUMNAS: BOTÓN - QR - CELULAR) -->
-      <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-around; gap: 30px; margin: 40px 0; padding: 10px 0; background: transparent; border: none;">
-        <!-- Columna 1 (Izquierda): Botón del Herbario -->
-        <div style="flex: 1 1 250px; text-align: center;">
-          <a class="boton-mapa" href="https://oasisudd.github.io/herbario/herbario-web/index.html" target="_blank" rel="noopener" style="display: inline-block; width: auto; min-width: 220px; padding: 16px 30px; font-size: 1rem; font-weight: bold; background-color: #01A99D; color: white; text-decoration: none; transition: background-color 0.2s ease; border: none; box-shadow: none;">
-            Explorar Herbario Digital OASIS
-          </a>
+      <!-- SECCIÓN DEL HERBARIO EN 3 COLUMNAS (TEXTO - BOTÓN + QR - CELULAR) -->
+      <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 30px; margin: 30px 0;">
+        
+        <!-- Columna 1 (Izquierda): Texto descriptivo del Herbario -->
+        <div style="flex: 1 1 340px; max-width: 480px;">
+          <p style="font-size: 0.95rem; line-height: 1.65; color: #323B4E; margin-bottom: 14px;">
+            El Herbario Digital OASIS es una plataforma abierta que reúne las especies vegetales documentadas en los salares y lagunas altoandinas de la zona del Salar de Maricunga. Cada registro incluye fotografías de campo, identificación taxonómica y observaciones morfológicas realizadas por especialistas, consolidando un archivo visual y descriptivo de la flora altoandina.
+          </p>
+          <p style="font-size: 0.95rem; line-height: 1.65; color: #323B4E; margin: 0;">
+            Su propósito es facilitar el estudio comparativo de especies y comunidades vegetales, apoyar la educación ambiental y poner a disposición del público un repositorio colaborativo de conocimiento ecológico. Este herbario es una herramienta viva que crecerá con cada campaña de terreno, contribuyendo al monitoreo y la comprensión de la biodiversidad en los ecosistemas de altura.
+          </p>
         </div>
 
-        <!-- Columna 2 (Medio): Código QR -->
-        <div style="flex: 1 1 180px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-          <img src="./img/qr_herbario.png" alt="Código QR Herbario Digital OASIS" style="width: 140px; height: 140px; display: block; border: none; padding: 0; background: transparent; box-shadow: none;">
-          <span style="font-size: 0.85rem; color: #555; margin-top: 8px; font-weight: bold; font-family: sans-serif;">Escanea para acceder</span>
+        <!-- Columna 2 (Medio): Botón de Explorar + Código QR -->
+        <div style="flex: 1 1 240px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px; text-align: center;">
+          <a class="boton-mapa" href="https://oasisudd.github.io/herbario/herbario-web/index.html" target="_blank" rel="noopener" style="display: inline-block; width: auto; min-width: 220px; padding: 16px 28px; font-size: 0.95rem; font-weight: bold; background-color: #01A99D; color: white; text-decoration: none; transition: background-color 0.2s ease; border: none; box-shadow: none;">
+            Explorar Herbario Digital OASIS
+          </a>
+          <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <img src="./img/qr_herbario.png" alt="Código QR Herbario Digital OASIS" style="width: 140px; height: 140px; display: block; border: none; padding: 0; background: transparent; box-shadow: none;">
+            <span style="font-size: 0.85rem; color: #555; margin-top: 8px; font-weight: bold; font-family: sans-serif;">Escanea para acceder</span>
+          </div>
         </div>
 
         <!-- Columna 3 (Derecha): Celular Mockup -->
         <div style="flex: 1 1 200px; max-width: 260px; text-align: center;">
           <img src="./img/herbario_mobile.png" alt="Herbario Digital OASIS en dispositivo móvil" style="width: 100%; max-width: 220px; height: auto; display: block; margin: 0 auto; border: none; filter: none;">
         </div>
+
       </div>
     </div>
 
