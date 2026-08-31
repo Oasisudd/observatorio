@@ -336,6 +336,40 @@ width:30% !important;
   font-weight: 400;
 }
 
+/* Grilla de 6 cuadraditos de 10x10px en el header alineados a la derecha */
+.header-transects-nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 20px;
+  flex-shrink: 0;
+}
+
+.header-sq {
+  width: 10px;
+  height: 10px;
+  background-color: #f0f0f0;
+  border: 1px solid #dcdcdc;
+  display: block;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+  cursor: pointer;
+  title: attr(data-title);
+}
+
+/* Indicador de transecto activo */
+.header-sq.active {
+  background-color: #343b4d !important;
+  border-color: #343b4d !important;
+}
+
+/* Intercalado de paleta de colores en Hover */
+.header-sq:nth-child(1):hover { background-color: #00a99d !important; border-color: #00a99d !important; }
+.header-sq:nth-child(2):hover { background-color: #a98743 !important; border-color: #a98743 !important; }
+.header-sq:nth-child(3):hover { background-color: #343b4d !important; border-color: #343b4d !important; }
+.header-sq:nth-child(4):hover { background-color: #FF7BAC !important; border-color: #FF7BAC !important; }
+.header-sq:nth-child(5):hover { background-color: #00a99d !important; border-color: #00a99d !important; }
+.header-sq:nth-child(6):hover { background-color: #a98743 !important; border-color: #a98743 !important; }
+
   
 
 h3, h4, bajada {
