@@ -1139,3 +1139,131 @@ font-weight: bold !important;
   filter: grayscale(0%) !important;
   transition: none !important;
 }
+
+
+/* ==========================================================================
+   ESTILOS COMPLEMENTARIOS Y COMPONENTES UNIFICADOS DEL OBSERVATORIO
+   ========================================================================== */
+
+/* Estilos de botones de mapas en Teledetección / Tabla de Índices */
+.tabla-indices table {
+  border-collapse: collapse;
+  border: none;
+}
+.tabla-indices th,
+.tabla-indices td {
+  border: none;
+}
+
+.tabla-indices .boton-mapa {
+  background-color: transparent;
+  border: none;
+  color: #333;
+  padding: 6px 14px;
+  border-radius: 0 !important;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* NDWI - Turquesa Agua */
+#boton-ndwi:hover, #boton-ndwi.active {
+  background-color: #00a99d !important;
+  color: #ffffff !important;
+}
+
+/* NDVI - Ocre Tierra */
+#boton-ndvi:hover, #boton-ndvi.active {
+  background-color: #a98743 !important;
+  color: #ffffff !important;
+}
+
+/* NDMI - Azul Humedad */
+#boton-ndmi:hover, #boton-ndmi.active {
+  background-color: #2b5c8f !important;
+  color: #ffffff !important;
+}
+
+/* SAVI - Verde Vegetación */
+#boton-savi:hover, #boton-savi.active {
+  background-color: #4a7c59 !important;
+  color: #ffffff !important;
+}
+
+/* EVI - Verde Intenso */
+#boton-evi:hover, #boton-evi.active {
+  background-color: #2e6f40 !important;
+  color: #ffffff !important;
+}
+
+/* BSI - Marrón Suelo */
+#boton-bsi:hover, #boton-bsi.active {
+  background-color: #8c6d46 !important;
+  color: #ffffff !important;
+}
+
+/* SMI - Azul Roca */
+#boton-ndsi:hover, #boton-ndsi.active {
+  background-color: #343b4d !important;
+  color: #ffffff !important;
+}
+
+/* STI - Rosa Fauna */
+#boton-si:hover, #boton-si.active {
+  background-color: #FF7BAC !important;
+  color: #ffffff !important;
+}
+
+/* Estilos de leyenda y mapas Leaflet */
+.leaflet-control-layers {
+  font-family: 'Lato', Arial, sans-serif;
+  border-radius: 0 !important;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+}
+.legend-title {
+  font-weight: bold;
+  font-size: 0.85rem;
+  color: #343b4d;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.legend-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: #343b4d;
+  padding: 2px 0;
+}
+.legend-swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 0 !important;
+  flex-shrink: 0;
+  display: inline-block;
+}
+
+/* Modal universal */
+.modal-unificado {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.modal-unificado-content {
+  background-color: white;
+  margin: 5vh auto;
+  padding: 0;
+  border-radius: 0 !important;
+  width: 90%;
+  max-width: 1000px;
+  height: 90vh;
+  position: relative;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  overflow-y: auto;
+}
