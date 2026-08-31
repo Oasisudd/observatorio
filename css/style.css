@@ -252,7 +252,7 @@ width:30% !important;
 .infoScroll {
   width: 100%;
   margin: 0 auto !important;
-  height: 50px !important;
+  height: 60px !important;
   background-color: white !important;
   box-sizing: border-box;
   top: 0;
@@ -262,13 +262,20 @@ width:30% !important;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px !important;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  padding: 8px 30px !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.infoScroll-logo {
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 
 .infoScroll-logo img {
-  height: 35px;
-  width: auto;
+  max-height: 40px !important;
+  width: auto !important;
+  max-width: 180px !important;
   display: block;
   transition: opacity 0.2s ease;
 }
