@@ -206,7 +206,7 @@
           if (modalId === "locationModal") {
             setTimeout(function () {
               if (!mapTransectoSal) {
-                mapTransectoSal = L.map('mapTransectoSal').setView([-27.0215126, -69.1340045], 14);
+                mapTransectoSal = L.map('mapTransectoSal', { scrollWheelZoom: false }).setView([-27.0215126, -69.1340045], 14);
                 L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
                   maxZoom: 19,
                   attribution: 'Tiles &copy; Esri'

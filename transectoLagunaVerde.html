@@ -191,7 +191,7 @@
           setTimeout(function() {
             if (!mapLagunaVerde) {
               // Coordenadas: 26°53'23.022"S, 68°29'14.154"W
-              mapLagunaVerde = L.map('mapLagunaVerde').setView([-26.8897, -68.4872], 14);
+              mapLagunaVerde = L.map('mapLagunaVerde', { scrollWheelZoom: false }).setView([-26.8897, -68.4872], 14);
               L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
                 maxZoom: 19,
                 attribution: 'Tiles &copy; Esri'

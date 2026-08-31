@@ -186,7 +186,7 @@
         if (modalId === "locationModal") {
           setTimeout(function() {
             if (!mapCentroSalar) {
-              mapCentroSalar = L.map('mapCentroSalar').setView([-26.936961, -69.111469], 11);
+              mapCentroSalar = L.map('mapCentroSalar', { scrollWheelZoom: false }).setView([-26.936961, -69.111469], 11);
               L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
                 attribution: 'Tiles &copy; Esri'
               }).addTo(mapCentroSalar);

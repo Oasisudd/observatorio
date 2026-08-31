@@ -99,7 +99,9 @@ var lons = DATA.map(function(d){ return d.Longitude; });
 var centerLat = lats.reduce(function(a,b){return a+b;},0) / lats.length;
 var centerLon = lons.reduce(function(a,b){return a+b;},0) / lons.length;
 
-var map = L.map('map', { zoomControl: true }).setView([centerLat, centerLon], 17);
+var map = L.map('map', {
+    scrollWheelZoom: false, 
+    scrollWheelZoom: false,  zoomControl: true }).setView([centerLat, centerLon], 17);
 
 L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
   maxZoom: 22,

@@ -206,7 +206,7 @@
         if (modalId === "locationModal") {
           setTimeout(function () {
             if (!mapLaGallina) {
-              mapLaGallina = L.map('mapLaGallina').setView([-27.503836, -69.290730], 14);
+              mapLaGallina = L.map('mapLaGallina', { scrollWheelZoom: false }).setView([-27.503836, -69.290730], 14);
               L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
                 maxZoom: 19,
                 attribution: 'Tiles &copy; Esri'

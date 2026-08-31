@@ -193,7 +193,7 @@
         if (modalId === "locationModal") {
           setTimeout(function () {
             if (!mapLaGuatita) {
-              mapLaGuatita = L.map('mapLaGuatita').setView([-26.995533, -69.079905], 14);
+              mapLaGuatita = L.map('mapLaGuatita', { scrollWheelZoom: false }).setView([-26.995533, -69.079905], 14);
               L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
                 maxZoom: 19,
                 attribution: 'Tiles &copy; Esri'

@@ -231,7 +231,9 @@ const CONF={alta:"cf-alta",media:"cf-media",baja:"cf-baja"};
 const FAMCOL=[["Cloruros","#d36b9c"],["Sulfatos","#e6c84a"],["Carbonatos","#5cc98a"],["Feldespato","#9a8cd6"],["SiO2","#8ba0ab"],["Máficos","#c0734a"],["Óxidos","#a8534a"],["Mica","#c4a36b"]];
 let mode="cat"; const state={cats:new Set(Object.keys(CAT)),showPies:false}; let markers=[]; let pieLayers=[];
 
-const map=L.map("map",{zoomControl:true}).setView([-26.9,-68.9],8);
+const map=L.map("map",{
+    scrollWheelZoom: false, 
+    scrollWheelZoom: false, zoomControl:true}).setView([-26.9,-68.9],8);
 const sat=L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",{maxZoom:18,attribution:"Esri World Imagery"}).addTo(map);
 const topo=L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png",{maxZoom:17,attribution:"OpenTopoMap"});
 L.control.layers({"Satélite":sat,"Topográfico":topo},null,{position:"bottomright"}).addTo(map);

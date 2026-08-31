@@ -180,7 +180,9 @@
   // A partir de acá no debería hacer falta tocar nada
   // ══════════════════════════════════════════════════════════════════════════
 
-  const mapa = L.map('mapa', { zoomSnap: 0.25 });
+  const mapa = L.map('mapa', {
+    scrollWheelZoom: false, 
+    scrollWheelZoom: false,  zoomSnap: 0.25 });
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap contributors',
