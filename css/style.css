@@ -340,7 +340,7 @@ width:30% !important;
 .header-transects-nav {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
   margin-left: 20px;
   flex-shrink: 0;
 }
@@ -348,27 +348,27 @@ width:30% !important;
 .header-sq {
   width: 10px;
   height: 10px;
-  background-color: #f0f0f0;
-  border: 1px solid #dcdcdc;
+  border: none !important;
   display: block;
-  transition: background-color 0.2s ease, transform 0.15s ease;
+  transition: opacity 0.2s ease, transform 0.15s ease;
   cursor: pointer;
-  title: attr(data-title);
+  opacity: 0.6;
 }
 
-/* Indicador de transecto activo */
+/* Colores 100% sólidos asignados a cada posición */
+.header-sq:nth-child(1) { background-color: #00a99d !important; }
+.header-sq:nth-child(2) { background-color: #a98743 !important; }
+.header-sq:nth-child(3) { background-color: #343b4d !important; }
+.header-sq:nth-child(4) { background-color: #FF7BAC !important; }
+.header-sq:nth-child(5) { background-color: #00a99d !important; }
+.header-sq:nth-child(6) { background-color: #a98743 !important; }
+
+/* Estado en Hover y Clic (Activo): mantienen su color al 100% de opacidad sin cambiar */
+.header-sq:hover,
 .header-sq.active {
-  background-color: #343b4d !important;
-  border-color: #343b4d !important;
+  opacity: 1 !important;
+  transform: scale(1.2);
 }
-
-/* Intercalado de paleta de colores en Hover */
-.header-sq:nth-child(1):hover { background-color: #00a99d !important; border-color: #00a99d !important; }
-.header-sq:nth-child(2):hover { background-color: #a98743 !important; border-color: #a98743 !important; }
-.header-sq:nth-child(3):hover { background-color: #343b4d !important; border-color: #343b4d !important; }
-.header-sq:nth-child(4):hover { background-color: #FF7BAC !important; border-color: #FF7BAC !important; }
-.header-sq:nth-child(5):hover { background-color: #00a99d !important; border-color: #00a99d !important; }
-.header-sq:nth-child(6):hover { background-color: #a98743 !important; border-color: #a98743 !important; }
 
   
 
