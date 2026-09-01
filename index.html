@@ -117,11 +117,22 @@ Desde la geología, microbiología, ecología y ciencias sociales, el proyecto b
       </p>
     </div>
   </div>
- <div class="row">
-    <div class="mapaLugaresInteres">
-     
+
+  <!-- SECCIÓN SITIOS DE TRABAJO INTENSIVO (85% DEL ESTUDIO) -->
+  <div class="row">
+    <div class="titulo1">
+      <h1>Sitios de trabajo intensivo</h1>
+    </div>
+    <div class="iframe-container">
+      <div id="mapaLugaresInteres" style="height:500px; width:100%;"></div>
+    </div>
+    <div>
+      <p>
+        A diferencia de las cuencas de estudio señaladas más arriba —que representan la extensión completa del área de trabajo del Observatorio—, el siguiente mapa delimita los tres sectores puntuales donde se concentra aproximadamente el <strong>85% del trabajo de terreno</strong> del proyecto: el Salar de Maricunga, la Laguna del Negro Francisco y la Laguna Verde. Aquí es donde se realiza la mayor parte del muestreo, monitoreo y observación intensiva.
+      </p>
     </div>
   </div>
+
   <div class="row">
     <div class="imagen-padding">
       <img src="./img/IMG_1080.png" alt="Dos flamencos en una laguna">
@@ -184,7 +195,7 @@ Desde la geología, microbiología, ecología y ciencias sociales, el proyecto b
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <script>
-  // 1. Inicializar Mapa
+  // 1. Inicializar Mapa (Área de estudio - sectores generales)
   const map = L.map('map', { scrollWheelZoom: false }).setView([-26.75, -69.15], 9);
 
   // 2. Capa base satelital (Esri World Imagery)
@@ -258,6 +269,79 @@ Desde la geología, microbiología, ecología y ciencias sociales, el proyecto b
     '#343b4d',
     'https://simbio.mma.gob.cl/Subcuencas/Details/0303'
   );
+
+  // 5. Mapa de sitios de trabajo intensivo (85% del estudio)
+  const mapaSitios = L.map('mapaLugaresInteres', { scrollWheelZoom: false });
+
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Esri &mdash; Proyecto OASIS'
+  }).addTo(mapaSitios);
+
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Esri'
+  }).addTo(mapaSitios);
+
+  const sitiosGeoJSON = {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "properties": { "nombre": "Salar de Maricunga", "color": "#00a99d" },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [[
+            [-69.18857039422031, -27.09614782837442],
+            [-69.0060103403536, -27.08925449584586],
+            [-69.01448782498622, -26.83295588280472],
+            [-69.19449991630157, -26.83629750799076],
+            [-69.18857039422031, -27.09614782837442]
+          ]]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": { "nombre": "Laguna del Negro Francisco", "color": "#FF7BAC" },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [[
+            [-69.30348427460967, -27.51606053036362],
+            [-69.14223811064399, -27.51289160789929],
+            [-69.1440485281678, -27.43039031729837],
+            [-69.30555577901563, -27.43303352049741],
+            [-69.30348427460967, -27.51606053036362]
+          ]]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": { "nombre": "Laguna Verde", "color": "#343b4d" },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [[
+            [-68.59947655513997, -26.92290899461164],
+            [-68.40463410218392, -26.92596708109369],
+            [-68.40209056951643, -26.82872485343175],
+            [-68.59575954858413, -26.82633119327448],
+            [-68.59947655513997, -26.92290899461164]
+          ]]
+        }
+      }
+    ]
+  };
+
+  const capaSitios = L.geoJSON(sitiosGeoJSON, {
+    style: (feature) => ({
+      color: feature.properties.color,
+      weight: 3,
+      fillOpacity: 0.4,
+      fillColor: feature.properties.color
+    }),
+    onEachFeature: (feature, layer) => {
+      layer.bindPopup(`<strong class="popup-title">${feature.properties.nombre}</strong><br>Sitio de trabajo intensivo &ndash; Proyecto OASIS`);
+    }
+  }).addTo(mapaSitios);
+
+  mapaSitios.fitBounds(capaSitios.getBounds(), { padding: [40, 40] });
 </script>
 
 </body>
