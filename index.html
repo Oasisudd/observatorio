@@ -221,9 +221,9 @@ Desde la geología, microbiología, ecología y ciencias sociales, el proyecto b
         }
       }).addTo(map);
       
-      // Auto-centrar el mapa al cargar el geojson
+      // Auto-centrar el mapa al cargar el geojson (con zoom más alejado)
       globalBounds.extend(layer.getBounds());
-      map.fitBounds(globalBounds);
+      map.fitBounds(globalBounds, { padding: [60, 60], maxZoom: 8 });
       
     } catch (e) {
       console.error("Error cargando:", nombre, e);

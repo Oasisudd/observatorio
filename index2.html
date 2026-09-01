@@ -181,7 +181,7 @@ Desde la geología, microbiología, ecología y ciencias sociales, el proyecto b
       
       // Auto-centrar el mapa al cargar el geojson
       globalBounds.extend(layer.getBounds());
-      map.fitBounds(globalBounds);
+      map.fitBounds(globalBounds, { padding: [60, 60], maxZoom: 8 });
       
     } catch (e) {
       console.error("Error cargando:", nombre, e);
