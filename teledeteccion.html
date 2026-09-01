@@ -114,32 +114,32 @@
         <th>F&oacute;rmula</th>
        </tr>
       </thead>
-      <tbody>
-       <tr>
-        <td><button class="boton-mapa" id="boton-ndwi">NDWI</button></td>
-        <td>&Iacute;ndice Normalizado de Agua</td>
-        <td>Detecta lagunas, humedales temporales y humedad superficial en vegas</td>
-        <td>(Green &minus; NIR) / (Green + NIR)</td>
-       </tr>
-       <tr>
-        <td><button class="boton-mapa" id="boton-ndvi">NDVI</button></td>
-        <td>&Iacute;ndice de Vegetaci&oacute;n</td>
-        <td>Localiza vegas, bofedales y parches de vegetaci&oacute;n en zonas h&uacute;medas</td>
-        <td>(NIR &minus; Red) / (NIR + Red)</td>
-       </tr>
-       <tr>
-        <td><button class="boton-mapa" id="boton-ndsi">SMI</button></td>
-        <td>&Iacute;ndice de Humedad del Suelo</td>
-        <td>Estima la humedad superficial del suelo con base en OPTRAM usando Sentinel-2</td>
-        <td>(NDVI &minus; NDVI<sub>dry</sub>) / (NDVI<sub>wet</sub> &minus; NDVI<sub>dry</sub>)</td>
-       </tr>
-       <tr>
-        <td><button class="boton-mapa" id="boton-si">STI</button></td>
-        <td>&Iacute;ndice de Temperatura Superficial</td>
-        <td>Eval&uacute;a la temperatura de la superficie terrestre a partir de Landsat 8 (LST)</td>
-        <td>LST (Kelvin) &minus; 273.15</td>
-       </tr>
-      </tbody>
+       <tbody>
+        <tr class="fila-indice active" id="fila-ndwi" data-url="https://proyectooasis-464321.projects.earthengine.app/view/nwdizonas">
+         <td><strong>NDWI</strong></td>
+         <td>Índice Normalizado de Agua</td>
+         <td>Detecta lagunas, humedales temporales y humedad superficial en vegas</td>
+         <td>(Green &minus; NIR) / (Green + NIR)</td>
+        </tr>
+        <tr class="fila-indice" id="fila-ndvi" data-url="https://proyectooasis-464321.projects.earthengine.app/view/ndvizonas">
+         <td><strong>NDVI</strong></td>
+         <td>Índice de Vegetación</td>
+         <td>Localiza vegas, bofedales y parches de vegetación en zonas húmedas</td>
+         <td>(NIR &minus; Red) / (NIR + Red)</td>
+        </tr>
+        <tr class="fila-indice" id="fila-ndsi" data-url="https://proyectooasis-464321.projects.earthengine.app/view/smizonas">
+         <td><strong>SMI</strong></td>
+         <td>Índice de Humedad del Suelo</td>
+         <td>Estima la humedad superficial del suelo con base en OPTRAM usando Sentinel-2</td>
+         <td>(NDVI &minus; NDVI<sub>dry</sub>) / (NDVI<sub>wet</sub> &minus; NDVI<sub>dry</sub>)</td>
+        </tr>
+        <tr class="fila-indice" id="fila-si" data-url="https://proyectooasis-464321.projects.earthengine.app/view/stizonas">
+         <td><strong>STI</strong></td>
+         <td>Índice de Temperatura Superficial</td>
+         <td>Evalúa la temperatura de la superficie terrestre a partir de Landsat 8 (LST)</td>
+         <td>LST (Kelvin) &minus; 273.15</td>
+        </tr>
+       </tbody>
      </table>
     </div>
 
@@ -355,40 +355,18 @@
    </footer>
   <script>
    const iframe_indices = document.getElementById('iframe-indices');
-   const botonesIndices = document.querySelectorAll('.tabla-indices .boton-mapa');
+   const filasIndices = document.querySelectorAll('.tabla-indices .fila-indice');
 
-   function marcarActivo(botonSeleccionado) {
-     botonesIndices.forEach(b => b.classList.remove('activo'));
-     botonSeleccionado.classList.add('activo');
-   }
-
-   const btnNdwi = document.getElementById('boton-ndwi');
-   const btnNdvi = document.getElementById('boton-ndvi');
-   const btnNdsi = document.getElementById('boton-ndsi');
-   const btnSi = document.getElementById('boton-si');
-
-   btnNdwi.addEventListener('click', function() {
-     iframe_indices.src = "https://proyectooasis-464321.projects.earthengine.app/view/nwdizonas";
-     marcarActivo(btnNdwi);
+   filasIndices.forEach(fila => {
+     fila.addEventListener('click', function() {
+       filasIndices.forEach(f => f.classList.remove('active'));
+       this.classList.add('active');
+       const url = this.getAttribute('data-url');
+       if (url) {
+         iframe_indices.src = url;
+       }
+     });
    });
-
-   btnNdvi.addEventListener('click', function() {
-     iframe_indices.src = "https://proyectooasis-464321.projects.earthengine.app/view/ndvizonas";
-     marcarActivo(btnNdvi);
-   });
-
-   btnNdsi.addEventListener('click', function() {
-     iframe_indices.src = "https://proyectooasis-464321.projects.earthengine.app/view/smizonas"; // pendiente
-     marcarActivo(btnNdsi);
-   });
-
-   btnSi.addEventListener('click', function() {
-     iframe_indices.src = "https://proyectooasis-464321.projects.earthengine.app/view/stizonas"; // pendiente
-     marcarActivo(btnSi);
-   });
-
-   // Dejar NDWI marcado como activo por defecto, ya que es el que carga al inicio
-   marcarActivo(btnNdwi);
   </script>
  </body>
 </html>

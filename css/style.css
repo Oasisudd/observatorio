@@ -855,6 +855,45 @@ font-weight: bold !important;
   background-color: #ffffff !important;
 }
 
+/* Filas clickeables en Tabla de Índices de Teledetección */
+.tabla-indices tr.fila-indice {
+  cursor: pointer !important;
+  transition: background-color 0.2s ease, color 0.2s ease !important;
+}
+
+/* Fila NDWI activa por defecto (Turquesa) */
+.tabla-indices tr.fila-indice#fila-ndwi.active,
+.tabla-indices tr.fila-indice#fila-ndwi:hover {
+  background-color: #00a99d !important;
+  color: #ffffff !important;
+}
+
+/* Fila NDVI activa (Ocre Tierra) */
+.tabla-indices tr.fila-indice#fila-ndvi.active,
+.tabla-indices tr.fila-indice#fila-ndvi:hover {
+  background-color: #a98743 !important;
+  color: #ffffff !important;
+}
+
+/* Fila SMI activa (Azul Roca) */
+.tabla-indices tr.fila-indice#fila-ndsi.active,
+.tabla-indices tr.fila-indice#fila-ndsi:hover {
+  background-color: #343b4d !important;
+  color: #ffffff !important;
+}
+
+/* Fila STI activa (Rosa) */
+.tabla-indices tr.fila-indice#fila-si.active,
+.tabla-indices tr.fila-indice#fila-si:hover {
+  background-color: #FF7BAC !important;
+  color: #ffffff !important;
+}
+
+.tabla-indices tr.fila-indice.active td,
+.tabla-indices tr.fila-indice.active strong {
+  color: #ffffff !important;
+}
+
 @media (max-width: 768px) {
   .tabla-indices table {
     font-size: 0.9rem;
