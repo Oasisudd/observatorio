@@ -232,7 +232,7 @@ Desde la geología, microbiología, ecología y ciencias sociales, el proyecto b
           fillColor: hexColor   // Relleno
         },
         onEachFeature: (feature, layer) => {
-          let popupContent = `<strong class="popup-title">${nombre}</strong><br>Proyecto OASIS`;
+          let popupContent = `<span class="popup-title">${nombre}</span><br>Proyecto OASIS`;
           if (simbioUrl) {
             popupContent += `<br><a href="${simbioUrl}" target="_blank">Ver ficha SIMBIO</a>`;
           }
@@ -341,7 +341,7 @@ Desde la geología, microbiología, ecología y ciencias sociales, el proyecto b
       fillColor: feature.properties.color
     }),
     onEachFeature: (feature, layer) => {
-      layer.bindPopup(`<strong class="popup-title">${feature.properties.nombre}</strong><br>Sitio de trabajo intensivo &ndash; Proyecto OASIS`);
+      layer.bindPopup(`<span class="popup-title">${feature.properties.nombre}</span><br>Sitio de trabajo intensivo &ndash; Proyecto OASIS`);
     }
   }).addTo(mapaSitios);
 
