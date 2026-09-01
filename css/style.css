@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
 
+:root {
+  --space-section: 3rem;
+  --space-block: 1.25rem;
+}
+
 body, html {
   font-family: 'Lato', sans-serif;
   background-color: white;
@@ -167,7 +172,7 @@ margin: 0 auto;
   background-image: url('../img/salarLagunaCentro_maricunga.jpg');
 }
 
-/* Fondo de la imagen 7 — Laguna Verde */
+/* Fondo de la imagen 7 - Laguna Verde */
 .bg-77 {
   background-image: url('../img/TransectoLaguna-Verde.jpg');
 }
@@ -236,9 +241,6 @@ width:30% !important;
   line-height: 1; 
   font-weight: bold !important;
 }
-
-/* Contenedor de botones */
-/* Contenedor de botones */
 
 /* Contenedor de botones (Footer) */
 .white-row {
@@ -684,10 +686,11 @@ top: -4%; /* Ajusta este valor según lo que necesites */
 }
 
 .texto h2 {
-    width:100%;
+    width: 100%;
     font-weight: normal !important;
     font-size: 1.0rem !important;
     color: #323B4E;
+    margin: 0 0 var(--space-block) 0;
 }
 
 .negrita {
@@ -698,11 +701,12 @@ font-weight: bold !important;
   position: relative;
   width: 100%;
   height: auto;
-  min-height: 550px; /* Aseguramos al menos esta altura en caso de iframes pequeños */
-  padding-bottom: 0;
+  min-height: 550px;
   display: flex;
   justify-content: center;
   margin: 0 auto;
+  padding: 0;
+  background: none;
 }
 
 .iframe-container iframe {
@@ -751,6 +755,10 @@ font-weight: bold !important;
   transition: none !important;
 }
 
+.imagen-padding {
+  margin-bottom: var(--space-block);
+}
+
 .imagen-padding img {
   width: 100%;
   height: auto;
@@ -781,10 +789,10 @@ font-weight: bold !important;
   background-color: #222; /* más oscuro al pasar el mouse */
 }
 .titulo1 h1 {
-  font-size: 1.25rem;  /* equivalente a 20px si el root es 16px */
+  font-size: 1.25rem;
   font-weight: bold;
   text-align: left !important;
-  margin: 1.25rem 0;
+  margin: 0 0 var(--space-block) 0;
 }
 
 /* Responsivo: para pantallas pequeñas */
@@ -889,8 +897,7 @@ font-weight: bold !important;
   color: #ffffff !important;
 }
 
-.tabla-indices tr.fila-indice.active td,
-.tabla-indices tr.fila-indice.active strong {
+.tabla-indices tr.fila-indice.active td {
   color: #ffffff !important;
 }
 
@@ -909,21 +916,6 @@ font-weight: bold !important;
   text-align: center;
 }
 
-.boton-mapa {
-  width: 120px;
-  padding: 10px;
-  font-size: 16px;
-  background-color: #444; /* gris oscuro */
-  color: white;
-  border: none;
-  border-radius: 0; /* borde cuadrado */
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.boton-mapa:hover {
-  background-color: #222;
-}
 .footer {
   background-color: white;
   color:#323B4E;
@@ -955,9 +947,14 @@ font-weight: bold !important;
 .footer-oasis img {
   max-height: 50px;
 }
+
 .row {
-  padding-bottom: 4%;
-  margin-bottom: 50px;
+  padding-bottom: 0;
+  margin-bottom: var(--space-section);
+}
+
+.row:last-of-type {
+  margin-bottom: 0;
 }
 
 .botones-tematicos {
@@ -1167,14 +1164,8 @@ font-weight: bold !important;
   filter: none;
 }
 
-.iframe-container {
-  padding: 25px 0;
-  background: none;
-}
-
 .titulo1 h1 {
   color: #343b4d; /* Azul Roca */
-  margin-bottom: 20px;
 }
 
 .leaflet-popup-content-wrapper {
