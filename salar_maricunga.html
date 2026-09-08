@@ -27,7 +27,38 @@
     color: var(--texto);
     font-family: var(--font-datos);
     line-height: 1.5;
-    padding: 32px 16px 64px;
+    padding: 0 16px 64px;
+  }
+
+  .barra-superior{
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 18px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .barra-superior a.logo-link img{
+    height: 36px;
+    width: auto;
+    display: block;
+  }
+
+  .volver-galeria{
+    font-family: var(--font-datos);
+    font-size: 0.85rem;
+    color: var(--turquesa);
+    border: 1px solid var(--turquesa);
+    padding: 8px 14px;
+    text-decoration: none;
+  }
+
+  .volver-galeria:hover{
+    background: var(--turquesa);
+    color: #ffffff;
   }
 
   .escenario{
@@ -272,6 +303,14 @@
 </style>
 </head>
 <body>
+
+<div class="barra-superior">
+  <a class="logo-link" href="./index3.html">
+    <img src="./img/OA_Recurso48.png" alt="Observatorio OASIS">
+  </a>
+  <a class="volver-galeria" href="./salares_interactivos.html">Volver a la galería interactiva</a>
+</div>
+
 <div class="escenario">
 
   <header>
@@ -281,7 +320,7 @@
   </header>
 
   <div class="hero">
-    <img id="fondoImg" src="https://oasisudd.github.io/observatorio/fondoMaricunga.jpeg" alt="Investigadores muestreando el salar de Maricunga" />
+    <img id="fondoImg" src="https://oasisudd.github.io/observatorio/fondoConLitio.jpeg" alt="Laguna con flamencos y piscina de evaporación de litio en el salar" />
     <svg id="capaBalanza" class="capa-balanza" xmlns="http://www.w3.org/2000/svg">
       <g id="balanza">
         <line id="postLine" stroke="#767c88"/>
@@ -456,13 +495,13 @@
     svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
 
     const cx = w * 0.5;
-    const beamY = h * 0.36;
-    const baseY = h * 0.9;
-    const halfBeam = w * 0.21;
-    const dropperLen = h * 0.1;
+    const beamY = h * 0.32;
+    const baseY = h * 0.88;
+    const halfBeam = w * 0.31;
+    const dropperLen = h * 0.28;
     const panHalfTop = w * 0.045;
     const panHalfBottom = w * 0.035;
-    const panHeight = h * 0.065;
+    const panHeight = h * 0.07;
     const strokeFino = Math.max(3, w * 0.0018);
     const strokeGrueso = Math.max(5, w * 0.005);
 
