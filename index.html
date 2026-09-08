@@ -17,6 +17,61 @@
     #map { filter: none !important; }
     #map:hover { filter: none !important; }
   </style>
+
+  <!-- Popup de aviso: página experimental -->
+  <style>
+    .popup-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(52, 59, 77, 0.72);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 9999;
+    }
+
+    .popup-overlay[hidden] {
+      display: none;
+    }
+
+    .popup-panel {
+      background: #ffffff;
+      max-width: 440px;
+      width: 100%;
+      border-top: 4px solid #01A99D;
+      padding: 28px 26px;
+      font-family: 'Lato', 'Segoe UI', sans-serif;
+    }
+
+    .popup-panel h2 {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #343B4D;
+      margin: 0 0 10px;
+    }
+
+    .popup-panel p {
+      font-size: 0.92rem;
+      color: #767c88;
+      line-height: 1.5;
+      margin: 0 0 20px;
+    }
+
+    .popup-cerrar {
+      font-family: inherit;
+      font-size: 0.85rem;
+      color: #ffffff;
+      background-color: #01A99D;
+      border: none;
+      padding: 10px 22px;
+      cursor: pointer;
+    }
+
+    .popup-cerrar:hover {
+      background-color: #018f85;
+    }
+  </style>
   
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -24,6 +79,14 @@
 
 </head>
 <body>
+
+<div class="popup-overlay" id="popupAviso">
+  <div class="popup-panel">
+    <h2>Página experimental y en construcción</h2>
+    <p>El Observatorio OASIS todavía está en construcción. Algunos contenidos, mapas y módulos interactivos pueden cambiar o presentar errores mientras seguimos desarrollando el sitio.</p>
+    <button class="popup-cerrar" id="cerrarPopupAviso">Entendido</button>
+  </div>
+</div>
 
 <div id="indicebody">
   <!-- Sección principal con fondo blanco -->
@@ -197,6 +260,29 @@ Desde la geología, microbiología, ecología y ciencias sociales, el proyecto b
 
 <!-- Leaflet JS -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+  const popupAviso = document.getElementById('popupAviso');
+  const cerrarPopupAviso = document.getElementById('cerrarPopupAviso');
+
+  function cerrarAviso() {
+    popupAviso.setAttribute('hidden', '');
+  }
+
+  cerrarPopupAviso.addEventListener('click', cerrarAviso);
+
+  popupAviso.addEventListener('click', (evento) => {
+    if (evento.target === popupAviso) {
+      cerrarAviso();
+    }
+  });
+
+  document.addEventListener('keydown', (evento) => {
+    if (evento.key === 'Escape') {
+      cerrarAviso();
+    }
+  });
+</script>
 
 <script>
   // 1. Inicializar Mapa (Área de estudio - sectores generales)
