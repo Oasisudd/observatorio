@@ -114,17 +114,31 @@
             background-color: #ffffff;
             border: 1px solid var(--borde);
             border-top: 4px solid var(--accent);
-            padding: 24px 22px;
             width: 300px;
             display: flex;
             flex-direction: column;
-            gap: 10px;
             transition: transform 0.15s ease, box-shadow 0.15s ease;
+            overflow: hidden;
         }
 
         .card:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 24px rgba(52, 59, 77, 0.1);
+        }
+
+        .card .portada {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .card .card-texto {
+            padding: 20px 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            flex: 1;
         }
 
         .card h2 {
@@ -196,33 +210,48 @@
 
         <div class="mosaic">
             <a class="card" style="--accent: var(--turquesa-agua);" href="./geo_interactivoNew.html">
-                <h2>Evolución Geológica</h2>
-                <p>Ciclo hidrogeológico y precipitación secuencial mineral.</p>
-                <span class="cta">Abrir módulo</span>
+                <img class="portada" src="https://oasisudd.github.io/observatorio/evoGeo.png" alt="Evolución Geológica">
+                <div class="card-texto">
+                    <h2>Evolución Geológica</h2>
+                    <p>Ciclo hidrogeológico y precipitación secuencial mineral.</p>
+                    <span class="cta">Abrir módulo</span>
+                </div>
             </a>
 
             <a class="card" style="--accent: var(--ocre-tierra);" href="https://oasisudd.github.io/ispySalares/index.html" target="_blank">
-                <h2>Buscadores del Salar</h2>
-                <p>Desafío express de recolección de muestras científicas.</p>
-                <span class="cta">Abrir módulo</span>
+                <img class="portada" src="https://oasisudd.github.io/observatorio/buscadoresSalares.png" alt="Buscadores del Salar">
+                <div class="card-texto">
+                    <h2>Buscadores del Salar</h2>
+                    <p>Desafío express de recolección de muestras científicas.</p>
+                    <span class="cta">Abrir módulo</span>
+                </div>
             </a>
 
             <a class="card" style="--accent: var(--rosa-fauna);" href="./puzzleMuestraTapete.html">
-                <h2>Puzzle de Tapetes</h2>
-                <p>Reconstrucción estructural de comunidades microbianas.</p>
-                <span class="cta">Abrir módulo</span>
+                <img class="portada" src="https://oasisudd.github.io/observatorio/puzzleTapetes.png" alt="Puzzle de Tapetes">
+                <div class="card-texto">
+                    <h2>Puzzle de Tapetes</h2>
+                    <p>Reconstrucción estructural de comunidades microbianas.</p>
+                    <span class="cta">Abrir módulo</span>
+                </div>
             </a>
 
             <a class="card" style="--accent: var(--azul-roca);" href="https://oasisudd.github.io/herbario/herbario-web/index.html" target="_blank">
-                <h2>Herbario Digital</h2>
-                <p>Catálogo de flora nativa y botánica extrema de vegas.</p>
-                <span class="cta">Abrir módulo</span>
+                <img class="portada" src="https://oasisudd.github.io/observatorio/herbario.png" alt="Herbario Digital">
+                <div class="card-texto">
+                    <h2>Herbario Digital</h2>
+                    <p>Catálogo de flora nativa y botánica extrema de vegas.</p>
+                    <span class="cta">Abrir módulo</span>
+                </div>
             </a>
 
             <a class="card" style="--accent: var(--turquesa-agua);" href="https://oasisudd.github.io/observatorio/salar_maricunga.html" target="_blank">
-                <h2>Salar de Maricunga</h2>
-                <p>Simulación de gestión: doce años de equilibrio entre litio, agua y comunidad.</p>
-                <span class="cta">Abrir módulo</span>
+                <img class="portada" src="https://oasisudd.github.io/observatorio/estacionMonitoreo.png" alt="Salar de Maricunga">
+                <div class="card-texto">
+                    <h2>Salar de Maricunga</h2>
+                    <p>Simulación de gestión: doce años de equilibrio entre litio, agua y comunidad.</p>
+                    <span class="cta">Abrir módulo</span>
+                </div>
             </a>
         </div>
     </main>
