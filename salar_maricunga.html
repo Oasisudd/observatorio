@@ -495,15 +495,15 @@
     svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
 
     const cx = w * 0.5;
-    const beamY = h * 0.32;
-    const baseY = h * 0.88;
-    const halfBeam = w * 0.31;
-    const dropperLen = h * 0.28;
-    const panHalfTop = w * 0.045;
-    const panHalfBottom = w * 0.035;
-    const panHeight = h * 0.07;
-    const strokeFino = Math.max(3, w * 0.0018);
-    const strokeGrueso = Math.max(5, w * 0.005);
+    const beamY = h * 0.20;
+    const baseY = h * 0.62;
+    const halfBeam = w * 0.23;
+    const dropperLen = h * 0.07;
+    const panHalfTop = w * 0.035;
+    const panHalfBottom = w * 0.028;
+    const panHeight = h * 0.045;
+    const strokeFino = Math.max(3, w * 0.002);
+    const strokeGrueso = Math.max(6, w * 0.006);
 
     document.getElementById('postLine').setAttribute('x1', cx);
     document.getElementById('postLine').setAttribute('y1', beamY);
@@ -511,12 +511,12 @@
     document.getElementById('postLine').setAttribute('y2', baseY);
     document.getElementById('postLine').setAttribute('stroke-width', strokeGrueso);
 
-    const baseHalf = w * 0.06;
-    const baseDrop = h * 0.035;
+    const pieAncho = w * 0.035;
     document.getElementById('baseTri').setAttribute('d',
-      'M' + (cx - baseHalf) + ',' + baseY + ' L' + (cx + baseHalf) + ',' + baseY +
-      ' L' + (cx + baseHalf + w * 0.015) + ',' + (baseY + baseDrop) +
-      ' L' + (cx - baseHalf - w * 0.015) + ',' + (baseY + baseDrop) + ' Z');
+      'M' + (cx - pieAncho) + ',' + baseY + ' L' + (cx + pieAncho) + ',' + baseY);
+    document.getElementById('baseTri').setAttribute('stroke', '#767c88');
+    document.getElementById('baseTri').setAttribute('stroke-width', strokeGrueso);
+    document.getElementById('baseTri').setAttribute('fill', 'none');
 
     const leftX = cx - halfBeam;
     const rightX = cx + halfBeam;
