@@ -1,39 +1,573 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <title>Repositorio | Observatorio OASIS</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="./css/style.css">
+    <meta charset="UTF-8" />
+    <title>Repositorio | Observatorio OASIS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --turquesa-agua: #01A99D;
+            --ocre-tierra: #AA8744;
+            --azul-roca: #343B4D;
+            --rosa-fauna: #F288A4;
+            --borde: #e3e3e3;
+            --texto: #343B4D;
+            --texto-suave: #767c88;
+            --fondo: #fafafa;
+        }
+
+        body {
+            font-family: 'Lato', 'Segoe UI', sans-serif;
+            background-color: var(--fondo);
+            color: var(--texto);
+            min-height: 100vh;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* HEADER */
+        header {
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--borde);
+            padding: 16px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .logo-container img {
+            height: 44px;
+            width: auto;
+            display: block;
+        }
+
+        nav.secciones-nav {
+            display: flex;
+            gap: 22px;
+            flex-wrap: wrap;
+        }
+
+        nav.secciones-nav a {
+            font-size: 0.85rem;
+            color: var(--texto-suave);
+            padding-bottom: 4px;
+            border-bottom: 2px solid transparent;
+            transition: color 0.2s ease, border-color 0.2s ease;
+        }
+
+        nav.secciones-nav a:hover {
+            color: var(--turquesa-agua);
+            border-color: var(--turquesa-agua);
+        }
+
+        /* INTRO */
+        .intro {
+            max-width: 720px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 56px 24px 30px;
+        }
+
+        .intro h1 {
+            font-size: 1.9rem;
+            font-weight: 500;
+            color: var(--azul-roca);
+            margin-bottom: 12px;
+        }
+
+        .intro p {
+            font-size: 1rem;
+            color: var(--texto-suave);
+            line-height: 1.5;
+        }
+
+        /* BUSCADOR Y FILTROS */
+        .herramientas {
+            max-width: 900px;
+            margin: 0 auto 40px;
+            padding: 0 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            align-items: center;
+        }
+
+        .buscador {
+            width: 100%;
+            max-width: 460px;
+            padding: 11px 16px;
+            border: 1px solid var(--borde);
+            font-family: inherit;
+            font-size: 0.9rem;
+            color: var(--texto);
+        }
+
+        .buscador:focus {
+            outline: none;
+            border-color: var(--turquesa-agua);
+        }
+
+        .filtros {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .filtro-chip {
+            font-family: inherit;
+            font-size: 0.78rem;
+            color: var(--texto-suave);
+            background: #ffffff;
+            border: 1px solid var(--borde);
+            padding: 6px 14px;
+            cursor: pointer;
+            transition: color 0.15s ease, border-color 0.15s ease;
+        }
+
+        .filtro-chip:hover {
+            color: var(--turquesa-agua);
+            border-color: var(--turquesa-agua);
+        }
+
+        .filtro-chip.activo {
+            color: #ffffff;
+            background: var(--turquesa-agua);
+            border-color: var(--turquesa-agua);
+        }
+
+        /* SECCIONES */
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px 60px;
+        }
+
+        section.categoria {
+            margin-bottom: 52px;
+            scroll-margin-top: 90px;
+        }
+
+        section.categoria .encabezado-cat {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            border-bottom: 2px solid var(--borde);
+            padding-bottom: 10px;
+            margin-bottom: 18px;
+        }
+
+        section.categoria h2 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--azul-roca);
+        }
+
+        section.categoria .contador {
+            font-size: 0.78rem;
+            color: var(--texto-suave);
+        }
+
+        .lista-items {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .item-card {
+            background-color: #ffffff;
+            border: 1px solid var(--borde);
+            border-left: 3px solid var(--accent);
+            padding: 16px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .item-card .item-titulo {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--azul-roca);
+        }
+
+        .item-card .item-meta {
+            font-size: 0.8rem;
+            color: var(--texto-suave);
+        }
+
+        .item-card .item-link {
+            font-size: 0.82rem;
+            color: var(--accent);
+            margin-top: 4px;
+        }
+
+        .item-card .item-link::after {
+            content: " ›";
+        }
+
+        .proximamente {
+            background-color: #ffffff;
+            border: 1px dashed var(--borde);
+            padding: 28px 20px;
+            text-align: center;
+            color: var(--texto-suave);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .proximamente strong-texto {
+            color: var(--texto);
+        }
+
+        /* GLOSARIO */
+        .glosario-lista {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px 28px;
+        }
+
+        .glosario-item dt {
+            font-size: 0.92rem;
+            font-weight: 500;
+            color: var(--azul-roca);
+            margin-bottom: 3px;
+        }
+
+        .glosario-item dd {
+            font-size: 0.85rem;
+            color: var(--texto-suave);
+            line-height: 1.45;
+        }
+
+        /* ENLACES EXTERNOS */
+        .enlaces-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .enlace-card {
+            background-color: #ffffff;
+            border: 1px solid var(--borde);
+            border-top: 3px solid var(--accent);
+            padding: 14px 16px;
+            font-size: 0.88rem;
+            color: var(--texto);
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .enlace-card .enlace-tipo {
+            font-size: 0.72rem;
+            color: var(--texto-suave);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .oculto {
+            display: none !important;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            font-size: 0.72rem;
+            color: #a8a8a8;
+            padding: 18px 20px;
+            border-top: 1px solid var(--borde);
+        }
+
+        @media (max-width: 620px) {
+            header {
+                padding: 14px 20px;
+            }
+            nav.secciones-nav {
+                gap: 14px;
+            }
+            .glosario-lista {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div id="indicebody">
 
-    <div class="row">
-      <div class="logo-oasis" style="text-align: left;">
-        <a href="./index.html">
-          <img src="./img/OA_Recurso48.png"
-               alt="Observatorio OASIS"
-               style="width: 40%; height: auto; display: inline-block; padding-top:4%;">
+    <header>
+        <a class="logo-container" href="./index.html">
+            <img src="./img/OA_Recurso48.png" alt="Observatorio OASIS">
         </a>
-      </div>
-    </div>
+        <nav class="secciones-nav">
+            <a href="#publicaciones">Publicaciones</a>
+            <a href="#tesis">Tesis e informes</a>
+            <a href="#datasets">Datasets</a>
+            <a href="#bases-datos">Bases de datos</a>
+            <a href="#difusion">Difusión</a>
+            <a href="#congresos">Congresos</a>
+            <a href="#protocolos">Protocolos</a>
+            <a href="#glosario">Glosario</a>
+            <a href="#enlaces">Enlaces</a>
+        </nav>
+    </header>
 
-    <div class="row" style="min-height: 40vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 5% 0;">
-      <div class="titulo2">
+    <div class="intro">
         <h1>Repositorio</h1>
-      </div>
-      <div class="texto" style="max-width: 480px; margin: 2rem auto 0 auto;">
-        <h2 style="color: #888; font-style: italic;">Página en construcción.</h2>
-      </div>
+        <p>Publicaciones, datos y materiales generados por el Observatorio OASIS, organizados por línea de investigación y tipo de material. La mayoría de las secciones todavía está en construcción.</p>
     </div>
 
-    <footer class="footer-oasis">
-      <div class="footer-text">
-        Proyecto Anillo Temático Li y Salares – ANID || ATE2400015 (2024–2027)
-      </div>
+    <div class="herramientas">
+        <input class="buscador" type="text" id="buscadorInput" placeholder="Buscar por palabra clave, autor o título">
+        <div class="filtros" id="filtrosLinea">
+            <button class="filtro-chip activo" data-linea="todas">Todas las líneas</button>
+            <button class="filtro-chip" data-linea="ecologia">Ecología y socio-ecología</button>
+            <button class="filtro-chip" data-linea="microbiologia">Ecología microbiana</button>
+            <button class="filtro-chip" data-linea="geociencias">Geociencias</button>
+            <button class="filtro-chip" data-linea="datos">Ciencia de datos ambientales</button>
+        </div>
+    </div>
+
+    <main>
+
+        <section class="categoria" id="publicaciones">
+            <div class="encabezado-cat">
+                <h2>Publicaciones científicas</h2>
+                <span class="contador">Papers y preprints</span>
+            </div>
+            <div class="lista-items">
+                <a class="item-card" style="--accent: var(--rosa-fauna);" href="https://www.frontiersin.org/journals/microbiology/articles/10.3389/fmicb.2026.1867952/full" target="_blank" data-linea="microbiologia" data-buscable="alcaman calderon microbiologia hipersalino maricunga negro francisco laguna verde">
+                    <span class="item-titulo">Environmental filtering shapes microbial mat community assembly across interconnected high-altitude hypersaline systems of the Chilean Altiplano</span>
+                    <span class="item-meta">Alcamán-Arias, M. E. et al. · Frontiers in Microbiology, 2026</span>
+                    <span class="item-link" style="color: var(--rosa-fauna);">Ver paper completo</span>
+                </a>
+            </div>
+            <div class="proximamente" style="margin-top: 12px;">
+                Más publicaciones próximamente, a medida que el equipo vaya sacando nuevos papers y preprints.
+            </div>
+        </section>
+
+        <section class="categoria" id="tesis">
+            <div class="encabezado-cat">
+                <h2>Tesis e informes</h2>
+                <span class="contador">Memorias, tesis e informes técnicos</span>
+            </div>
+            <div class="proximamente">
+                Sección en construcción. Acá se van a listar las memorias, tesis de pre y postgrado, e informes técnicos de terreno asociados al proyecto.
+            </div>
+        </section>
+
+        <section class="categoria" id="datasets">
+            <div class="encabezado-cat">
+                <h2>Datasets abiertos</h2>
+                <span class="contador">Datos de monitoreo y series de tiempo</span>
+            </div>
+            <div class="proximamente">
+                Todavía no hay datasets publicados. Cuando estén disponibles, se van a enlazar acá junto con los repositorios de datos donde se alojen (por ejemplo Zenodo).
+            </div>
+        </section>
+
+        <section class="categoria" id="bases-datos">
+            <div class="encabezado-cat">
+                <h2>Bases de datos del proyecto</h2>
+                <span class="contador">Próximamente</span>
+            </div>
+            <div class="proximamente">
+                Las bases de datos del Observatorio OASIS todavía no existen. Cuando estén construidas, esta sección va a dar acceso a ellas.
+            </div>
+        </section>
+
+        <section class="categoria" id="difusion">
+            <div class="encabezado-cat">
+                <h2>Material de difusión</h2>
+                <span class="contador">Infografías, notas de prensa y boletines</span>
+            </div>
+            <div class="proximamente">
+                Sección en construcción. Acá se van a reunir infografías, notas de prensa y boletines del proyecto.
+            </div>
+        </section>
+
+        <section class="categoria" id="congresos">
+            <div class="encabezado-cat">
+                <h2>Presentaciones en congresos</h2>
+                <span class="contador">Pósters y charlas</span>
+            </div>
+            <div class="proximamente">
+                Todavía no hay presentaciones cargadas. Se van a poder descargar los pósters y charlas presentados en congresos.
+            </div>
+        </section>
+
+        <section class="categoria" id="protocolos">
+            <div class="encabezado-cat">
+                <h2>Protocolos y metodologías</h2>
+                <span class="contador">Fichas de muestreo y monitoreo</span>
+            </div>
+            <div class="proximamente">
+                Sección en construcción. Acá van a estar las fichas que describen cómo se toman las muestras y se hacen los monitoreos en terreno, para quien quiera replicar el trabajo.
+            </div>
+        </section>
+
+        <section class="categoria" id="glosario">
+            <div class="encabezado-cat">
+                <h2>Glosario</h2>
+                <span class="contador">Términos técnicos explicados en simple</span>
+            </div>
+            <dl class="glosario-lista" id="glosarioLista">
+                <div class="glosario-item" data-buscable="salar salar">
+                    <dt>Salar</dt>
+                    <dd>Depresión de terreno cubierta por depósitos de sales, formada por la evaporación de agua en cuencas sin salida al mar.</dd>
+                </div>
+                <div class="glosario-item" data-buscable="bofedal">
+                    <dt>Bofedal</dt>
+                    <dd>Humedal altoandino con vegetación permanente, alimentado por aguas subterráneas o deshielo, clave para la fauna local.</dd>
+                </div>
+                <div class="glosario-item" data-buscable="salmuera">
+                    <dt>Salmuera</dt>
+                    <dd>Solución de agua con alta concentración de sales disueltas, de donde se extrae el litio en los salares.</dd>
+                </div>
+                <div class="glosario-item" data-buscable="tapete microbiano">
+                    <dt>Tapete microbiano</dt>
+                    <dd>Comunidad de microorganismos que crece en capas sobre sedimentos o rocas, común en ambientes extremos como los salares.</dd>
+                </div>
+                <div class="glosario-item" data-buscable="sitio ramsar">
+                    <dt>Sitio Ramsar</dt>
+                    <dd>Humedal reconocido como de importancia internacional bajo la Convención de Ramsar, por su rol en la regulación hídrica y la biodiversidad.</dd>
+                </div>
+                <div class="glosario-item" data-buscable="oncolito">
+                    <dt>Oncolito</dt>
+                    <dd>Estructura sedimentaria redondeada formada por capas de minerales precipitados alrededor de un núcleo, a menudo con participación microbiana.</dd>
+                </div>
+                <div class="glosario-item" data-buscable="acuifero">
+                    <dt>Acuífero</dt>
+                    <dd>Formación geológica subterránea capaz de almacenar y transmitir agua, fuente principal de agua dulce en zonas áridas.</dd>
+                </div>
+                <div class="glosario-item" data-buscable="puna de atacama">
+                    <dt>Puna de Atacama</dt>
+                    <dd>Meseta altoandina de clima árido y frío, sobre los 3.000 metros de altura, donde se ubican la mayoría de los salares estudiados por el proyecto.</dd>
+                </div>
+            </dl>
+        </section>
+
+        <section class="categoria" id="enlaces">
+            <div class="encabezado-cat">
+                <h2>Enlaces externos</h2>
+                <span class="contador">Fichas y sitios asociados</span>
+            </div>
+            <div class="enlaces-grid" id="enlacesGrid">
+                <a class="enlace-card" style="--accent: var(--turquesa-agua);" href="https://simbio.mma.gob.cl/Subcuencas/Details/0304" target="_blank" data-buscable="simbio maricunga">
+                    <span class="enlace-tipo">Ficha SIMBIO</span>
+                    Sector Salar de Maricunga
+                </a>
+                <a class="enlace-card" style="--accent: var(--rosa-fauna);" href="https://simbio.mma.gob.cl/Subcuencas/Details/0305" target="_blank" data-buscable="simbio negro francisco">
+                    <span class="enlace-tipo">Ficha SIMBIO</span>
+                    Sector Laguna Negro Francisco
+                </a>
+                <a class="enlace-card" style="--accent: var(--azul-roca);" href="https://simbio.mma.gob.cl/Subcuencas/Details/0303" target="_blank" data-buscable="simbio laguna verde pedernales">
+                    <span class="enlace-tipo">Ficha SIMBIO</span>
+                    Sector Laguna Verde
+                </a>
+                <a class="enlace-card" style="--accent: var(--ocre-tierra);" href="https://anid.cl/" target="_blank" data-buscable="anid">
+                    <span class="enlace-tipo">Financiamiento</span>
+                    ANID
+                </a>
+                <a class="enlace-card" style="--accent: var(--turquesa-agua);" href="https://www.udd.cl/" target="_blank" data-buscable="udd universidad del desarrollo">
+                    <span class="enlace-tipo">Institución asociada</span>
+                    Universidad del Desarrollo
+                </a>
+                <a class="enlace-card" style="--accent: var(--ocre-tierra);" href="https://www.uda.cl/" target="_blank" data-buscable="uda universidad de atacama">
+                    <span class="enlace-tipo">Institución asociada</span>
+                    Universidad de Atacama
+                </a>
+                <a class="enlace-card" style="--accent: var(--rosa-fauna);" href="https://www.unab.cl/" target="_blank" data-buscable="unab universidad andres bello">
+                    <span class="enlace-tipo">Institución asociada</span>
+                    Universidad Andrés Bello
+                </a>
+                <a class="enlace-card" style="--accent: var(--azul-roca);" href="https://www.udec.cl/pexterno/" target="_blank" data-buscable="udec universidad de concepcion">
+                    <span class="enlace-tipo">Institución asociada</span>
+                    Universidad de Concepción
+                </a>
+                <a class="enlace-card" style="--accent: var(--turquesa-agua);" href="https://www.ufro.cl/" target="_blank" data-buscable="ufro universidad de la frontera">
+                    <span class="enlace-tipo">Institución asociada</span>
+                    Universidad de La Frontera
+                </a>
+                <a class="enlace-card" style="--accent: var(--ocre-tierra);" href="https://smiicechile.cl/" target="_blank" data-buscable="smi ice chile">
+                    <span class="enlace-tipo">Institución asociada</span>
+                    SMI ICE Chile
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        Proyecto Anillo Temático Li y Salares - ANID || ATE2400015 (2024-2027)
     </footer>
 
-  </div>
+    <script>
+        const buscadorInput = document.getElementById('buscadorInput');
+        const glosarioItems = Array.from(document.querySelectorAll('.glosario-item'));
+        const enlaceItems = Array.from(document.querySelectorAll('.enlace-card'));
+        const publicacionItems = Array.from(document.querySelectorAll('#publicaciones .item-card'));
+
+        function normalizar(texto) {
+            return texto.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        }
+
+        function aplicarBusqueda() {
+            const consulta = normalizar(buscadorInput.value.trim());
+
+            glosarioItems.forEach((item) => {
+                const titulo = normalizar(item.querySelector('dt').textContent);
+                const extra = normalizar(item.getAttribute('data-buscable') || '');
+                const coincide = consulta === '' || titulo.includes(consulta) || extra.includes(consulta);
+                item.classList.toggle('oculto', !coincide);
+            });
+
+            enlaceItems.forEach((item) => {
+                const titulo = normalizar(item.textContent);
+                const extra = normalizar(item.getAttribute('data-buscable') || '');
+                const coincide = consulta === '' || titulo.includes(consulta) || extra.includes(consulta);
+                item.classList.toggle('oculto', !coincide);
+            });
+
+            publicacionItems.forEach((item) => {
+                const titulo = normalizar(item.textContent);
+                const extra = normalizar(item.getAttribute('data-buscable') || '');
+                const coincide = consulta === '' || titulo.includes(consulta) || extra.includes(consulta);
+                item.classList.toggle('oculto', !coincide || item.dataset.ocultoPorLinea === 'si');
+            });
+        }
+
+        buscadorInput.addEventListener('input', aplicarBusqueda);
+
+        const chipsLinea = document.querySelectorAll('#filtrosLinea .filtro-chip');
+        chipsLinea.forEach((chip) => {
+            chip.addEventListener('click', () => {
+                chipsLinea.forEach((c) => c.classList.remove('activo'));
+                chip.classList.add('activo');
+                const linea = chip.getAttribute('data-linea');
+
+                publicacionItems.forEach((item) => {
+                    const coincideLinea = linea === 'todas' || item.getAttribute('data-linea') === linea;
+                    item.dataset.ocultoPorLinea = coincideLinea ? 'no' : 'si';
+                });
+
+                aplicarBusqueda();
+            });
+        });
+    </script>
+
 </body>
 </html>
