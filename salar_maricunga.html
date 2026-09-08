@@ -281,20 +281,20 @@
   </header>
 
   <div class="hero">
-    <img src="./fondo_maricunga.png" alt="Investigadores muestreando el salar de Maricunga" />
+    <img src="https://oasisudd.github.io/observatorio/fondoMaricunga.jpeg" alt="Investigadores muestreando el salar de Maricunga" />
     <svg class="capa-balanza" viewBox="0 0 1721 914" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
       <g id="balanza">
-        <line x1="860" y1="480" x2="860" y2="820" stroke="#767c88" stroke-width="6"/>
-        <path d="M825,820 L895,820 L912,852 L808,852 Z" fill="#767c88" opacity="0.85"/>
-        <line x1="620" y1="480" x2="1100" y2="480" stroke="#01A99D" stroke-width="7"/>
-        <line x1="620" y1="480" x2="620" y2="536" stroke="#767c88" stroke-width="2"/>
-        <line x1="1100" y1="480" x2="1100" y2="536" stroke="#767c88" stroke-width="2"/>
-        <path d="M572,536 L668,536 L654,572 L586,572 Z" fill="#01A99D" opacity="0.9"/>
-        <path d="M1052,536 L1148,536 L1134,572 L1066,572 Z" fill="#AA8744" opacity="0.9"/>
-        <circle cx="860" cy="480" r="10" fill="#767c88"/>
+        <line x1="860" y1="340" x2="860" y2="820" stroke="#767c88" stroke-width="9"/>
+        <path d="M800,820 L920,820 L945,868 L775,868 Z" fill="#767c88" opacity="0.85"/>
+        <line x1="480" y1="340" x2="1240" y2="340" stroke="#01A99D" stroke-width="11"/>
+        <line x1="480" y1="340" x2="480" y2="428" stroke="#767c88" stroke-width="3"/>
+        <line x1="1240" y1="340" x2="1240" y2="428" stroke="#767c88" stroke-width="3"/>
+        <path d="M400,428 L560,428 L536,486 L424,486 Z" fill="#01A99D" opacity="0.9"/>
+        <path d="M1160,428 L1320,428 L1296,486 L1184,486 Z" fill="#AA8744" opacity="0.9"/>
+        <circle cx="860" cy="340" r="16" fill="#767c88"/>
       </g>
-      <text x="620" y="460" text-anchor="middle" fill="#343B4D" font-size="20" font-family="'Lato', sans-serif">naturaleza</text>
-      <text x="1100" y="460" text-anchor="middle" fill="#343B4D" font-size="20" font-family="'Lato', sans-serif">desarrollo</text>
+      <text x="480" y="405" text-anchor="middle" fill="#343B4D" font-size="30" font-family="'Lato', sans-serif">naturaleza</text>
+      <text x="1240" y="405" text-anchor="middle" fill="#343B4D" font-size="30" font-family="'Lato', sans-serif">desarrollo</text>
     </svg>
   </div>
 
@@ -464,7 +464,7 @@
     const balance = ((estado.agua + estado.bio) / 2) - ((estado.eco + estado.com) / 2);
     let angulo = -(balance / 50) * 18;
     angulo = Math.max(-18, Math.min(18, angulo));
-    document.getElementById('balanza').setAttribute('transform', 'rotate(' + angulo.toFixed(2) + ' 860 480)');
+    document.getElementById('balanza').setAttribute('transform', 'rotate(' + angulo.toFixed(2) + ' 860 340)');
   }
 
   function registrarEvento(anio, texto){
