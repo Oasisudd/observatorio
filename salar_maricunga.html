@@ -322,15 +322,15 @@
   <div class="hero">
     <img id="fondoImg" src="https://oasisudd.github.io/observatorio/fondoConLitio.jpeg" alt="Laguna con flamencos y piscina de evaporación de litio en el salar" />
     <svg id="capaBalanza" class="capa-balanza" xmlns="http://www.w3.org/2000/svg">
+      <line id="postLine" stroke="#343B4D"/>
+      <path id="baseTri" fill="none" stroke="#343B4D" opacity="0.9"/>
+      <circle id="pivotDot" fill="#343B4D"/>
       <g id="balanza">
-        <line id="postLine" stroke="#767c88"/>
-        <path id="baseTri" fill="#767c88" opacity="0.85"/>
-        <line id="beamLine" stroke="#01A99D"/>
-        <line id="dropperL" stroke="#767c88"/>
-        <line id="dropperR" stroke="#767c88"/>
+        <line id="beamLine" stroke="#F288A4"/>
+        <line id="dropperL" stroke="#F288A4"/>
+        <line id="dropperR" stroke="#F288A4"/>
         <path id="panL" fill="#01A99D" opacity="0.92"/>
         <path id="panR" fill="#AA8744" opacity="0.92"/>
-        <circle id="pivotDot" fill="#767c88"/>
       </g>
       <text id="labelNat" text-anchor="middle" fill="#343B4D" font-family="'Lato', sans-serif">naturaleza</text>
       <text id="labelDes" text-anchor="middle" fill="#343B4D" font-family="'Lato', sans-serif">desarrollo</text>
@@ -514,7 +514,7 @@
     const pieAncho = w * 0.035;
     document.getElementById('baseTri').setAttribute('d',
       'M' + (cx - pieAncho) + ',' + baseY + ' L' + (cx + pieAncho) + ',' + baseY);
-    document.getElementById('baseTri').setAttribute('stroke', '#767c88');
+    document.getElementById('baseTri').setAttribute('stroke', '#343B4D');
     document.getElementById('baseTri').setAttribute('stroke-width', strokeGrueso);
     document.getElementById('baseTri').setAttribute('fill', 'none');
 
