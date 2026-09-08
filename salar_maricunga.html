@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salar de Maricunga, punto de equilibrio</title>
+<style>
+  :root{
+    --bg: #10201E;
+    --panel: #182F2B;
+    --panel-borde: rgba(234,242,239,0.14);
+    --texto: #EAF2EF;
+    --texto-tenue: rgba(234,242,239,0.62);
+    --turquesa: #2F9E9E;
+    --rosa: #C15C6E;
+    --ocre: #B8895A;
+    --verde: #7FA37A;
+    --font-titular: 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+    --font-datos: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  }
+
+  *{ box-sizing: border-box; }
+
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--texto);
+    font-family: var(--font-datos);
+    line-height: 1.5;
+    padding: 32px 16px 64px;
+  }
+
+  .escenario{
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  header h1{
+    font-family: var(--font-titular);
+    font-weight: 400;
+    font-size: 2rem;
+    margin: 0 0 4px;
+    color: var(--texto);
+  }
+
+  header p.sub{
+    margin: 0 0 18px;
+    color: var(--texto-tenue);
+    font-family: var(--font-titular);
+    font-size: 1.05rem;
+  }
+
+  .turno{
+    font-size: 0.85rem;
+    color: var(--turquesa);
+    margin-bottom: 20px;
+  }
+
+  .hero{
+    border: 1px solid var(--panel-borde);
+    background: var(--panel);
+    padding: 6px;
+    margin-bottom: 24px;
+  }
+
+  .hero svg{ width: 100%; height: auto; display: block; }
+
+  .intro{
+    font-family: var(--font-titular);
+    color: var(--texto-tenue);
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+  }
+
+  .metrics{
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+
+  .metric-row .metric-head{
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.82rem;
+    color: var(--texto-tenue);
+    margin-bottom: 4px;
+  }
+
+  .metric-valor{ color: var(--texto); }
+
+  .metric-track{
+    height: 6px;
+    background: var(--panel-borde);
+    position: relative;
+  }
+
+  .metric-fill{
+    height: 100%;
+    transition: width 0.4s ease;
+  }
+
+  .fill-agua{ background: var(--turquesa); }
+  .fill-bio{ background: var(--verde); }
+  .fill-eco{ background: var(--ocre); }
+  .fill-com{ background: var(--rosa); }
+
+  .controles{
+    border: 1px solid var(--panel-borde);
+    background: var(--panel);
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+
+  .controles h2{
+    font-family: var(--font-titular);
+    font-weight: 400;
+    font-size: 1.15rem;
+    margin: 0 0 6px;
+  }
+
+  .presupuesto{
+    font-size: 0.85rem;
+    color: var(--texto-tenue);
+    margin-bottom: 16px;
+  }
+
+  .presupuesto span{ color: var(--texto); }
+
+  .slider-row{
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  .slider-row label{
+    font-size: 0.85rem;
+    color: var(--texto);
+  }
+
+  .slider-row input[type="range"]{
+    grid-column: 1 / span 2;
+    width: 100%;
+    accent-color: var(--turquesa);
+  }
+
+  .slider-valor{
+    font-size: 0.85rem;
+    color: var(--texto-tenue);
+    text-align: right;
+  }
+
+  button{
+    font-family: var(--font-datos);
+    font-size: 0.9rem;
+    color: var(--bg);
+    background: var(--turquesa);
+    border: none;
+    padding: 12px 18px;
+    width: 100%;
+    cursor: pointer;
+  }
+
+  button:hover:not(:disabled){ background: #3BB4B4; }
+  button:disabled{ opacity: 0.4; cursor: default; }
+
+  .bitacora h2{
+    font-family: var(--font-titular);
+    font-weight: 400;
+    font-size: 1.1rem;
+    margin: 0 0 10px;
+  }
+
+  .bitacora ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .bitacora li{
+    font-family: var(--font-titular);
+    font-size: 0.9rem;
+    color: var(--texto-tenue);
+    border-left: 2px solid var(--panel-borde);
+    padding-left: 10px;
+  }
+
+  .bitacora li .anio{ color: var(--turquesa); }
+
+  .overlay{
+    position: fixed;
+    inset: 0;
+    background: rgba(6,12,11,0.82);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .overlay[hidden]{ display: none; }
+
+  .panel-final{
+    background: var(--panel);
+    border: 1px solid var(--panel-borde);
+    max-width: 440px;
+    padding: 28px;
+  }
+
+  .panel-final h2{
+    font-family: var(--font-titular);
+    font-weight: 400;
+    margin: 0 0 12px;
+    font-size: 1.4rem;
+  }
+
+  .panel-final p{
+    font-family: var(--font-titular);
+    color: var(--texto-tenue);
+    margin: 0 0 20px;
+  }
+
+  @media (max-width: 480px){
+    header h1{ font-size: 1.6rem; }
+  }
+</style>
+</head>
+<body>
+<div class="escenario">
+
+  <header>
+    <h1>Salar de Maricunga</h1>
+    <p class="sub">Estación de monitoreo del equilibrio del salar</p>
+    <div class="turno">Año <span id="turnoActual">1</span> de <span id="turnoTotal">12</span></div>
+  </header>
+
+  <div class="hero">
+    <svg viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="cielo" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#274B4A"/>
+          <stop offset="100%" stop-color="#10201E"/>
+        </linearGradient>
+        <symbol id="flamenco" viewBox="0 0 20 30">
+          <line x1="6" y1="27" x2="6" y2="18" stroke="#C15C6E" stroke-width="1.4"/>
+          <line x1="10" y1="27" x2="10" y2="18" stroke="#C15C6E" stroke-width="1.4"/>
+          <ellipse cx="8" cy="14" rx="6" ry="4" fill="#C15C6E"/>
+          <path d="M12,12 Q17,6 12,2" stroke="#C15C6E" stroke-width="1.4" fill="none"/>
+          <circle cx="12" cy="2" r="2" fill="#C15C6E"/>
+        </symbol>
+      </defs>
+
+      <rect width="800" height="300" fill="url(#cielo)"/>
+
+      <polygon points="40,235 160,235 110,150" fill="#8C6239" opacity="0.55"/>
+      <polygon points="600,235 760,235 680,140" fill="#8C6239" opacity="0.45"/>
+      <polygon points="500,235 660,235 590,175" fill="#6E4B2A" opacity="0.5"/>
+
+      <path d="M0,235 Q400,205 800,235 L800,300 L0,300 Z" fill="#D8CFB2"/>
+      <ellipse cx="150" cy="255" rx="60" ry="10" fill="#2F9E9E" opacity="0.5"/>
+      <ellipse cx="640" cy="260" rx="70" ry="11" fill="#2F9E9E" opacity="0.4"/>
+
+      <g id="balanza">
+        <line x1="400" y1="120" x2="400" y2="232" stroke="#D8CFB2" stroke-width="4"/>
+        <path d="M382,232 L418,232 L426,244 L374,244 Z" fill="#D8CFB2" opacity="0.85"/>
+        <line x1="240" y1="120" x2="560" y2="120" stroke="#2F9E9E" stroke-width="5"/>
+        <line x1="240" y1="120" x2="240" y2="158" stroke="#D8CFB2" stroke-width="1.5"/>
+        <line x1="560" y1="120" x2="560" y2="158" stroke="#D8CFB2" stroke-width="1.5"/>
+        <path d="M208,158 L272,158 L262,182 L218,182 Z" fill="#2F9E9E" opacity="0.9"/>
+        <path d="M528,158 L592,158 L582,182 L538,182 Z" fill="#B8895A" opacity="0.9"/>
+        <circle cx="400" cy="120" r="6" fill="#D8CFB2"/>
+      </g>
+
+      <text x="240" y="205" text-anchor="middle" fill="rgba(234,242,239,0.6)" font-size="13" font-family="SFMono-Regular, Consolas, monospace">naturaleza</text>
+      <text x="560" y="205" text-anchor="middle" fill="rgba(234,242,239,0.6)" font-size="13" font-family="SFMono-Regular, Consolas, monospace">desarrollo</text>
+
+      <use href="#flamenco" id="flam0" x="70"  y="228" width="18" height="27"/>
+      <use href="#flamenco" id="flam1" x="120" y="235" width="16" height="24"/>
+      <use href="#flamenco" id="flam2" x="640" y="230" width="20" height="30"/>
+      <use href="#flamenco" id="flam3" x="690" y="238" width="15" height="22"/>
+      <use href="#flamenco" id="flam4" x="200" y="240" width="14" height="21"/>
+      <use href="#flamenco" id="flam5" x="600" y="245" width="14" height="21"/>
+    </svg>
+  </div>
+
+  <p class="intro">Cada año contás con puntos de gestión limitados. Repartilos entre las cuatro líneas de acción y mirá cómo responde el salar antes de avanzar al año siguiente. El objetivo es llegar al año 12 sin que ninguna de las cuatro dimensiones caiga a cero.</p>
+
+  <div class="metrics">
+    <div class="metric-row">
+      <div class="metric-head"><span>Nivel del acuífero</span><span class="metric-valor" id="valAgua">70</span></div>
+      <div class="metric-track"><div class="metric-fill fill-agua" id="fillAgua" style="width:70%"></div></div>
+    </div>
+    <div class="metric-row">
+      <div class="metric-head"><span>Biodiversidad del salar</span><span class="metric-valor" id="valBio">65</span></div>
+      <div class="metric-track"><div class="metric-fill fill-bio" id="fillBio" style="width:65%"></div></div>
+    </div>
+    <div class="metric-row">
+      <div class="metric-head"><span>Ingresos por litio</span><span class="metric-valor" id="valEco">40</span></div>
+      <div class="metric-track"><div class="metric-fill fill-eco" id="fillEco" style="width:40%"></div></div>
+    </div>
+    <div class="metric-row">
+      <div class="metric-head"><span>Bienestar comunitario</span><span class="metric-valor" id="valCom">60</span></div>
+      <div class="metric-track"><div class="metric-fill fill-com" id="fillCom" style="width:60%"></div></div>
+    </div>
+  </div>
+
+  <div class="controles">
+    <h2>Plan de gestión</h2>
+    <div class="presupuesto">Puntos disponibles este año: <span id="puntosRestantes">8</span> de 8</div>
+
+    <div class="slider-row">
+      <label for="sExtraccion">Extracción de litio</label>
+      <span class="slider-valor" id="vExtraccion">0</span>
+      <input type="range" id="sExtraccion" min="0" max="8" value="0" step="1">
+    </div>
+    <div class="slider-row">
+      <label for="sRestauracion">Restauración hídrica</label>
+      <span class="slider-valor" id="vRestauracion">0</span>
+      <input type="range" id="sRestauracion" min="0" max="8" value="0" step="1">
+    </div>
+    <div class="slider-row">
+      <label for="sDialogo">Diálogo con comunidades</label>
+      <span class="slider-valor" id="vDialogo">0</span>
+      <input type="range" id="sDialogo" min="0" max="8" value="0" step="1">
+    </div>
+    <div class="slider-row">
+      <label for="sMonitoreo">Monitoreo científico</label>
+      <span class="slider-valor" id="vMonitoreo">0</span>
+      <input type="range" id="sMonitoreo" min="0" max="8" value="0" step="1">
+    </div>
+
+    <button id="btnAvanzar">Avanzar al siguiente año</button>
+  </div>
+
+  <div class="bitacora">
+    <h2>Bitácora</h2>
+    <ul id="listaEventos"></ul>
+  </div>
+
+</div>
+
+<div class="overlay" id="overlayFinal" hidden>
+  <div class="panel-final">
+    <h2 id="finalTitulo"></h2>
+    <p id="finalTexto"></p>
+    <button id="btnReiniciar">Reiniciar simulación</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  const totalTurnos = 12;
+  const presupuesto = 8;
+
+  const estadoInicial = { agua: 70, bio: 65, eco: 40, com: 60, turno: 1 };
+  let estado = Object.assign({}, estadoInicial);
+
+  const sliders = {
+    extraccion: document.getElementById('sExtraccion'),
+    restauracion: document.getElementById('sRestauracion'),
+    dialogo: document.getElementById('sDialogo'),
+    monitoreo: document.getElementById('sMonitoreo')
+  };
+  const valores = {
+    extraccion: document.getElementById('vExtraccion'),
+    restauracion: document.getElementById('vRestauracion'),
+    dialogo: document.getElementById('vDialogo'),
+    monitoreo: document.getElementById('vMonitoreo')
+  };
+  const puntosRestantesEl = document.getElementById('puntosRestantes');
+
+  function sumaAsignada(){
+    return Object.values(sliders).reduce((acc, s) => acc + parseInt(s.value, 10), 0);
+  }
+
+  function actualizarPresupuesto(){
+    const suma = sumaAsignada();
+    puntosRestantesEl.textContent = presupuesto - suma;
+    return suma;
+  }
+
+  Object.keys(sliders).forEach(clave => {
+    sliders[clave].addEventListener('input', () => {
+      let suma = sumaAsignada();
+      if (suma > presupuesto) {
+        const exceso = suma - presupuesto;
+        sliders[clave].value = Math.max(0, parseInt(sliders[clave].value, 10) - exceso);
+      }
+      valores[clave].textContent = sliders[clave].value;
+      actualizarPresupuesto();
+    });
+  });
+
+  function reiniciarSliders(){
+    Object.keys(sliders).forEach(clave => {
+      sliders[clave].value = 0;
+      valores[clave].textContent = '0';
+    });
+    actualizarPresupuesto();
+  }
+
+  const eventos = [
+    { texto: 'Sequía prolongada en la cuenca alta.', efectos: { agua: -8 } },
+    { texto: 'Lluvia altiplánica alimenta los afluentes del salar.', efectos: { agua: 6 } },
+    { texto: 'Sube el precio internacional del litio.', efectos: { eco: 8 } },
+    { texto: 'Cae la demanda internacional de litio.', efectos: { eco: -6 } },
+    { texto: 'Se registra una nueva colonia de flamencos en la laguna.', efectos: { bio: 5 } },
+    { texto: 'Se reporta mortandad de flamencos en el sector norte.', efectos: { bio: -6 } },
+    { texto: 'Comunidades atacameñas protestan por el uso del agua.', efectos: { com: -7 } },
+    { texto: 'Se firma un acuerdo de cogestión con comunidades locales.', efectos: { com: 5 } },
+    { texto: 'Una fiscalización ambiental confirma buenas prácticas en la operación.', efectos: { bio: 3, agua: 2 } },
+    { texto: 'Se detecta una filtración de salmuera cerca de una poza de evaporación.', efectos: { agua: -5, bio: -3 } }
+  ];
+
+  const mensajesColapso = {
+    agua: {
+      titulo: 'Colapso hídrico',
+      texto: 'El acuífero del salar se agota. Sin agua subterránea disponible, la operación y el ecosistema quedan sin base para sostenerse.'
+    },
+    bio: {
+      titulo: 'Colapso ecológico',
+      texto: 'Los flamencos abandonan el salar y las comunidades microbianas de las lagunas colapsan. El daño ambiental se vuelve irreversible en el corto plazo.'
+    },
+    eco: {
+      titulo: 'Colapso económico',
+      texto: 'La operación deja de ser viable financieramente y cierra. Sin ingresos, ninguna de las otras dimensiones puede sostenerse tampoco.'
+    },
+    com: {
+      titulo: 'Colapso social',
+      texto: 'Las comunidades atacameñas bloquean el acceso a la operación. El conflicto social detiene por completo la actividad en el salar.'
+    }
+  };
+
+  function clamp(v){ return Math.max(0, Math.min(100, v)); }
+
+  function render(){
+    document.getElementById('turnoActual').textContent = estado.turno;
+
+    document.getElementById('valAgua').textContent = estado.agua;
+    document.getElementById('valBio').textContent = estado.bio;
+    document.getElementById('valEco').textContent = estado.eco;
+    document.getElementById('valCom').textContent = estado.com;
+
+    document.getElementById('fillAgua').style.width = estado.agua + '%';
+    document.getElementById('fillBio').style.width = estado.bio + '%';
+    document.getElementById('fillEco').style.width = estado.eco + '%';
+    document.getElementById('fillCom').style.width = estado.com + '%';
+
+    const balance = ((estado.agua + estado.bio) / 2) - ((estado.eco + estado.com) / 2);
+    let angulo = -(balance / 50) * 18;
+    angulo = Math.max(-18, Math.min(18, angulo));
+    document.getElementById('balanza').setAttribute('transform', 'rotate(' + angulo.toFixed(2) + ' 400 120)');
+
+    const cantidadFlamencos = Math.min(6, Math.max(0, Math.round(estado.bio / 100 * 6)));
+    for (let i = 0; i < 6; i++) {
+      document.getElementById('flam' + i).style.display = i < cantidadFlamencos ? '' : 'none';
+    }
+  }
+
+  function registrarEvento(anio, texto){
+    const li = document.createElement('li');
+    const spanAnio = document.createElement('span');
+    spanAnio.className = 'anio';
+    spanAnio.textContent = 'Año ' + anio + '. ';
+    li.appendChild(spanAnio);
+    li.appendChild(document.createTextNode(texto));
+    const lista = document.getElementById('listaEventos');
+    lista.insertBefore(li, lista.firstChild);
+  }
+
+  function mostrarFinal(titulo, texto){
+    document.getElementById('finalTitulo').textContent = titulo;
+    document.getElementById('finalTexto').textContent = texto;
+    document.getElementById('overlayFinal').hidden = false;
+    document.getElementById('btnAvanzar').disabled = true;
+    Object.values(sliders).forEach(s => s.disabled = true);
+  }
+
+  function comprobarFinal(){
+    let colapso = null;
+    if (estado.agua <= 0) colapso = 'agua';
+    else if (estado.bio <= 0) colapso = 'bio';
+    else if (estado.eco <= 0) colapso = 'eco';
+    else if (estado.com <= 0) colapso = 'com';
+
+    if (colapso) {
+      mostrarFinal(mensajesColapso[colapso].titulo, mensajesColapso[colapso].texto);
+      return;
+    }
+
+    if (estado.turno > totalTurnos) {
+      const promedio = (estado.agua + estado.bio + estado.eco + estado.com) / 4;
+      let titulo, texto;
+      if (promedio >= 70) {
+        titulo = 'Equilibrio sostenible';
+        texto = 'Después de ' + totalTurnos + ' años, el salar de Maricunga sostiene su acuífero, su biodiversidad, su economía y sus comunidades en un punto sano. Promedio final: ' + promedio.toFixed(1) + '.';
+      } else if (promedio >= 50) {
+        titulo = 'Equilibrio frágil';
+        texto = 'El salar llega al año ' + totalTurnos + ' sin colapsar, pero el margen entre dimensiones es estrecho. Promedio final: ' + promedio.toFixed(1) + '.';
+      } else {
+        titulo = 'Equilibrio al límite';
+        texto = 'Ninguna dimensión llegó a cero, pero el sistema queda muy debilitado tras ' + totalTurnos + ' años. Promedio final: ' + promedio.toFixed(1) + '.';
+      }
+      mostrarFinal(titulo, texto);
+    }
+  }
+
+  function avanzarAnio(){
+    const ext = parseInt(sliders.extraccion.value, 10);
+    const res = parseInt(sliders.restauracion.value, 10);
+    const dia = parseInt(sliders.dialogo.value, 10);
+    const mon = parseInt(sliders.monitoreo.value, 10);
+
+    let agua = estado.agua - 2 * ext + 3 * res + 1 * mon - 1;
+    let bio  = estado.bio  - 1 * ext + 1 * res + 2 * mon - 1;
+    let eco  = estado.eco  + 3 * ext - 1 * res - 0.5 * dia - 0.5 * mon - 1;
+    let com  = estado.com  - 1 * ext + 3 * dia - 1;
+
+    const evento = eventos[Math.floor(Math.random() * eventos.length)];
+    agua += evento.efectos.agua || 0;
+    bio  += evento.efectos.bio  || 0;
+    eco  += evento.efectos.eco  || 0;
+    com  += evento.efectos.com  || 0;
+
+    const anioTexto = estado.turno;
+
+    estado.agua = clamp(Math.round(agua));
+    estado.bio  = clamp(Math.round(bio));
+    estado.eco  = clamp(Math.round(eco));
+    estado.com  = clamp(Math.round(com));
+    estado.turno += 1;
+
+    registrarEvento(anioTexto, evento.texto);
+    reiniciarSliders();
+    render();
+    comprobarFinal();
+  }
+
+  document.getElementById('btnAvanzar').addEventListener('click', avanzarAnio);
+
+  document.getElementById('btnReiniciar').addEventListener('click', () => {
+    estado = Object.assign({}, estadoInicial);
+    document.getElementById('listaEventos').innerHTML = '';
+    document.getElementById('overlayFinal').hidden = true;
+    document.getElementById('btnAvanzar').disabled = false;
+    Object.values(sliders).forEach(s => s.disabled = false);
+    reiniciarSliders();
+    render();
+  });
+
+  actualizarPresupuesto();
+  render();
+})();
+</script>
+</body>
+</html>
