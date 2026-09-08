@@ -6,24 +6,24 @@
 <title>Salar de Maricunga, punto de equilibrio</title>
 <style>
   :root{
-    --bg: #10201E;
-    --panel: #182F2B;
-    --panel-borde: rgba(234,242,239,0.14);
-    --texto: #EAF2EF;
-    --texto-tenue: rgba(234,242,239,0.62);
-    --turquesa: #2F9E9E;
-    --rosa: #C15C6E;
-    --ocre: #B8895A;
-    --verde: #7FA37A;
-    --font-titular: 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
-    --font-datos: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    --fondo: #fafafa;
+    --panel: #ffffff;
+    --panel-borde: #e3e3e3;
+    --texto: #343B4D;
+    --texto-tenue: #767c88;
+    --turquesa: #01A99D;
+    --rosa: #F288A4;
+    --ocre: #AA8744;
+    --azul-roca: #343B4D;
+    --font-titular: 'Lato', 'Segoe UI', sans-serif;
+    --font-datos: 'Lato', 'Segoe UI', sans-serif;
   }
 
   *{ box-sizing: border-box; }
 
   body{
     margin:0;
-    background: var(--bg);
+    background: var(--fondo);
     color: var(--texto);
     font-family: var(--font-datos);
     line-height: 1.5;
@@ -58,6 +58,7 @@
 
   .hero{
     border: 1px solid var(--panel-borde);
+    border-top: 4px solid var(--turquesa);
     background: var(--panel);
     padding: 6px;
     margin-bottom: 24px;
@@ -101,12 +102,13 @@
   }
 
   .fill-agua{ background: var(--turquesa); }
-  .fill-bio{ background: var(--verde); }
+  .fill-bio{ background: var(--azul-roca); }
   .fill-eco{ background: var(--ocre); }
   .fill-com{ background: var(--rosa); }
 
   .controles{
     border: 1px solid var(--panel-borde);
+    border-top: 4px solid var(--ocre);
     background: var(--panel);
     padding: 20px;
     margin-bottom: 24px;
@@ -143,7 +145,37 @@
   .slider-row input[type="range"]{
     grid-column: 1 / span 2;
     width: 100%;
-    accent-color: var(--turquesa);
+    -webkit-appearance: none;
+    appearance: none;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--panel-borde);
+    outline: none;
+  }
+
+  .slider-row input[type="range"]::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--turquesa);
+    cursor: pointer;
+  }
+
+  .slider-row input[type="range"]::-moz-range-track{
+    height: 6px;
+    border-radius: 3px;
+    background: var(--panel-borde);
+  }
+
+  .slider-row input[type="range"]::-moz-range-thumb{
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--turquesa);
+    border: none;
+    cursor: pointer;
   }
 
   .slider-valor{
@@ -155,7 +187,7 @@
   button{
     font-family: var(--font-datos);
     font-size: 0.9rem;
-    color: var(--bg);
+    color: var(--fondo);
     background: var(--turquesa);
     border: none;
     padding: 12px 18px;
@@ -163,7 +195,7 @@
     cursor: pointer;
   }
 
-  button:hover:not(:disabled){ background: #3BB4B4; }
+  button:hover:not(:disabled){ background: #018f85; }
   button:disabled{ opacity: 0.4; cursor: default; }
 
   .bitacora h2{
@@ -195,7 +227,7 @@
   .overlay{
     position: fixed;
     inset: 0;
-    background: rgba(6,12,11,0.82);
+    background: rgba(52,59,77,0.75);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -242,41 +274,41 @@
     <svg viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <linearGradient id="cielo" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#274B4A"/>
-          <stop offset="100%" stop-color="#10201E"/>
+          <stop offset="0%" stop-color="#e3f7f5"/>
+          <stop offset="100%" stop-color="#ffffff"/>
         </linearGradient>
         <symbol id="flamenco" viewBox="0 0 20 30">
-          <line x1="6" y1="27" x2="6" y2="18" stroke="#C15C6E" stroke-width="1.4"/>
-          <line x1="10" y1="27" x2="10" y2="18" stroke="#C15C6E" stroke-width="1.4"/>
-          <ellipse cx="8" cy="14" rx="6" ry="4" fill="#C15C6E"/>
-          <path d="M12,12 Q17,6 12,2" stroke="#C15C6E" stroke-width="1.4" fill="none"/>
-          <circle cx="12" cy="2" r="2" fill="#C15C6E"/>
+          <line x1="6" y1="27" x2="6" y2="18" stroke="#F288A4" stroke-width="1.4"/>
+          <line x1="10" y1="27" x2="10" y2="18" stroke="#F288A4" stroke-width="1.4"/>
+          <ellipse cx="8" cy="14" rx="6" ry="4" fill="#F288A4"/>
+          <path d="M12,12 Q17,6 12,2" stroke="#F288A4" stroke-width="1.4" fill="none"/>
+          <circle cx="12" cy="2" r="2" fill="#F288A4"/>
         </symbol>
       </defs>
 
       <rect width="800" height="300" fill="url(#cielo)"/>
 
-      <polygon points="40,235 160,235 110,150" fill="#8C6239" opacity="0.55"/>
-      <polygon points="600,235 760,235 680,140" fill="#8C6239" opacity="0.45"/>
-      <polygon points="500,235 660,235 590,175" fill="#6E4B2A" opacity="0.5"/>
+      <polygon points="40,235 160,235 110,150" fill="#AA8744" opacity="0.5"/>
+      <polygon points="600,235 760,235 680,140" fill="#AA8744" opacity="0.4"/>
+      <polygon points="500,235 660,235 590,175" fill="#7c6333" opacity="0.45"/>
 
       <path d="M0,235 Q400,205 800,235 L800,300 L0,300 Z" fill="#D8CFB2"/>
-      <ellipse cx="150" cy="255" rx="60" ry="10" fill="#2F9E9E" opacity="0.5"/>
-      <ellipse cx="640" cy="260" rx="70" ry="11" fill="#2F9E9E" opacity="0.4"/>
+      <ellipse cx="150" cy="255" rx="60" ry="10" fill="#01A99D" opacity="0.45"/>
+      <ellipse cx="640" cy="260" rx="70" ry="11" fill="#01A99D" opacity="0.35"/>
 
       <g id="balanza">
-        <line x1="400" y1="120" x2="400" y2="232" stroke="#D8CFB2" stroke-width="4"/>
-        <path d="M382,232 L418,232 L426,244 L374,244 Z" fill="#D8CFB2" opacity="0.85"/>
-        <line x1="240" y1="120" x2="560" y2="120" stroke="#2F9E9E" stroke-width="5"/>
-        <line x1="240" y1="120" x2="240" y2="158" stroke="#D8CFB2" stroke-width="1.5"/>
-        <line x1="560" y1="120" x2="560" y2="158" stroke="#D8CFB2" stroke-width="1.5"/>
-        <path d="M208,158 L272,158 L262,182 L218,182 Z" fill="#2F9E9E" opacity="0.9"/>
-        <path d="M528,158 L592,158 L582,182 L538,182 Z" fill="#B8895A" opacity="0.9"/>
-        <circle cx="400" cy="120" r="6" fill="#D8CFB2"/>
+        <line x1="400" y1="120" x2="400" y2="232" stroke="#767c88" stroke-width="4"/>
+        <path d="M382,232 L418,232 L426,244 L374,244 Z" fill="#767c88" opacity="0.85"/>
+        <line x1="240" y1="120" x2="560" y2="120" stroke="#01A99D" stroke-width="5"/>
+        <line x1="240" y1="120" x2="240" y2="158" stroke="#767c88" stroke-width="1.5"/>
+        <line x1="560" y1="120" x2="560" y2="158" stroke="#767c88" stroke-width="1.5"/>
+        <path d="M208,158 L272,158 L262,182 L218,182 Z" fill="#01A99D" opacity="0.9"/>
+        <path d="M528,158 L592,158 L582,182 L538,182 Z" fill="#AA8744" opacity="0.9"/>
+        <circle cx="400" cy="120" r="6" fill="#767c88"/>
       </g>
 
-      <text x="240" y="205" text-anchor="middle" fill="rgba(234,242,239,0.6)" font-size="13" font-family="SFMono-Regular, Consolas, monospace">naturaleza</text>
-      <text x="560" y="205" text-anchor="middle" fill="rgba(234,242,239,0.6)" font-size="13" font-family="SFMono-Regular, Consolas, monospace">desarrollo</text>
+      <text x="240" y="205" text-anchor="middle" fill="#767c88" font-size="13" font-family="'Lato', sans-serif">naturaleza</text>
+      <text x="560" y="205" text-anchor="middle" fill="#767c88" font-size="13" font-family="'Lato', sans-serif">desarrollo</text>
 
       <use href="#flamenco" id="flam0" x="70"  y="228" width="18" height="27"/>
       <use href="#flamenco" id="flam1" x="120" y="235" width="16" height="24"/>
