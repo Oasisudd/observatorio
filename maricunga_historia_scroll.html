@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El sistema Maricunga, desde la montaña hasta el microbio</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: #faf9f6;
+    color: #1a1a18;
+  }
+  .step {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1.5rem;
+    text-align: center;
+    gap: 1.1rem;
+    opacity: 0.2;
+    transition: opacity 0.4s ease;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .step.visible { opacity: 1; }
+  .step p { margin: 0; font-size: 17px; line-height: 1.5; }
+  .step .sub { font-size: 14px; color: #6b6b64; }
+  .step .hint { font-size: 12px; color: #9a9a90; }
+  .step .stat { font-size: 30px; font-weight: 600; margin: 0; }
+  .photo, iframe.photo {
+    width: 100%;
+    max-width: 380px;
+    aspect-ratio: 4/3;
+    border-radius: 14px;
+    overflow: hidden;
+    border: none;
+  }
+  .photo img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+  .dot { border-radius: 50%; }
+  #counter {
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    color: #6b6b64;
+    background: rgba(255,255,255,0.92);
+    padding: 4px 12px;
+    border-radius: 999px;
+    border: 1px solid #e5e3dc;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    z-index: 10;
+  }
+  svg { display: block; margin: 0 auto; }
+</style>
+</head>
+<body>
+
+<div class="step" data-n="1">
+  <iframe class="photo" src="https://oasisudd.github.io/observatorio/panorama-360.html" title="Panorama 360 del salar de Maricunga"></iframe>
+  <p>En el altiplano andino del norte de Chile, entre 3.760 y 4.300 metros de altura.</p>
+  <p class="hint">Arrastra la imagen para mirar alrededor</p>
+</div>
+
+<div class="step" data-n="2">
+  <div class="photo"><img src="https://oasisudd.github.io/observatorio/transectoMirador/DJI_0840.jpg" alt="Canal de agua que conecta el salar de Maricunga con Laguna Santa Rosa"></div>
+  <p>El salar de Maricunga y Laguna Santa Rosa forman un solo sistema, unido por un canal de agua permanente.</p>
+</div>
+
+<div class="step" data-n="3">
+  <div class="photo"><img src="https://oasisudd.github.io/observatorio/img/IMG_1080.png" alt="Imagen satelital de los tres sectores de estudio"></div>
+  <p>Mas al sur, Laguna del Negro Francisco esta dividida en dos por una cresta de tierra.</p>
+</div>
+
+<div class="step" data-n="4">
+  <div class="photo"><img src="https://oasisudd.github.io/observatorio/lagunaVerde/20251128_125005.jpg" alt="Laguna Verde, con actividad geotermica"></div>
+  <p>Y Laguna Verde, con actividad geotermica activa desde el Pleistoceno.</p>
+</div>
+
+<div class="step" data-n="5">
+  <div class="photo"><img src="https://oasisudd.github.io/observatorio/lagunaMaricungaMuestreo.jpg" alt="Campaña de muestreo microbiologico en el sistema Maricunga"></div>
+  <p>Recolectaron esteras microbianas, sedimentos y costras de sal, punto por punto.</p>
+</div>
+
+<div class="step" data-n="6">
+  <div class="photo"><img src="https://oasisudd.github.io/observatorio/20251128_094540.jpg" alt="Medicion de parametros fisicoquimicos en terreno"></div>
+  <p>En cada sitio midieron temperatura, acidez, salinidad y oxigeno disuelto.</p>
+</div>
+
+<div class="step" data-n="7">
+  <p class="stat">31 a 47&deg;C</p>
+  <p class="sub">La temperatura de las aguas termales de Laguna Verde, en pleno frio andino.</p>
+</div>
+
+<div class="step" data-n="8">
+  <p class="stat">70 a 80 g/L</p>
+  <p class="sub">La salinidad de algunas lagunas, muy por encima del agua de mar.</p>
+</div>
+
+<div class="step" data-n="9">
+  <p>Cada muestra fue analizada por su ADN para saber exactamente quien vive ahi.</p>
+</div>
+
+<div class="step" data-n="10">
+  <p>La salinidad resulto ser el factor ambiental que mas influye en que microbios aparecen.</p>
+</div>
+
+<div class="step" data-n="11">
+  <p>Pero el lugar exacto donde se toma la muestra pesa incluso mas que la sal misma.</p>
+</div>
+
+<div class="step" data-n="12">
+  <div class="photo"><img src="https://oasisudd.github.io/observatorio/img/tapeteMicrobiano.jpg" alt="Corte transversal de un tapete microbiano estratificado"></div>
+  <p class="sub">Pseudomonadota y Bacteroidota, dos grupos de bacterias, dominan casi todo el sistema.</p>
+</div>
+
+<div class="step" data-n="13">
+  <svg viewBox="0 0 100 100" width="56" height="56"><polygon points="50,10 61,38 92,38 67,57 76,88 50,70 24,88 33,57 8,38 39,38" fill="#7f77dd"/></svg>
+  <p>Donde la sal es extrema, aparecen arqueas halofilas como Halobacteriota y Nanoarchaeota.</p>
+</div>
+
+<div class="step" data-n="14">
+  <div style="display:flex; gap:10px;">
+    <div class="dot" style="width:30px;height:30px;background:#639922;"></div>
+    <div class="dot" style="width:30px;height:30px;background:#1d9e75;"></div>
+  </div>
+  <p>En aguas menos saladas dominan otros grupos, como Cyanobacteriota y Chloroflexota.</p>
+</div>
+
+<div class="step" data-n="15">
+  <p class="stat">15%</p>
+  <p class="sub">De todas las especies encontradas, esta es la unica fraccion que aparece en ambos tipos de agua.</p>
+</div>
+
+<div class="step" data-n="16">
+  <p class="stat">206 de 1.374</p>
+  <p class="sub">Especies compartidas entre lagunas salobres e hipersalinas. El resto es exclusivo de su lugar.</p>
+</div>
+
+<div class="step" data-n="17">
+  <p class="stat">47</p>
+  <p class="sub">Si solo se cuentan las especies mas abundantes, apenas 47 se repiten en ambos tipos de agua.</p>
+</div>
+
+<div class="step" data-n="18">
+  <p>En las lagunas mas frescas, los microbios hacen fotosintesis y procesan nitrogeno.</p>
+</div>
+
+<div class="step" data-n="19">
+  <p>En las mas saladas, sobreviven solo de energia quimica, sin luz ni fotosintesis.</p>
+</div>
+
+<div class="step" data-n="20">
+  <p>El ciclo del azufre, en cambio, ocurre en casi todas las lagunas, saladas o no.</p>
+</div>
+
+<div class="step" data-n="21">
+  <svg viewBox="0 0 200 100" width="200" height="100">
+    <line x1="30" y1="30" x2="100" y2="60" stroke="#b4b2a9" stroke-width="1.5"/>
+    <line x1="100" y1="60" x2="170" y2="25" stroke="#b4b2a9" stroke-width="1.5"/>
+    <line x1="30" y1="30" x2="170" y2="25" stroke="#b4b2a9" stroke-width="1.5"/>
+    <circle cx="30" cy="30" r="9" fill="#378ade"/>
+    <circle cx="170" cy="25" r="9" fill="#d85a30"/>
+    <circle cx="100" cy="60" r="12" fill="#7f77dd"/>
+  </svg>
+  <p>Un pequeño grupo de especies clave conecta toda la red, de laguna en laguna.</p>
+</div>
+
+<div class="step" data-n="22">
+  <p>Laguna Verde es la mas distinta de todas, una comunidad propia moldeada por su calor geotermico.</p>
+</div>
+
+<div class="step" data-n="23">
+  <div class="photo"><img src="https://oasisudd.github.io/observatorio/img/microbiologia1.jpg" alt="Tapetes microbianos y ambientes altoandinos del sistema Maricunga"></div>
+  <p>Este es el primer mapa completo de este ecosistema, hoy amenazado por la mineria de litio.</p>
+  <p class="hint">Desde la montaña hasta el microbio, todo esta conectado.</p>
+</div>
+
+<div id="counter">1 / 23</div>
+
+<script>
+  const steps = document.querySelectorAll('.step');
+  const counter = document.getElementById('counter');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      e.target.classList.toggle('visible', e.isIntersecting);
+      if (e.isIntersecting) counter.textContent = e.target.dataset.n + ' / 23';
+    });
+  }, { threshold: 0.5 });
+  steps.forEach((s) => io.observe(s));
+</script>
+
+</body>
+</html>
